@@ -1,11 +1,15 @@
 <div align="center">
 
-<img src="docs/media/trailer-teaser.gif" alt="Warsaw Downtown: gameplay teaser" width="100%">
+<a href="https://github.com/KiranMohan-92/warsaw-downtown-game/releases/tag/trailer-v1"><img src="docs/media/trailer-teaser.gif" alt="Warsaw Downtown: gameplay teaser" width="100%"></a>
 
 # WARSAW DOWNTOWN
 
 **Six players. One city. Zero allies.**
 A free-for-all shooter in the browser. No download. No mercy.
+
+<a href="https://github.com/KiranMohan-92/warsaw-downtown-game/releases/download/trailer-v1/Warsaw-Downtown-Launch-Trailer.mp4"><img src="docs/media/trailer-poster.jpg" alt="Watch the launch trailer (2:00)" width="80%"></a>
+
+**[▶ Watch the launch trailer (2:00, 1080p)](https://github.com/KiranMohan-92/warsaw-downtown-game/releases/download/trailer-v1/Warsaw-Downtown-Launch-Trailer.mp4)**, all in-game footage with an original score.
 
 </div>
 

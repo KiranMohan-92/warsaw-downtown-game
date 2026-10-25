@@ -18,9 +18,9 @@ README = (
     f'<a href="{PRIVATE}/releases/tag/trailer-v1">'
     '<img src="docs/media/trailer-teaser.gif" alt="teaser" width="100%"></a>\n\n'
     "# WARSAW DOWNTOWN\n\n"
-    f'<a href="{PRIVATE}/releases/download/trailer-v1/T.mp4">'
+    f'<a href="{PRIVATE}/releases/download/trailer-v1/Warsaw-Downtown-Launch-Trailer.mp4">'
     '<img src="docs/media/trailer-poster.jpg" alt="poster" width="80%"></a>\n\n'
-    f"**[▶ Watch]({PRIVATE}/releases/download/trailer-v1/T.mp4)**, score.\n\n"
+    f"**[▶ Watch]({PRIVATE}/releases/download/trailer-v1/Warsaw-Downtown-Launch-Trailer.mp4)**, score.\n\n"
     "</div>\n\n## The game\n"
 )
 NOREPLY = "KiranMohan-92@users.noreply." + GH
@@ -59,8 +59,9 @@ def test_snapshot_is_one_commit_with_rewritten_readme(private, tmp_path, capsys)
     assert git(out, "rev-list", "--count", "HEAD").strip() == "1"
     assert git(out, "log", "-1", "--format=%an <%ae>").strip() == f"Kiran Mohan <{NOREPLY}>"
     readme = (out / "README.md").read_text(encoding="utf-8")
-    assert '<img src="docs/media/trailer-teaser.gif"' in readme
-    assert "KiranMohan-92/" + "warsaw-downtown" not in readme and "\n\n\n" not in readme
+    public = f"https://{GH}/KiranMohan-92/warsaw-downtown-game/releases/"
+    assert readme.count(public + "tag/trailer-v1") == 1 and readme.count(public + "download/trailer-v1/Warsaw-Downtown-Launch-Trailer.mp4") == 2
+    assert not M.PRIVATE_REF.search(readme)
     assert not (out / ".env").exists()  # ignored files never leave the private repo
     assert (out / "src" / "net.test.ts").exists()  # test-only LAN addresses are allowed
 
@@ -117,6 +118,15 @@ def test_private_data_refuses(private, tmp_path, capsys, path, content, kind):
 def test_credits_with_author_fields_are_not_credentials():
     assert not M.BLOCK["credential"].search("'title': 'Armoured Truck', 'author': 'robertmasiboda'")
     assert not M.BLOCK["credential"].search('"author": "robertmasiboda",')
+
+
+def test_links_to_an_unmirrored_release_refuse(private, tmp_path, capsys):
+    text = (private / "README.md").read_text(encoding="utf-8").replace("download/trailer-v1/", "download/trailer-v2/")
+    (private / "README.md").write_text(text, encoding="utf-8")
+    git(private, "commit", "-qam", "v2 links")
+    assert snapshot(private, tmp_path / "public") == 1
+    out = capsys.readouterr().out
+    assert "README changed shape" in out and "trailer-v2" in out
 
 
 def test_readme_shape_change_refuses(private, tmp_path, capsys):

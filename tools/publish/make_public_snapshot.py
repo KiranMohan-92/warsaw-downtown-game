@@ -5,9 +5,9 @@ usage:
 
 What it does:
   1. Exports the tree at --ref (`git archive`: tracked files only, no history, no untracked or ignored files).
-  2. Rewrites the README for the public copy: the trailer release lives only in the private repo, so the teaser
-     GIF stays as a plain image and the links to the private release are removed. It fails if the README no
-     longer has the shape it expects, or if any link to the private repo remains anywhere.
+  2. Rewrites the README for the public copy: its links to the private trailer release point to the same
+     release (trailer-v1) on the public repo instead. It fails if the README no longer has the shape it expects,
+     or if any link to the private repo remains anywhere.
   3. Scans every text file for credentials and private data (personal email, tailnet names, LAN addresses
      outside tests, employer references) and fails on a hit.
   4. Replaces the contents of --out (a git repo for the PUBLIC project; created if missing) with the export and
@@ -33,9 +33,12 @@ from pathlib import Path
 PRIVATE_SLUG = "KiranMohan-92/warsaw-downtown"
 AUTHOR = ("Kiran Mohan", "KiranMohan-92@users.noreply.github.com")
 
-TEASER_LINK = re.compile(
-    r'<a href="https://github\.com/KiranMohan-92/warsaw-downtown/releases/tag/[^"]*">(<img [^>]*>)</a>')
-RELEASE_DOWNLOAD_LINE = re.compile(r"^.*github\.com/KiranMohan-92/warsaw-downtown/releases/download/.*\n?", re.M)
+PUBLIC_SLUG = "KiranMohan-92/warsaw-downtown-game"
+# The trailer is published as release trailer-v1 on the public repo too (same asset), so the README's links to
+# exactly that private release are repointed there: one link to the release page, two to the video. Any other
+# release or file name is refused, since nothing guarantees it exists on the public repo.
+MIRRORED = {"tag/trailer-v1": 1, "download/trailer-v1/Warsaw-Downtown-Launch-Trailer.mp4": 2}
+RELEASE_LINK = re.compile(r"https://github\.com/KiranMohan-92/warsaw-downtown/releases/([^\s\"')\]]+)")
 # any spelling of a link to the private repo: https, ssh (git@github.com:...), any letter case
 PRIVATE_REF = re.compile(r"github\.com[:/]+KiranMohan-92/warsaw-downtown(?![-\w])", re.I)
 
@@ -65,12 +68,13 @@ def export(repo, ref, dest):
 
 
 def rewrite_readme(text):
-    text, n_teaser = TEASER_LINK.subn(r"\1", text)
-    text, n_downloads = RELEASE_DOWNLOAD_LINE.subn("", text)
-    if n_teaser != 1 or n_downloads != 2:
-        raise ValueError(f"README changed shape (teaser links {n_teaser}/1, release download lines {n_downloads}/2): "
-                         "update rewrite_readme before publishing")
-    return re.sub(r"\n{3,}", "\n\n", text)
+    found = [m.group(1) for m in RELEASE_LINK.finditer(text)]
+    counts = {path: found.count(path) for path in MIRRORED}
+    unknown = sorted(set(found) - set(MIRRORED))
+    if unknown or counts != MIRRORED:
+        raise ValueError(f"README changed shape (release links {counts}, expected {MIRRORED}; not mirrored on the "
+                         f"public repo: {unknown or 'none'}): update rewrite_readme and the public release first")
+    return RELEASE_LINK.sub(rf"https://github.com/{PUBLIC_SLUG}/releases/\1", text)
 
 
 def is_text(path):
