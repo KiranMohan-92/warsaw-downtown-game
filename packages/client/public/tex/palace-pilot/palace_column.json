@@ -1,0 +1,26 @@
+{
+  "name": "palace_column",
+  "kind": "procedural-authoring-pilot",
+  "size": 256,
+  "projection": "world x/z by dominant horizontal normal, y vertical",
+  "provenance": "authored procedural sandstone; no third-party source images",
+  "filter": "gaussian 1 px before WebP encode",
+  "seconds": 2.275,
+  "outputs": {
+    "albedo": {
+      "path": "packages/client/public/tex/palace-pilot/palace_column_albedo.webp",
+      "bytes": 7170,
+      "sha256": "ea0b2522312354e0bfd347c70de6453131f57b0b47bd2de7cb9cd28baa51b804"
+    },
+    "normal": {
+      "path": "packages/client/public/tex/palace-pilot/palace_column_normal.webp",
+      "bytes": 18578,
+      "sha256": "0107e25ba78af332ab1f99e24eb322b346205a44c74e2b5aa216189b37262fb6"
+    },
+    "roughness": {
+      "path": "packages/client/public/tex/palace-pilot/palace_column_roughness.webp",
+      "bytes": 4488,
+      "sha256": "2dceea6de65dd57f587f090876d09485d5df5ce5ebacb2bfda6abb32a8489e19"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "sceneHash": "0608001d02fe75",
+  "layoutHash": "1f8605625ccbab",
+  "bounds": [48, -22, 80, 22],
+  "receiverY": 0.02,
+  "file": "courtyard.png",
+  "width": 256,
+  "height": 256,
+  "radianceScale": 16.0,
+  "emitter": {
+    "label": "WARSZAWA 2030",
+    "sublabel": "CENTRUM LINK",
+    "x": 58,
+    "y": 5.15,
+    "z": 0,
+    "yaw": 90,
+    "w": 8,
+    "h": 2.2,
+    "color": 6219775
+  },
+  "device": "CPU",
+  "samples": 32,
+  "metrics": {
+    "elapsedSeconds": 1.232,
+    "device": "CPU",
+    "samples": 32,
+    "triangles": 24028,
+    "meshes": 133,
+    "pngBytes": 66225,
+    "pixels": {
+      "min": 0.0,
+      "max": 8.320087432861328,
+      "mean": 0.706416997726798,
+      "nonzeroChannels": 186873,
+      "clippedChannels": 0
+    }
+  },
+  "limitations": [
+    "Street dressing and hero-model surface meshes are omitted; their greybox/prop colliders are not exported in this pilot.",
+    "The receiver is a flat courtyard patch; browser wetness, albedo and moving sun remain live."
+  ],
+  "textureHash": "d0d7c2eac27b07b9b1d480c595ed727d50879aba9a5f32d28c70333f6f2e44c5"
+}

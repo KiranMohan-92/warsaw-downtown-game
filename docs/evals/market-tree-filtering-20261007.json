@@ -1,0 +1,1322 @@
+{
+  "date": "2026-10-07",
+  "branch": "codex/isolated-finish",
+  "result": "progress",
+  "improvements": [26, 27, 28],
+  "sources": [
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\treeModels.ts",
+      "bytes": 19226,
+      "sha256": "cdbda9b2a8bd6d84f17e0c19d7b5a0bcf9af3d31022dbf032403c767f8656ab2"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\treeTextureMips.ts",
+      "bytes": 4304,
+      "sha256": "f51fd6aa14c4374bb1dd1f7f01a999deb248160d17a635ee750fddb09542aa1b"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\treeTextureMips.test.ts",
+      "bytes": 3201,
+      "sha256": "cb6bcf19cd77eed718906616167b592ecb5cc4ec804d25e2fdfeb1dbd093b680"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\check_tree_filtering.mjs",
+      "bytes": 4325,
+      "sha256": "19ce5d964e68bfdcb0ed159786761e02486cda62a86b961d539d8dcfd7f7a9fd"
+    }
+  ],
+  "validation": {
+    "focusedTestFiles": 2,
+    "focusedTests": 9,
+    "focusedDurationSeconds": 3.71,
+    "types": "pass",
+    "scopedLint": "pass",
+    "productionBuild": "pass",
+    "productionBuildSeconds": 4.12,
+    "assetCheck": "pass",
+    "runtimeWarningsErrors": [],
+    "firstBuildCommand": "wrong root Vite path; corrected client package invocation passed"
+  },
+  "staticSamples": {
+    "before": {
+      "measuredAt": "2026-10-07T21:11:34.586Z",
+      "scope": "Static actual-game view, not a moving/combat benchmark",
+      "pose": "hall balcony",
+      "hardware": "ANGLE (NVIDIA, NVIDIA Quadro T2000 with Max-Q Design (0x00001FB8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": [870, 884],
+      "hiddenFrames": 0,
+      "durationMs": 15034.600000000006,
+      "frames": 518,
+      "medianMs": 33.19999999999709,
+      "p95Ms": 49.80000000000291,
+      "p99Ms": 49.90000000000873,
+      "startState": {
+        "slot": "rifle",
+        "target": "rifle",
+        "mode": "standard",
+        "grenades": 1,
+        "liveGrenades": 0,
+        "lastExplosion": null,
+        "health": 100,
+        "guard": false,
+        "stun": 0,
+        "counter": 0,
+        "partner": null,
+        "map": {
+          "name": "Plac Defilad — Market — close quarters (Palace forecourt + Plac Defilad market)",
+          "spawns": 10,
+          "bounds": {
+            "minX": 38,
+            "maxX": 170,
+            "minZ": -62,
+            "maxZ": 64
+          }
+        },
+        "tactical": {
+          "smokes": 1,
+          "jammers": 1,
+          "droneCharges": 0,
+          "flying": false,
+          "drone": null,
+          "spotted": [],
+          "jammed": 0,
+          "smokeClouds": 0
+        },
+        "radar": {
+          "live": 0,
+          "charges": 0,
+          "pickups": [
+            {
+              "id": "radar1",
+              "pos": {
+                "x": 146,
+                "y": 3.6,
+                "z": 21
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "radar2",
+              "pos": {
+                "x": 105,
+                "y": -5,
+                "z": 0
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "drone3",
+              "pos": {
+                "x": 133,
+                "y": 0,
+                "z": 18
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit4",
+              "pos": {
+                "x": 60,
+                "y": 0,
+                "z": -40
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit5",
+              "pos": {
+                "x": 56,
+                "y": 0,
+                "z": 42
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit6",
+              "pos": {
+                "x": 88,
+                "y": 0,
+                "z": -12
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit7",
+              "pos": {
+                "x": 108,
+                "y": 0,
+                "z": 32
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit8",
+              "pos": {
+                "x": 146,
+                "y": 0,
+                "z": 24
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit9",
+              "pos": {
+                "x": 124,
+                "y": 0,
+                "z": -20
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit10",
+              "pos": {
+                "x": 152,
+                "y": 0,
+                "z": 48
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit11",
+              "pos": {
+                "x": 138,
+                "y": 2.59,
+                "z": -42
+              },
+              "cooldown": 0
+            }
+          ]
+        },
+        "jetpack": {
+          "mode": 0,
+          "fuel": 0,
+          "thrust": false,
+          "items": [
+            {
+              "id": 0,
+              "pos": {
+                "x": 72,
+                "y": 0,
+                "z": -8
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 1,
+              "pos": {
+                "x": 139,
+                "y": 0,
+                "z": -5
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 2,
+              "pos": {
+                "x": 98,
+                "y": 0,
+                "z": 38
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            }
+          ],
+          "fx": {
+            "particles": 0,
+            "flames": 0
+          }
+        },
+        "pos": {
+          "x": 128.70000581299294,
+          "y": 3.6199290609816672,
+          "z": 18.099988181694815
+        },
+        "vel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "crouched": false,
+        "sprinting": false,
+        "eyeHeight": 1.62,
+        "ammo": 30,
+        "reserve": 120,
+        "reloading": false,
+        "adsAmount": 0,
+        "yaw": 1.5707963267948966,
+        "pitch": 0.04,
+        "stats": {
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "deaths": 0
+        },
+        "camera": {
+          "mode": "play",
+          "time": 0,
+          "enabled": true,
+          "killer": null,
+          "pos": {
+            "x": 128.70000581299294,
+            "y": 5.239991139343023,
+            "z": 18.099988181694815
+          },
+          "localSoldier": false
+        },
+        "drawCalls": 444,
+        "triangles": 1533372,
+        "shadowTriangles": 384858,
+        "shadowDrawCalls": 104,
+        "shaderPrograms": 231,
+        "gpuTiming": {
+          "available": true,
+          "medianMs": 18.883328
+        },
+        "fps": 39.503386004514866,
+        "quality": "high",
+        "weather": "sunny",
+        "resolutionScale": 1,
+        "overlaps": false,
+        "online": null
+      },
+      "endState": {
+        "slot": "rifle",
+        "target": "rifle",
+        "mode": "standard",
+        "grenades": 1,
+        "liveGrenades": 0,
+        "lastExplosion": null,
+        "health": 100,
+        "guard": false,
+        "stun": 0,
+        "counter": 0,
+        "partner": null,
+        "map": {
+          "name": "Plac Defilad — Market — close quarters (Palace forecourt + Plac Defilad market)",
+          "spawns": 10,
+          "bounds": {
+            "minX": 38,
+            "maxX": 170,
+            "minZ": -62,
+            "maxZ": 64
+          }
+        },
+        "tactical": {
+          "smokes": 1,
+          "jammers": 1,
+          "droneCharges": 0,
+          "flying": false,
+          "drone": null,
+          "spotted": [],
+          "jammed": 0,
+          "smokeClouds": 0
+        },
+        "radar": {
+          "live": 0,
+          "charges": 0,
+          "pickups": [
+            {
+              "id": "radar1",
+              "pos": {
+                "x": 146,
+                "y": 3.6,
+                "z": 21
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "radar2",
+              "pos": {
+                "x": 105,
+                "y": -5,
+                "z": 0
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "drone3",
+              "pos": {
+                "x": 133,
+                "y": 0,
+                "z": 18
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit4",
+              "pos": {
+                "x": 60,
+                "y": 0,
+                "z": -40
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit5",
+              "pos": {
+                "x": 56,
+                "y": 0,
+                "z": 42
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit6",
+              "pos": {
+                "x": 88,
+                "y": 0,
+                "z": -12
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit7",
+              "pos": {
+                "x": 108,
+                "y": 0,
+                "z": 32
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit8",
+              "pos": {
+                "x": 146,
+                "y": 0,
+                "z": 24
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit9",
+              "pos": {
+                "x": 124,
+                "y": 0,
+                "z": -20
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit10",
+              "pos": {
+                "x": 152,
+                "y": 0,
+                "z": 48
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit11",
+              "pos": {
+                "x": 138,
+                "y": 2.59,
+                "z": -42
+              },
+              "cooldown": 0
+            }
+          ]
+        },
+        "jetpack": {
+          "mode": 0,
+          "fuel": 0,
+          "thrust": false,
+          "items": [
+            {
+              "id": 0,
+              "pos": {
+                "x": 72,
+                "y": 0,
+                "z": -8
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 1,
+              "pos": {
+                "x": 139,
+                "y": 0,
+                "z": -5
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 2,
+              "pos": {
+                "x": 98,
+                "y": 0,
+                "z": 38
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            }
+          ],
+          "fx": {
+            "particles": 0,
+            "flames": 0
+          }
+        },
+        "pos": {
+          "x": 128.70001276976637,
+          "y": 3.61992889054236,
+          "z": 18.099988181694815
+        },
+        "vel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "crouched": false,
+        "sprinting": false,
+        "eyeHeight": 1.62,
+        "ammo": 30,
+        "reserve": 120,
+        "reloading": false,
+        "adsAmount": 0,
+        "yaw": 1.5707963267948966,
+        "pitch": 0.04,
+        "stats": {
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "deaths": 0
+        },
+        "camera": {
+          "mode": "play",
+          "time": 0,
+          "enabled": true,
+          "killer": null,
+          "pos": {
+            "x": 128.70001276976637,
+            "y": 5.239981928365655,
+            "z": 18.09998818169482
+          },
+          "localSoldier": false
+        },
+        "drawCalls": 444,
+        "triangles": 1533372,
+        "shadowTriangles": 384858,
+        "shadowDrawCalls": 104,
+        "shaderPrograms": 231,
+        "gpuTiming": {
+          "available": true,
+          "medianMs": 26.846112
+        },
+        "fps": 28.216704288938438,
+        "quality": "high",
+        "weather": "sunny",
+        "resolutionScale": 1,
+        "overlaps": false,
+        "online": null
+      }
+    },
+    "after": {
+      "measuredAt": "2026-10-07T21:20:24.006Z",
+      "scope": "Static actual-game view, not a moving/combat benchmark",
+      "pose": "hall balcony",
+      "hardware": "ANGLE (NVIDIA, NVIDIA Quadro T2000 with Max-Q Design (0x00001FB8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": [870, 884],
+      "hiddenFrames": 0,
+      "durationMs": 15001.600000000006,
+      "frames": 613,
+      "medianMs": 16.70000000001164,
+      "p95Ms": 33.30000000000291,
+      "p99Ms": 33.40000000000873,
+      "startState": {
+        "slot": "rifle",
+        "target": "rifle",
+        "mode": "standard",
+        "grenades": 1,
+        "liveGrenades": 0,
+        "lastExplosion": null,
+        "health": 100,
+        "guard": false,
+        "stun": 0,
+        "counter": 0,
+        "partner": null,
+        "map": {
+          "name": "Plac Defilad — Market — close quarters (Palace forecourt + Plac Defilad market)",
+          "spawns": 10,
+          "bounds": {
+            "minX": 38,
+            "maxX": 170,
+            "minZ": -62,
+            "maxZ": 64
+          }
+        },
+        "tactical": {
+          "smokes": 1,
+          "jammers": 1,
+          "droneCharges": 0,
+          "flying": false,
+          "drone": null,
+          "spotted": [],
+          "jammed": 0,
+          "smokeClouds": 0
+        },
+        "radar": {
+          "live": 0,
+          "charges": 0,
+          "pickups": [
+            {
+              "id": "radar1",
+              "pos": {
+                "x": 146,
+                "y": 3.6,
+                "z": 21
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "radar2",
+              "pos": {
+                "x": 105,
+                "y": -5,
+                "z": 0
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "drone3",
+              "pos": {
+                "x": 133,
+                "y": 0,
+                "z": 18
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit4",
+              "pos": {
+                "x": 60,
+                "y": 0,
+                "z": -40
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit5",
+              "pos": {
+                "x": 56,
+                "y": 0,
+                "z": 42
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit6",
+              "pos": {
+                "x": 88,
+                "y": 0,
+                "z": -12
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit7",
+              "pos": {
+                "x": 108,
+                "y": 0,
+                "z": 32
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit8",
+              "pos": {
+                "x": 146,
+                "y": 0,
+                "z": 24
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit9",
+              "pos": {
+                "x": 124,
+                "y": 0,
+                "z": -20
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit10",
+              "pos": {
+                "x": 152,
+                "y": 0,
+                "z": 48
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit11",
+              "pos": {
+                "x": 138,
+                "y": 2.59,
+                "z": -42
+              },
+              "cooldown": 0
+            }
+          ]
+        },
+        "jetpack": {
+          "mode": 0,
+          "fuel": 0,
+          "thrust": false,
+          "items": [
+            {
+              "id": 0,
+              "pos": {
+                "x": 72,
+                "y": 0,
+                "z": -8
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 1,
+              "pos": {
+                "x": 139,
+                "y": 0,
+                "z": -5
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 2,
+              "pos": {
+                "x": 98,
+                "y": 0,
+                "z": 38
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            }
+          ],
+          "fx": {
+            "particles": 0,
+            "flames": 0
+          }
+        },
+        "pos": {
+          "x": 128.70001765452614,
+          "y": 3.620029347855598,
+          "z": 18.099988181694815
+        },
+        "vel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "crouched": false,
+        "sprinting": false,
+        "eyeHeight": 1.62,
+        "ammo": 30,
+        "reserve": 120,
+        "reloading": false,
+        "adsAmount": 0,
+        "yaw": 1.5707963267948966,
+        "pitch": 0.04,
+        "stats": {
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "deaths": 0
+        },
+        "camera": {
+          "mode": "play",
+          "time": 0,
+          "enabled": true,
+          "killer": null,
+          "pos": {
+            "x": 128.70001765000416,
+            "y": 5.240021271124366,
+            "z": 18.099988181694815
+          },
+          "localSoldier": false
+        },
+        "drawCalls": 447,
+        "triangles": 1558490,
+        "shadowTriangles": 384858,
+        "shadowDrawCalls": 104,
+        "shaderPrograms": 231,
+        "gpuTiming": {
+          "available": true,
+          "medianMs": 19.405088
+        },
+        "fps": 44.66019417475724,
+        "quality": "high",
+        "weather": "sunny",
+        "resolutionScale": 1,
+        "overlaps": false,
+        "online": null
+      },
+      "endState": {
+        "slot": "rifle",
+        "target": "rifle",
+        "mode": "standard",
+        "grenades": 1,
+        "liveGrenades": 0,
+        "lastExplosion": null,
+        "health": 100,
+        "guard": false,
+        "stun": 0,
+        "counter": 0,
+        "partner": null,
+        "map": {
+          "name": "Plac Defilad — Market — close quarters (Palace forecourt + Plac Defilad market)",
+          "spawns": 10,
+          "bounds": {
+            "minX": 38,
+            "maxX": 170,
+            "minZ": -62,
+            "maxZ": 64
+          }
+        },
+        "tactical": {
+          "smokes": 1,
+          "jammers": 1,
+          "droneCharges": 0,
+          "flying": false,
+          "drone": null,
+          "spotted": [],
+          "jammed": 0,
+          "smokeClouds": 0
+        },
+        "radar": {
+          "live": 0,
+          "charges": 0,
+          "pickups": [
+            {
+              "id": "radar1",
+              "pos": {
+                "x": 146,
+                "y": 3.6,
+                "z": 21
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "radar2",
+              "pos": {
+                "x": 105,
+                "y": -5,
+                "z": 0
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "drone3",
+              "pos": {
+                "x": 133,
+                "y": 0,
+                "z": 18
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit4",
+              "pos": {
+                "x": 60,
+                "y": 0,
+                "z": -40
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit5",
+              "pos": {
+                "x": 56,
+                "y": 0,
+                "z": 42
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit6",
+              "pos": {
+                "x": 88,
+                "y": 0,
+                "z": -12
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit7",
+              "pos": {
+                "x": 108,
+                "y": 0,
+                "z": 32
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit8",
+              "pos": {
+                "x": 146,
+                "y": 0,
+                "z": 24
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit9",
+              "pos": {
+                "x": 124,
+                "y": 0,
+                "z": -20
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit10",
+              "pos": {
+                "x": 152,
+                "y": 0,
+                "z": 48
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit11",
+              "pos": {
+                "x": 138,
+                "y": 2.59,
+                "z": -42
+              },
+              "cooldown": 0
+            }
+          ]
+        },
+        "jetpack": {
+          "mode": 0,
+          "fuel": 0,
+          "thrust": false,
+          "items": [
+            {
+              "id": 0,
+              "pos": {
+                "x": 72,
+                "y": 0,
+                "z": -8
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 1,
+              "pos": {
+                "x": 139,
+                "y": 0,
+                "z": -5
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 2,
+              "pos": {
+                "x": 98,
+                "y": 0,
+                "z": 38
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            }
+          ],
+          "fx": {
+            "particles": 0,
+            "flames": 0
+          }
+        },
+        "pos": {
+          "x": 128.7000268655794,
+          "y": 3.6200999117405446,
+          "z": 18.09998206006468
+        },
+        "vel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "crouched": false,
+        "sprinting": false,
+        "eyeHeight": 1.62,
+        "ammo": 30,
+        "reserve": 120,
+        "reloading": false,
+        "adsAmount": 0,
+        "yaw": 1.5707963267948966,
+        "pitch": 0.04,
+        "stats": {
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "deaths": 0
+        },
+        "camera": {
+          "mode": "play",
+          "time": 0,
+          "enabled": true,
+          "killer": null,
+          "pos": {
+            "x": 128.7000268681938,
+            "y": 5.240097099482111,
+            "z": 18.09998206006468
+          },
+          "localSoldier": false
+        },
+        "drawCalls": 446,
+        "triangles": 1556771,
+        "shadowTriangles": 384858,
+        "shadowDrawCalls": 104,
+        "shaderPrograms": 231,
+        "gpuTiming": {
+          "available": true,
+          "medianMs": 19.750816
+        },
+        "fps": 33.86004514672612,
+        "quality": "high",
+        "weather": "sunny",
+        "resolutionScale": 1,
+        "overlaps": false,
+        "online": null
+      }
+    },
+    "causalSpeedup": "unknown",
+    "combatPerformance": "not tested",
+    "p95TargetMs": 25,
+    "targetPassed": false
+  },
+  "assets": {
+    "measuredAt": "2026-10-07T21:22:35.226Z",
+    "scope": "Shipped atlas filtering; no browser performance claim",
+    "rows": [
+      {
+        "id": "ash",
+        "atlas": [2048, 256],
+        "leaf": [512, 512],
+        "colorBytes": 2796220,
+        "originalColorBytes": 2796220,
+        "normalBytes": 2796220,
+        "leafBytes": 1398100,
+        "maxNormalLengthError": 0.006278843038372006,
+        "coverage": [
+          {
+            "width": 2048,
+            "height": 256,
+            "perView": [
+              0.236480712890625, 0.21746826171875, 0.213043212890625, 0.2302703857421875,
+              0.2364959716796875, 0.21746826171875, 0.2130584716796875, 0.23028564453125
+            ],
+            "globalBefore": [
+              0.236480712890625, 0.21746826171875, 0.213043212890625, 0.2302703857421875,
+              0.2364959716796875, 0.21746826171875, 0.2130584716796875, 0.23028564453125
+            ]
+          },
+          {
+            "width": 1024,
+            "height": 128,
+            "perView": [
+              0.27349853515625, 0.249755859375, 0.24432373046875, 0.26513671875, 0.2735595703125,
+              0.249755859375, 0.24432373046875, 0.26513671875
+            ],
+            "globalBefore": [
+              0.27349853515625, 0.249755859375, 0.24432373046875, 0.26513671875, 0.2735595703125,
+              0.249755859375, 0.24432373046875, 0.26513671875
+            ]
+          },
+          {
+            "width": 512,
+            "height": 64,
+            "perView": [
+              0.25537109375, 0.237060546875, 0.234375, 0.2568359375, 0.25537109375, 0.237060546875,
+              0.234375, 0.2568359375
+            ],
+            "globalBefore": [
+              0.25537109375, 0.237060546875, 0.234375, 0.2568359375, 0.25537109375, 0.237060546875,
+              0.234375, 0.2568359375
+            ]
+          },
+          {
+            "width": 256,
+            "height": 32,
+            "perView": [
+              0.2373046875, 0.232421875, 0.216796875, 0.251953125, 0.2373046875, 0.232421875,
+              0.216796875, 0.251953125
+            ],
+            "globalBefore": [
+              0.2333984375, 0.232421875, 0.216796875, 0.251953125, 0.2333984375, 0.232421875,
+              0.216796875, 0.251953125
+            ]
+          },
+          {
+            "width": 128,
+            "height": 16,
+            "perView": [
+              0.23828125, 0.21875, 0.21484375, 0.23046875, 0.23828125, 0.21875, 0.21484375,
+              0.23046875
+            ],
+            "globalBefore": [
+              0.22265625, 0.21484375, 0.2265625, 0.23828125, 0.22265625, 0.21484375, 0.2265625,
+              0.23828125
+            ]
+          },
+          {
+            "width": 64,
+            "height": 8,
+            "perView": [0.265625, 0.21875, 0.21875, 0.234375, 0.265625, 0.21875, 0.21875, 0.234375],
+            "globalBefore": [0.21875, 0.25, 0.203125, 0.234375, 0.21875, 0.25, 0.203125, 0.234375]
+          },
+          {
+            "width": 32,
+            "height": 4,
+            "perView": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25],
+            "globalBefore": [0.1875, 0.25, 0.25, 0.25, 0.1875, 0.25, 0.25, 0.25]
+          },
+          {
+            "width": 16,
+            "height": 2,
+            "perView": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25],
+            "globalBefore": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+          },
+          {
+            "width": 8,
+            "height": 1,
+            "perView": [1, 1, 1, 1, 1, 1, 1, 1],
+            "globalBefore": [1, 0, 0, 0, 1, 0, 0, 0]
+          }
+        ]
+      },
+      {
+        "id": "oak",
+        "atlas": [2048, 256],
+        "leaf": [512, 512],
+        "colorBytes": 2796220,
+        "originalColorBytes": 2796220,
+        "normalBytes": 2796220,
+        "leafBytes": 1398100,
+        "maxNormalLengthError": 0.006453608379858755,
+        "coverage": [
+          {
+            "width": 2048,
+            "height": 256,
+            "perView": [
+              0.3266754150390625, 0.3099517822265625, 0.3182830810546875, 0.337554931640625,
+              0.3266754150390625, 0.3099517822265625, 0.31829833984375, 0.337554931640625
+            ],
+            "globalBefore": [
+              0.3266754150390625, 0.3099517822265625, 0.3182830810546875, 0.337554931640625,
+              0.3266754150390625, 0.3099517822265625, 0.31829833984375, 0.337554931640625
+            ]
+          },
+          {
+            "width": 1024,
+            "height": 128,
+            "perView": [
+              0.345947265625, 0.3291015625, 0.3372802734375, 0.36077880859375, 0.345947265625,
+              0.3291015625, 0.3372802734375, 0.36077880859375
+            ],
+            "globalBefore": [
+              0.345947265625, 0.3291015625, 0.3372802734375, 0.36077880859375, 0.345947265625,
+              0.3291015625, 0.3372802734375, 0.36077880859375
+            ]
+          },
+          {
+            "width": 512,
+            "height": 64,
+            "perView": [
+              0.3388671875, 0.32666015625, 0.336181640625, 0.355712890625, 0.3388671875,
+              0.32666015625, 0.336181640625, 0.355712890625
+            ],
+            "globalBefore": [
+              0.3388671875, 0.32666015625, 0.336181640625, 0.355712890625, 0.3388671875,
+              0.32666015625, 0.336181640625, 0.355712890625
+            ]
+          },
+          {
+            "width": 256,
+            "height": 32,
+            "perView": [
+              0.3525390625, 0.3359375, 0.333984375, 0.359375, 0.3525390625, 0.3359375, 0.333984375,
+              0.359375
+            ],
+            "globalBefore": [
+              0.3525390625, 0.3359375, 0.333984375, 0.359375, 0.3525390625, 0.3359375, 0.333984375,
+              0.359375
+            ]
+          },
+          {
+            "width": 128,
+            "height": 16,
+            "perView": [
+              0.35546875, 0.32421875, 0.328125, 0.3671875, 0.35546875, 0.32421875, 0.328125,
+              0.3671875
+            ],
+            "globalBefore": [
+              0.35546875, 0.32421875, 0.31640625, 0.3671875, 0.35546875, 0.32421875, 0.31640625,
+              0.3671875
+            ]
+          },
+          {
+            "width": 64,
+            "height": 8,
+            "perView": [0.328125, 0.3125, 0.328125, 0.390625, 0.328125, 0.3125, 0.328125, 0.390625],
+            "globalBefore": [
+              0.296875, 0.3125, 0.296875, 0.390625, 0.296875, 0.3125, 0.296875, 0.390625
+            ]
+          },
+          {
+            "width": 32,
+            "height": 4,
+            "perView": [0.375, 0.3125, 0.375, 0.375, 0.375, 0.3125, 0.375, 0.375],
+            "globalBefore": [0.3125, 0.3125, 0.375, 0.3125, 0.3125, 0.3125, 0.375, 0.3125]
+          },
+          {
+            "width": 16,
+            "height": 2,
+            "perView": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+            "globalBefore": [0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5]
+          },
+          {
+            "width": 8,
+            "height": 1,
+            "perView": [1, 1, 1, 1, 1, 1, 1, 1],
+            "globalBefore": [1, 0, 0, 1, 1, 0, 0, 1]
+          }
+        ]
+      },
+      {
+        "id": "pine",
+        "atlas": [2048, 256],
+        "leaf": [512, 512],
+        "colorBytes": 2796220,
+        "originalColorBytes": 2796220,
+        "normalBytes": 2796220,
+        "leafBytes": 1398100,
+        "maxNormalLengthError": 0.006147960193154667,
+        "coverage": [
+          {
+            "width": 2048,
+            "height": 256,
+            "perView": [
+              0.1195068359375, 0.1280059814453125, 0.1336822509765625, 0.128326416015625,
+              0.1194915771484375, 0.1280059814453125, 0.1336669921875, 0.1283416748046875
+            ],
+            "globalBefore": [
+              0.1195068359375, 0.1280059814453125, 0.1336822509765625, 0.128326416015625,
+              0.1194915771484375, 0.1280059814453125, 0.1336669921875, 0.1283416748046875
+            ]
+          },
+          {
+            "width": 1024,
+            "height": 128,
+            "perView": [
+              0.13311767578125, 0.14306640625, 0.150390625, 0.14422607421875, 0.13311767578125,
+              0.14306640625, 0.150390625, 0.14422607421875
+            ],
+            "globalBefore": [
+              0.13311767578125, 0.14306640625, 0.150390625, 0.14422607421875, 0.13311767578125,
+              0.14306640625, 0.150390625, 0.14422607421875
+            ]
+          },
+          {
+            "width": 512,
+            "height": 64,
+            "perView": [
+              0.1240234375, 0.13623046875, 0.140380859375, 0.1376953125, 0.1240234375,
+              0.13623046875, 0.140380859375, 0.1376953125
+            ],
+            "globalBefore": [
+              0.1240234375, 0.13623046875, 0.140380859375, 0.1376953125, 0.1240234375,
+              0.13623046875, 0.140380859375, 0.1376953125
+            ]
+          },
+          {
+            "width": 256,
+            "height": 32,
+            "perView": [
+              0.1259765625, 0.13671875, 0.142578125, 0.1337890625, 0.1259765625, 0.13671875,
+              0.142578125, 0.1337890625
+            ],
+            "globalBefore": [
+              0.1259765625, 0.13671875, 0.142578125, 0.1337890625, 0.1259765625, 0.13671875,
+              0.142578125, 0.1337890625
+            ]
+          },
+          {
+            "width": 128,
+            "height": 16,
+            "perView": [
+              0.12890625, 0.12890625, 0.13671875, 0.12890625, 0.12890625, 0.12890625, 0.13671875,
+              0.12890625
+            ],
+            "globalBefore": [
+              0.1328125, 0.125, 0.125, 0.12890625, 0.1328125, 0.125, 0.125, 0.12890625
+            ]
+          },
+          {
+            "width": 64,
+            "height": 8,
+            "perView": [0.125, 0.140625, 0.140625, 0.140625, 0.125, 0.140625, 0.140625, 0.140625],
+            "globalBefore": [0.125, 0.125, 0.125, 0.140625, 0.125, 0.125, 0.125, 0.140625]
+          },
+          {
+            "width": 32,
+            "height": 4,
+            "perView": [0.125, 0.1875, 0.1875, 0.1875, 0.125, 0.1875, 0.1875, 0.1875],
+            "globalBefore": [0.125, 0.125, 0.125, 0.1875, 0.125, 0.125, 0.125, 0.1875]
+          },
+          {
+            "width": 16,
+            "height": 2,
+            "perView": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25],
+            "globalBefore": [0.25, 0.25, 0.25, 0, 0.25, 0.25, 0.25, 0]
+          },
+          {
+            "width": 8,
+            "height": 1,
+            "perView": [1, 1, 1, 1, 1, 1, 1, 1],
+            "globalBefore": [0, 0, 1, 0, 0, 0, 1, 0]
+          }
+        ]
+      }
+    ]
+  },
+  "main": {
+    "head": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+    "preservedFilesChecked": 7,
+    "preservedFilesChanged": 0
+  },
+  "captures": [
+    "C:/Users/kiran/myprojects/gameplay-captures/2026-10-07/market-quality/market-tree-after28-hall.jpg",
+    "C:/Users/kiran/myprojects/gameplay-captures/2026-10-07/market-quality/market-tree-after28-forecourt.jpg",
+    "C:/Users/kiran/myprojects/gameplay-captures/2026-10-07/market-quality/market-tree-after28-neon.jpg"
+  ],
+  "cost": "unknown",
+  "delegationSpeedup": "unknown",
+  "commits": 0,
+  "pushes": 0,
+  "cloudJobs": 0
+}

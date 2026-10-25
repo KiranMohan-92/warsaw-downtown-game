@@ -1,0 +1,8 @@
+packages:
+  - packages/*
+ignoredBuiltDependencies:
+  - msgpackr-extract
+onlyBuiltDependencies:
+  - esbuild
+patchedDependencies:
+  '@colyseus/better-call@1.3.3': patches/@colyseus__better-call@1.3.3.patch

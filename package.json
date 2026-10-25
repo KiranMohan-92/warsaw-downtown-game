@@ -1,0 +1,46 @@
+{
+  "name": "warsaw-downtown",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c blue,green \"pnpm --filter @wd/server dev\" \"pnpm --filter @wd/client dev\"",
+    "dev:isolated": "node tools/isolated-preview.mjs",
+    "build": "pnpm -r build",
+    "host": "node tools/host.mjs",
+    "start": "pnpm --filter @wd/server start",
+    "typecheck": "tsc -b",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:assets",
+    "e2e": "playwright test --project=chromium",
+    "e2e:compat": "playwright test compat --project=chromium --project=firefox --project=webkit",
+    "perf": "node tools/perf-probe.mjs",
+    "bake": "pnpm --filter @wd/server exec tsx ../../tools/bake/bake.ts",
+    "bots:measure": "pnpm --filter @wd/server exec tsx src/bots/measure/cli.ts",
+    "assets:pack": "node tools/assets/meshopt_pack.mjs packages/client/public/models",
+    "review:fresh": "node tools/review/fresh-review.mjs",
+    "test:assets": "node tools/assets/run-py-tests.mjs",
+    "soak": "pnpm --filter @wd/server exec tsx src/soak/soak.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.4",
+    "concurrently": "^10.0.5",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "meshoptimizer": "1.1.1",
+    "prettier": "^3.9.9",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^5.0.2"
+  }
+}

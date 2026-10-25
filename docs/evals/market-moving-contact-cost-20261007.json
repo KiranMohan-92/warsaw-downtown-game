@@ -1,0 +1,293 @@
+{
+  "date": "2026-10-07",
+  "branch": "codex/isolated-finish",
+  "sources": [
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\footPlant.ts",
+      "bytes": 12596,
+      "sha256": "b2dc428175b114e4de717871af8865a366043e36b1441aacae38ce5597af9760"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\shared\\src\\maps\\placDefilad\\market.ts",
+      "bytes": 20089,
+      "sha256": "71d169e399fb80b43279b192ecd800754d05a6b973ca1bf7664d8112c75bf99e"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\soldierMovingContact.test.ts",
+      "bytes": 24258,
+      "sha256": "b75c0af5d3485c4f51f85965bd76a07c72ffb393f58e83284eea7f28d8d1c025"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\soldiers.test.ts",
+      "bytes": 22735,
+      "sha256": "91a487d56037340225f48eecaa7e4a2bbb4e7906702f80968d435b0244e86a7c"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\marketStairTestPoses.ts",
+      "bytes": 679,
+      "sha256": "0ef07b9429bca98fd96f671e4e715e73bf098ab832710510d17b3f14f25328bf"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\shared\\src\\maps\\marketTraversal.test.ts",
+      "bytes": 2813,
+      "sha256": "ac9b02f14f03bb992f8c0a0b1d01c32ce1bfba2750e2e3d38a46d65f53f0550b"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\facade-review.html",
+      "bytes": 5456,
+      "sha256": "8f02b7ef9e3e4c0d938ce171a295c9ec74dcfb84984d8bf58046ad3bcc4018a0"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\shared\\src\\maps\\lightmapManifest.ts",
+      "bytes": 1011,
+      "sha256": "421b1f5f748cf76cf84f14ef67b6a94eb4c5abe7075a7e767dbfa4b04d812699"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\lightmaps\\manifest.json",
+      "bytes": 868,
+      "sha256": "ed04230d4e018ae1b8f97d7f87c2f54879d2c93eff13babfa41162127cf19403"
+    }
+  ],
+  "rawReceipts": [
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\soldier-traversal-before23-20261007.json",
+      "bytes": 3473609,
+      "sha256": "929b4b0ef72ae32ad5c7366bab4c3e5f131d5289725379432e76679a0edb6e08"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\soldier-traversal-after23-20261007.json",
+      "bytes": 3473339,
+      "sha256": "2d51108bfd020cceff3e51adcd94686e1ab81a507b22b3cd330ce56fa6a50ae2"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\soldier-traversal-after24-20261007.json",
+      "bytes": 3473497,
+      "sha256": "796e1ebb460821da9341afdce7c715fd6c918be8b4306791c9b2b5075b50697c"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\soldier-traversal-after25-landing-20261007.json",
+      "bytes": 3488324,
+      "sha256": "f4461b3e22a1e6e5a3ab39e745367cedef597ef666c762b9f7982a292b213165"
+    }
+  ],
+  "traversal": {
+    "before23": {
+      "frames": 864,
+      "maxPenetrationMetres": 0.010649,
+      "airborne": 16,
+      "bothUnsupported": 18,
+      "supportCalls": 129578,
+      "footPlantSha256": "15c1fdd8a0b70f38c76b409baf80250a8794ff1f132da2aba1072c7caf709c89",
+      "receiptTestSha256": "42a5ac7c64495b39a3eee9861bf1169f4699556e33939665b81a9c79759f503c"
+    },
+    "after23": {
+      "frames": 864,
+      "maxPenetrationMetres": 0.010649,
+      "airborne": 16,
+      "bothUnsupported": 18,
+      "supportCalls": 129022,
+      "footPlantSha256": "d5a3663c9398fe6346dc25c09c04be16bbc3e0d22d28a10991c924c3469d849e",
+      "receiptTestSha256": "84f5ae9199c0357d5c001c6d06da1a7f056e83bc174e41cb859fab9a0419778a"
+    },
+    "after24": {
+      "frames": 864,
+      "maxPenetrationMetres": 0.010649,
+      "airborne": 16,
+      "bothUnsupported": 18,
+      "supportCalls": 129022,
+      "footPlantSha256": "b2dc428175b114e4de717871af8865a366043e36b1441aacae38ce5597af9760",
+      "receiptTestSha256": "84f5ae9199c0357d5c001c6d06da1a7f056e83bc174e41cb859fab9a0419778a"
+    },
+    "after25-landing": {
+      "frames": 864,
+      "maxPenetrationMetres": 0.004996,
+      "airborne": 0,
+      "bothUnsupported": 0,
+      "supportCalls": 103872,
+      "footPlantSha256": "b2dc428175b114e4de717871af8865a366043e36b1441aacae38ce5597af9760",
+      "receiptTestSha256": "4e06d78ca8b293da0da58a5253fb1dc491927540e10140a1900bf88b5ed63e8a"
+    }
+  },
+  "pairedOptimizationChecks": {
+    "23": {
+      "maxPoseDifference": 0,
+      "supportCallsReductionPercent": 0.42908518421336955
+    },
+    "24": {
+      "maxPoseContactAndQueryDifference": 0
+    },
+    "limitation": "CPU probes are not browser FPS; map correction changes controller trajectories"
+  },
+  "tests": {
+    "finalCombined": {
+      "files": 4,
+      "passed": 20,
+      "seconds": 137.86
+    },
+    "afterDeclarationCleanup": {
+      "selected": 1,
+      "passed": 1,
+      "skipped": 1,
+      "seconds": 48.88,
+      "scope": "reports shipped moving sole contact"
+    },
+    "types": "pass",
+    "scopedLint": "pass",
+    "formatting": "pass",
+    "diffWhitespace": "pass",
+    "build": {
+      "passed": true,
+      "modules": 262,
+      "seconds": 3.39,
+      "bundle": "index-DwTPFQiN.js",
+      "kB": 8095.56,
+      "gzipKB": 3045.99,
+      "largeChunkWarning": true
+    }
+  },
+  "capture": {
+    "method": "Supported native browser screenshot",
+    "settings": "High / 100% / DRS off; day hall + day forecourt + night hall",
+    "localCanvasReceiver": "No saved bytes; stopped and unused button/helper removed",
+    "limitation": "Review header/HUD retained; current capture JPEG suffix matches native bytes. Historical PNG-named files predate the corrected bake.",
+    "preRebakeFiles": [
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-07\\market-quality\\market-current-hall-page.png",
+        "bytes": 168150,
+        "sha256": "955f87485fcff448fc86fcfdec261aad1364fa417ccb01a9398b591bedef1ea7",
+        "format": "JPEG",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-07\\market-quality\\market-current-forecourt-page.png",
+        "bytes": 141521,
+        "sha256": "bf8efb5c00c9e77dcc3e7ed927ba59a5eebd679fad9acf7a3dc61a13c7f6d11c",
+        "format": "JPEG",
+        "height": 720,
+        "width": 1280
+      },
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-07\\market-quality\\market-current-neon-page.png",
+        "bytes": 155654,
+        "sha256": "203d2e7b33d170aceffa5664f8eda1b2876bd5254980669570df41bb83b5c2a1",
+        "format": "JPEG",
+        "height": 720,
+        "width": 1280
+      }
+    ],
+    "files": [
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-07\\market-quality\\market-baked-hall-25.jpg",
+        "bytes": 167322,
+        "sha256": "33103111f6f28baa9b1fcd8b2f37a5e73b0f53909d6c33ba40420b5687bd9621",
+        "format": "JPEG",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-07\\market-quality\\market-baked-forecourt-25.jpg",
+        "bytes": 140254,
+        "sha256": "4c757f39dbe0df81c68e037e4737ca9eee0bc96fe834e71b23bbc9e45d2647df",
+        "format": "JPEG",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-07\\market-quality\\market-baked-neon-25.jpg",
+        "bytes": 153126,
+        "sha256": "dcb7668a2f5ed04470b7ea50bdcb6af3734d1e82a35ea08f876742f4cf47cc22",
+        "format": "JPEG",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "preservation": {
+    "mainHead": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+    "claudeFilesChecked": 7,
+    "claudeFilesChanged": 0,
+    "mainEdited": false,
+    "committed": false,
+    "pushed": false,
+    "modalJobs": 0
+  },
+  "retrospective": {
+    "ownership": "One writer; bounded read-only stair diagnosis",
+    "firstPass": {
+      "23": "passed",
+      "24": "passed",
+      "25": "two stair-run revisions rejected before landing extension passed"
+    },
+    "codeRework": "Retain original tread spacing; derive stationary test roots from current physics; remove unused test initializer",
+    "environmentFailures": "Browser load/timeouts and earlier account approval/capture failures; native capture subsequently succeeded",
+    "elapsedTotalSeconds": null,
+    "cost": null,
+    "sequentialBaseline": null,
+    "speedup": null,
+    "lesson": "Verify visible collision geometry before changing foot reach; compare exact outputs for query/allocation optimizations"
+  },
+  "remaining": [
+    "Whole-market art acceptance",
+    "Distant objects beyond the tested route",
+    "Browser combat frame pacing",
+    "Network interpolation and full combat-pose coverage"
+  ],
+  "lightingFollowUp": {
+    "bake": {
+      "seconds": 333.0,
+      "samples": 64,
+      "workers": 4,
+      "reachMetres": 16,
+      "layoutHash": "1f8605625ccbab",
+      "sceneHash": "10a65919c6a0f5",
+      "trappedRays": 0,
+      "fixtures": 52,
+      "litAtlasTexels": 89837
+    },
+    "files": [
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\lightmaps\\defilad-market-atlas.png",
+        "bytes": 306136,
+        "sha256": "6ed95a98654114602a6b757be1b351febad096405dd9c924a2338afb6eba6b1f",
+        "width": 2048,
+        "height": 1560
+      },
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\lightmaps\\defilad-market-ground.png",
+        "bytes": 125604,
+        "sha256": "723885873bbb78c614b881c6533f930c0e6933991e73b4394d6e46e38aaf988a",
+        "width": 592,
+        "height": 568
+      },
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\lightmaps\\defilad-market-lamps.png",
+        "bytes": 38132,
+        "sha256": "efd2964f66d4271270299f19df84d1503656a29279f365bacf54e5c04a57db7c",
+        "width": 2048,
+        "height": 1560
+      },
+      {
+        "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\lightmaps\\defilad-market-lampvol.png",
+        "bytes": 40111,
+        "sha256": "b1278a8b90fe83c1da34d775abf8b8b247561d9f8a4195ad63d9874d28ea95d3",
+        "width": 128,
+        "height": 8208
+      }
+    ],
+    "jsonAndTsHashMatch": true,
+    "atlasGroundLampDimensionsMatch": true,
+    "runtime": "Fresh reload after bake ready; warning/error logs empty; returned to connected playable Market menu",
+    "volumeDimensionsMatch": true,
+    "tests": {
+      "files": 1,
+      "passed": 8,
+      "seconds": 8.63,
+      "types": "pass",
+      "scopedLint": "pass",
+      "buildSeconds": 4.62,
+      "bundle": "index-B5scae8F.js",
+      "largeChunkWarning": true
+    }
+  }
+}

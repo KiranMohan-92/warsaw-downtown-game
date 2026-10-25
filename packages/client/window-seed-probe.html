@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="UTF-8" />
+  <title>Window seed GPU regression</title>
+  <body style="background: #101820; color: white; font: 14px system-ui">
+    <h1>Window identity at coarse tile boundaries</h1>
+    <p>This runs the shipped centre calculation on WebGL float32, including rotated walls.</p>
+    <button id="run">Run GPU regression</button>
+    <button id="download" disabled>Download receipt</button>
+    <pre id="receipt">Ready.</pre>
+    <script type="module">
+      import * as THREE from 'three';
+      import { addWindowInteriors } from './src/render/windowInterior.ts';
+      import { BAY, STOREY, FACADE_WINDOW } from './src/render/facadeRelief.ts';
+      let result;
+      document.querySelector('#run').onclick = () => {
+        const mat = new THREE.MeshStandardMaterial();
+        addWindowInteriors(mat);
+        const lib = THREE.ShaderLib.standard;
+        const shader = {
+          uniforms: THREE.UniformsUtils.clone(lib.uniforms),
+          vertexShader: lib.vertexShader,
+          fragmentShader: lib.fragmentShader,
+        };
+        mat.onBeforeCompile(shader, null);
+        const begin = shader.fragmentShader.indexOf('vec2 winCentreUv =');
+        const end = shader.fragmentShader.indexOf('vec2 windowId =', begin);
+        if (begin < 0 || end < 0) throw new Error('Shipped seed calculation missing');
+        const centreSource = shader.fragmentShader.slice(begin, end);
+        const cases = [];
+        for (const angle of [0, Math.PI / 6, Math.PI / 2, Math.PI]) {
+          for (const centre of [
+            [20, 5, 40],
+            [-20, 5, -40],
+            [19.99999, 5, 40.00001],
+          ]) {
+            const group = `${angle}:${centre}`;
+            const t = [Math.cos(angle), 0, Math.sin(angle)];
+            const cell = [6, 1];
+            const uvCentre = [
+              (cell[0] + (FACADE_WINDOW.u0 + FACADE_WINDOW.u1) / 2) * BAY,
+              (cell[1] + (FACADE_WINDOW.v0 + FACADE_WINDOW.v1) / 2) * STOREY,
+            ];
+            for (const offset of [
+              [-0.5, -0.6],
+              [0.5, 0.6],
+              [0, 0],
+              [-0.5, 0.6],
+              [0.5, -0.6],
+            ]) {
+              cases.push({
+                group,
+                t,
+                cell,
+                centre,
+                uv: uvCentre.map((v, i) => v + offset[i]),
+                pos: centre.map((v, i) => v + t[i] * offset[0] + Number(i === 1) * offset[1]),
+              });
+            }
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = cases.length;
+        canvas.height = 1;
+        const gl = canvas.getContext('webgl2');
+        if (!gl || !gl.getExtension('EXT_color_buffer_float'))
+          throw new Error('Float render target unavailable');
+        const texture = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, cases.length, 1, 0, gl.RGBA, gl.FLOAT, null);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+        const target = gl.createFramebuffer();
+        gl.bindFramebuffer(gl.FRAMEBUFFER, target);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+        if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE)
+          throw new Error('Incomplete target');
+        function compile(type, source) {
+          const s = gl.createShader(type);
+          gl.shaderSource(s, source);
+          gl.compileShader(s);
+          if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+          return s;
+        }
+        function sample(source) {
+          const vs = compile(
+            gl.VERTEX_SHADER,
+            `#version 300 es
+    void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));gl_Position=vec4(p*2.-1.,0.,1.);}`,
+          );
+          const fs = compile(
+            gl.FRAGMENT_SHADER,
+            `#version 300 es
+    precision highp float;
+    uniform vec3 positions[${cases.length}], tangents[${cases.length}];
+    uniform vec2 uvs[${cases.length}], cells[${cases.length}];
+    out vec4 values;
+    void main(){int i=int(gl_FragCoord.x);
+      vec3 vWinPos=positions[i], centreT=tangents[i], centreB=vec3(0,1,0);
+      vec2 vWinUv=uvs[i],cell=cells[i],bayUv=vec2(${BAY},${STOREY});
+      vec2 lo=vec2(${FACADE_WINDOW.u0},${FACADE_WINDOW.v0}),hi=vec2(${FACADE_WINDOW.u1},${FACADE_WINDOW.v1});
+      ${source}
+      values=vec4(floor(stableCentreXZ*.05),floor(stableCentreXZ*.025));
+    }`,
+          );
+          const p = gl.createProgram();
+          gl.attachShader(p, vs);
+          gl.attachShader(p, fs);
+          gl.linkProgram(p);
+          if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+          gl.useProgram(p);
+          for (const [uniform, key, size] of [
+            ['positions', 'pos', 3],
+            ['tangents', 't', 3],
+            ['uvs', 'uv', 2],
+            ['cells', 'cell', 2],
+          ]) {
+            const at = gl.getUniformLocation(p, uniform);
+            const data = new Float32Array(cases.flatMap((c) => c[key]));
+            if (size === 3) gl.uniform3fv(at, data);
+            else gl.uniform2fv(at, data);
+          }
+          gl.viewport(0, 0, cases.length, 1);
+          gl.drawArrays(gl.TRIANGLES, 0, 3);
+          const pixels = new Float32Array(cases.length * 4);
+          gl.readPixels(0, 0, cases.length, 1, gl.RGBA, gl.FLOAT, pixels);
+          const err = gl.getError();
+          if (err !== gl.NO_ERROR) throw new Error(`GL error ${err}`);
+          gl.deleteProgram(p);
+          gl.deleteShader(vs);
+          gl.deleteShader(fs);
+          return cases.map((c, i) => ({ ...c, tile: Array.from(pixels.slice(i * 4, i * 4 + 4)) }));
+        }
+        const baseline = sample('vec2 stableCentreXZ=vWinPos.xz;');
+        const candidate = sample(centreSource);
+        function failures(rows) {
+          const groups = new Map();
+          for (const row of rows) {
+            const state = JSON.stringify(row.tile);
+            if (!groups.has(row.group)) groups.set(row.group, new Set());
+            groups.get(row.group).add(state);
+          }
+          return [...groups]
+            .filter(([, states]) => states.size !== 1)
+            .map(([group, states]) => ({ group, states: [...states] }));
+        }
+        const ext = gl.getExtension('WEBGL_debug_renderer_info');
+        result = {
+          measuredAt: new Date().toISOString(),
+          scope:
+            'Actual shipped centre GLSL excerpt on WebGL float32; synthetic metre-UV planes, not whole-scene visual acceptance',
+          hardware: ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : null,
+          cases: cases.length,
+          groups: 12,
+          centreSource,
+          baselineFailures: failures(baseline),
+          candidateFailures: failures(candidate),
+          baseline,
+          candidate,
+        };
+        result.passed = result.baselineFailures.length > 0 && result.candidateFailures.length === 0;
+        document.querySelector('#receipt').textContent = JSON.stringify(result, null, 2);
+        document.querySelector('#download').disabled = false;
+        gl.deleteTexture(texture);
+        gl.deleteFramebuffer(target);
+        gl.getExtension('WEBGL_lose_context')?.loseContext();
+        mat.dispose();
+      };
+      document.querySelector('#download').onclick = () => {
+        const url = URL.createObjectURL(
+          new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' }),
+        );
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'window-seed-gpu.json';
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      };
+    </script>
+  </body>
+</html>

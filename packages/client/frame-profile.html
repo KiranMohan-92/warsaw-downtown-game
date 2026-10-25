@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Market frame cause profile</title>
+    <style>
+      body {
+        margin: 0;
+        background: #101820;
+        color: white;
+        font: 13px system-ui;
+      }
+      iframe {
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+        display: block;
+      }
+      header {
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 8px;
+        background: #101820ed;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      button {
+        color: white;
+        background: #243947;
+        border: 1px solid #628092;
+        padding: 8px;
+      }
+      details {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 3;
+        background: #101820ed;
+        max-height: 70vh;
+        overflow: auto;
+        max-width: 100vw;
+      }
+      pre {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>Market — frame cause profile</strong
+      ><select id="mode" aria-label="Matrix update path">
+        <option value="candidate">Once per frame</option>
+        <option value="baseline">Previous: once per scene pass</option></select
+      ><button id="measure" disabled>Profile 20 seconds</button
+      ><button id="download" disabled>Download receipt</button
+      ><span id="status">Loading actual game…</span>
+    </header>
+    <iframe title="Actual Market game" src="/?autotest&online=0"></iframe>
+    <details>
+      <summary>CPU, browser and GPU receipt</summary>
+      <pre id="receipt">No sample.</pre>
+    </details>
+    <script type="module">
+      const frame = document.querySelector('iframe'),
+        status = document.querySelector('#status');
+      let game, wd, host, result;
+      const quantiles = (values) => {
+        const sorted = values.slice().sort((a, b) => a - b);
+        return {
+          count: values.length,
+          medianMs: sorted[Math.floor(sorted.length * 0.5)] ?? null,
+          p95Ms: sorted[Math.floor(sorted.length * 0.95)] ?? null,
+          p99Ms: sorted[Math.floor(sorted.length * 0.99)] ?? null,
+          maxMs: sorted.at(-1) ?? null,
+        };
+      };
+      function profile() {
+        const measure = document.querySelector('#measure');
+        measure.disabled = true;
+        document.querySelector('#download').disabled = true;
+        game.settings.quality = 'high';
+        game.settings.renderScale = 1;
+        game.settings.dynamicResolution = false;
+        game.settings.weather = 'sunny';
+        game.applySettings();
+        const matrixMode = document.querySelector('#mode').value;
+        wd.cam('off');
+        wd.hold(0);
+        wd.teleport(128.7, 3.6, 18.1, Math.PI / 2, 0.04);
+        const clock = host.performance,
+          origin = clock.now(),
+          originals = [],
+          observers = [];
+        const rows = [],
+          longFrames = [],
+          longTasks = [],
+          unsupported = [];
+        const labels = ['renderMs', 'simMs', 'postMs', 'facadeMs'];
+        const passNames = [];
+        if (matrixMode === 'baseline') {
+          // Exact previous High path, only in this diagnostic page. Restored after sampling.
+          const original = game.post.render;
+          originals.push(() => {
+            game.post.render = original;
+          });
+          game.post.render = function (dt) {
+            this.composer.render(dt);
+          };
+        }
+        let phase = 'warmup',
+          start,
+          previous,
+          hiddenFrames = 0,
+          startState,
+          bucket;
+        let maxBookkeepingMs = 0,
+          lastStatus = 0;
+        function hook(object, name, label) {
+          if (typeof object?.[name] !== 'function') {
+            unsupported.push(`method:${label}`);
+            return;
+          }
+          const original = object[name];
+          if (!labels.includes(label)) labels.push(label);
+          originals.push(() => {
+            object[name] = original;
+          });
+          object[name] = function (...args) {
+            const at = clock.now();
+            try {
+              return original.apply(this, args);
+            } finally {
+              if (bucket) {
+                bucket[label] += clock.now() - at;
+                if (label === 'worldMatricesMs') bucket.worldMatrixCalls++;
+              }
+            }
+          };
+        }
+        hook(game, 'render', 'renderMs');
+        hook(game, 'simStep', 'simMs');
+        hook(game.post, 'render', 'postMs');
+        hook(game.facade, 'update', 'facadeMs');
+        for (const [index, pass] of (game.post.active?.composer.passes ?? []).entries()) {
+          const label = `pass${index}_${pass.constructor.name}Ms`;
+          passNames.push({ index, name: pass.constructor.name, label });
+          hook(pass, 'render', label);
+        }
+        hook(game.renderer.shadowMap, 'render', 'shadowMs');
+        hook(game.scene, 'updateMatrixWorld', 'worldMatricesMs');
+        const ao = game.post.active?.ao;
+        hook(ao, 'detectTransparency', 'aoDetectTransparencyMs');
+        hook(ao, 'renderTransparency', 'aoTransparencyMs');
+        for (const [observerScope, observerWindow] of [
+          ['iframe', host],
+          ['parent', window],
+        ]) {
+          for (const type of ['long-animation-frame', 'longtask']) {
+            if (!observerWindow.PerformanceObserver.supportedEntryTypes.includes(type)) {
+              unsupported.push(`${observerScope}:${type}`);
+              continue;
+            }
+            const timeOffset = observerWindow.performance.timeOrigin - clock.timeOrigin;
+            const observer = new observerWindow.PerformanceObserver((list) => {
+              if (phase !== 'sample') return;
+              for (const entry of list.getEntries()) {
+                if (entry.startTime + timeOffset < start) continue;
+                if (type === 'long-animation-frame')
+                  longFrames.push({
+                    observerScope,
+                    startMs: entry.startTime + timeOffset - start,
+                    durationMs: entry.duration,
+                    blockingDurationMs: entry.blockingDuration,
+                    renderStartMs: entry.renderStart,
+                    styleAndLayoutStartMs: entry.styleAndLayoutStart,
+                    scripts: entry.scripts.map((s) => ({
+                      durationMs: s.duration,
+                      forcedStyleAndLayoutDurationMs: s.forcedStyleAndLayoutDuration,
+                      sourceURL: s.sourceURL,
+                      sourceFunctionName: s.sourceFunctionName,
+                      invoker: s.invoker,
+                    })),
+                  });
+                else
+                  longTasks.push({
+                    observerScope,
+                    startMs: entry.startTime + timeOffset - start,
+                    durationMs: entry.duration,
+                    attribution: entry.attribution.map((a) => ({
+                      name: a.name,
+                      containerType: a.containerType,
+                      containerSrc: a.containerSrc,
+                    })),
+                  });
+              }
+            });
+            observer.observe({ type, buffered: false });
+            observers.push(observer);
+          }
+        }
+        const originalFrame = game.frame;
+        originals.push(() => {
+          game.frame = originalFrame;
+        });
+        game.frame = function (nowMs) {
+          const at = clock.now();
+          if (phase === 'warmup' && at - origin >= 3000) {
+            phase = 'sample';
+            start = at;
+            startState = wd.state();
+          }
+          bucket =
+            phase === 'sample'
+              ? { ...Object.fromEntries(labels.map((key) => [key, 0])), worldMatrixCalls: 0 }
+              : null;
+          try {
+            return originalFrame.call(this, nowMs);
+          } finally {
+            if (phase === 'sample') {
+              const end = clock.now();
+              hiddenFrames += Number(
+                document.visibilityState !== 'visible' ||
+                  frame.contentDocument.visibilityState !== 'visible',
+              );
+              rows.push({
+                atMs: at - start,
+                intervalMs: previous === undefined ? null : nowMs - previous,
+                frameMs: end - at,
+                ...bucket,
+                simSteps: game.stepsThisFrame,
+              });
+              previous = nowMs;
+              bucket = null;
+              if (at - lastStatus > 1000) {
+                status.textContent = `Sampling ${((at - start) / 1000) | 0}/20 s · ${rows.length} frames`;
+                lastStatus = at;
+              }
+              maxBookkeepingMs = Math.max(maxBookkeepingMs, clock.now() - end);
+              if (at - start >= 20000 || rows.length >= 4000) {
+                phase = 'finish';
+                queueMicrotask(finish);
+              }
+            }
+          }
+        };
+        status.textContent = 'Warming fixed hall view for 3 seconds…';
+        function finish() {
+          for (const restore of originals.reverse()) restore();
+          for (const observer of observers) observer.disconnect();
+          wd.hold(0);
+          const canvas = frame.contentDocument.querySelector('#game'),
+            gl = canvas.getContext('webgl2'),
+            ext = gl?.getExtension('WEBGL_debug_renderer_info');
+          const timings = Object.fromEntries(
+            ['intervalMs', 'frameMs', ...labels].map((key) => [
+              key,
+              quantiles(rows.map((row) => row[key]).filter((v) => v !== null)),
+            ]),
+          );
+          result = {
+            measuredAt: new Date().toISOString(),
+            scope:
+              'Instrumented stationary real Market; not moving combat or causal optimization proof',
+            settings: {
+              quality: 'high',
+              renderScale: 1,
+              dynamicResolution: false,
+              weather: 'sunny',
+            },
+            pose: [128.7, 3.6, 18.1, Math.PI / 2, 0.04],
+            viewport: [canvas.width, canvas.height],
+            hardware: ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : null,
+            durationMs: rows.at(-1)?.atMs,
+            hiddenFrames,
+            maxProfilerBookkeepingMs: maxBookkeepingMs,
+            unsupported,
+            passNames,
+            matrixMode,
+            worldMatrixCalls: {
+              min: Math.min(...rows.map((row) => row.worldMatrixCalls)),
+              max: Math.max(...rows.map((row) => row.worldMatrixCalls)),
+            },
+            nestedTimingNote:
+              'CPU render includes facade and post. CPU frame includes simulation and render; do not sum nested durations. Post CPU is submission/wait, not a GPU timer.',
+            timings,
+            startState,
+            endState: wd.state(),
+            longFrames,
+            longTasks,
+            slowRows: rows.filter((row) => row.intervalMs > 50 || row.frameMs > 25),
+            rows,
+          };
+          document.querySelector('#receipt').textContent = JSON.stringify(result, null, 2);
+          status.textContent = `Ready · intervals p95 ${timings.intervalMs.p95Ms.toFixed(1)} ms · CPU frame p95 ${timings.frameMs.p95Ms.toFixed(1)} ms`;
+          measure.disabled = false;
+          document.querySelector('#download').disabled = false;
+        }
+      }
+      document.querySelector('#measure').onclick = profile;
+      document.querySelector('#download').onclick = () => {
+        if (!result) return;
+        const url = URL.createObjectURL(
+          new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' }),
+        );
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'market-frame-profile.json';
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      };
+      const ready = setInterval(() => {
+        host = frame.contentWindow;
+        if (!host?.__wd?.ready || !host.__wdGame) return;
+        clearInterval(ready);
+        game = host.__wdGame;
+        wd = host.__wd;
+        status.textContent = 'Actual Market ready · 3 s warmup + 20 s collection';
+        document.querySelector('#measure').disabled = false;
+      }, 250);
+    </script>
+  </body>
+</html>

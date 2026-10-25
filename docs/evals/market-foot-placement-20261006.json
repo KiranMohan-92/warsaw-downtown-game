@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-06",
+  "branch": "codex/isolated-finish",
+  "publication": "none",
+  "mainHead": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+  "preservedMainFiles": 7,
+  "preservedMainFilesMatched": 7,
+  "improvement": 17,
+  "sourceSnapshot": [
+    {
+      "path": "packages/client/src/render/footPlant.ts",
+      "sha256": "f4e21fcec78ca8c9136ba8d9c17efafc6c7fc189cdaf50502c4a41badfe8f7a2"
+    },
+    {
+      "path": "packages/client/src/render/footPlant.test.ts",
+      "sha256": "d30133d8a2a1735c53257c72058290c01339c6d579389b3db1be1cd64874d2c9"
+    },
+    {
+      "path": "packages/client/src/render/soldiers.ts",
+      "sha256": "56b85576a6a3a41278305e87c04d07c0432410f2c3c3df39350c5b75b2cd5237"
+    },
+    {
+      "path": "packages/client/src/render/soldiers.test.ts",
+      "sha256": "0cd42dc0e9b8bf76977c273002d4f7b36af87072fd59b4782ea96085c024b671"
+    },
+    {
+      "path": "packages/client/src/game/Game.ts",
+      "sha256": "c941d47422891167fc19f53a3e05df624d6a1b5d00feff3631661c71d91e0b1a"
+    },
+    {
+      "path": "packages/client/foot-contact-review.html",
+      "sha256": "aa5f3fcf0d23a46e56d806b37ebe196cdc19145d632486311b0163f3d7739ca8"
+    },
+    {
+      "path": "tools/assets/probe-soldier-boot-contact.mjs",
+      "sha256": "ee52597748a1d34ae7e149c78a393303af01d93da49e0583a197a1fbcce3ccd4"
+    },
+    {
+      "path": "tools/assets/build/soldier-boot-contact-20261006.json",
+      "sha256": "488acd9f38df12d2d0ffa030b047dadf5ebd4e4fffa2e04265c9cfa84eb2f3f7"
+    }
+  ],
+  "acceptance": {
+    "runtimePoses": 96,
+    "actualBootContacts": 192,
+    "stances": ["standing", "crouched"],
+    "models": ["m01", "m04"],
+    "yawRadians": [0, 0.7853981633974483, 1.5707963267948966, 2.356194490192345],
+    "stairRoots": 6,
+    "maximumAcceptedContactGapMetres": 0.025,
+    "maximumAcceptedPenetrationMetres": 0.015,
+    "minimumAnkleSeparationMetres": 0.1,
+    "headAndGunPositionToleranceMetres": 1e-5,
+    "segmentLengths": "preserved by rotations only",
+    "specialStances": "airborne/prone/sliding/riding/seated/dead unchanged"
+  },
+  "verification": {
+    "focusedTests": 45,
+    "testFiles": 5,
+    "testDurationSeconds": 24.55,
+    "typecheck": "pass",
+    "scopedLint": "pass",
+    "formatting": "pass",
+    "productionBuild": "pass",
+    "buildSeconds": 3.38,
+    "bundle": "index-BowDqB-L.js",
+    "mainBundleKilobytes": 8091.37,
+    "gzipKilobytes": 3044.58,
+    "existingLargeChunkWarning": true,
+    "httpStatus": 200,
+    "remoteModalJob": "not run"
+  },
+  "screenshots": [
+    "C:/Users/kiran/myprojects/gameplay-captures/2026-10-06/market-quality/market-foot-placement-standing.png",
+    "C:/Users/kiran/myprojects/gameplay-captures/2026-10-06/market-quality/market-foot-placement-crouched.png"
+  ],
+  "fixtureMeasurement": "C:/Users/kiran/myprojects/gameplay-captures/2026-10-06/market-quality/market-foot-placement-fixture-status.json",
+  "limitations": [
+    "The comparison is a local inspection fixture using actual shipped assets and Market stair geometry, not a whole-game AAA evaluation.",
+    "Motion/slope/combat contact and whole-game frame pacing remain unverified.",
+    "Fixture timing measures one complete soldier update; background workloads and initial searches vary, so no global FPS gain is inferred.",
+    "Terrain can be unreachable without changing body or hit-volume alignment; the solver retains the animation when no valid target is found."
+  ],
+  "retrospective": {
+    "firstPassAccepted": false,
+    "rework": [
+      "Actual deformed boot geometry superseded ankle-anchor and bind-pose-only contact.",
+      "Unsupported-foot priority and separation guard fixed competing diagonal targets.",
+      "Stationary target reuse avoids repeating broad tread searches during breathing.",
+      "Quaternion normalization corrected a precision-only weapon comparison.",
+      "The 96-pose actual-rig test required a local 60-second timeout instead of the project 20-second default."
+    ],
+    "duplicateAgentImplementation": 0,
+    "helperOwnership": "Boot baseline probe/report only; respected",
+    "elapsedSeconds": null,
+    "costUsd": null,
+    "sequentialComparison": null
+  }
+}

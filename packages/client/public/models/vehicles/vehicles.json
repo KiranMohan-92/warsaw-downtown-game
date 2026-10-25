@@ -1,0 +1,54 @@
+{
+  "models": {
+    "heli_wreck": {
+      "title": "Military Helicopter Blackhawk Gameready",
+      "author": "Vavtrudner",
+      "license": "CC BY 4.0",
+      "url": "https://sketchfab.com/3d-models/military-helicopter-blackhawk-gameready-ef68553cd30a420d8b62b22affb545e6",
+      "changes": "decimated, crashed (tail snapped, rotor broken, doors opened), burnt and re-textured, markings removed",
+      "triangles": 59999,
+      "size": [16.511, 4.919, 12.299],
+      "farTriangles": 5988
+    },
+    "tank_wreck": {
+      "title": "Leopard 2 A6",
+      "author": "buh-late",
+      "license": "CC BY 4.0",
+      "url": "https://sketchfab.com/3d-models/leopard-2-a6-7cb23d5322df4b409a880de635826067",
+      "changes": "decimated, wrecked (turret knocked off its ring, dents, sag, burn, debris), re-textured with our burnt bake (no markings)",
+      "triangles": 29521,
+      "size": [12.299, 4.994, 7.5],
+      "farTriangles": 2712
+    },
+    "armoured_wreck": {
+      "title": "Armoured Truck - Wrecked",
+      "author": "robertmasiboda",
+      "license": "CC BY 4.0",
+      "url": "https://sketchfab.com/3d-models/armoured-truck-wrecked-47fd963028384551b96d859cc2162927",
+      "changes": "original scan shape preserved; coincident render vertices joined, atlas re-unwrapped, procedural burnt steel/rust/chipped paint/rubber baked; no source markings",
+      "triangles": 30000,
+      "size": [9.76, 2.73, 5.902],
+      "farTriangles": 3000
+    }
+  },
+  "trucks": {
+    "truck": {
+      "title": "[Free] Armored Police Vehicle",
+      "author": "Roam_Man",
+      "license": "CC BY 4.0",
+      "url": "https://sketchfab.com/3d-models/free-armored-police-vehicle-9aea4465dc974c728b6167eac5ffd22e",
+      "changes": "cut into an open-bed technical (rear cab and box removed, bed, walls and bench added), police lights/markings removed, repainted military with our texture library + bake, fitted to the truck contract",
+      "file": "truck.glb",
+      "triangles": 23668
+    },
+    "truck_wreck": {
+      "title": "[Free] Armored Police Vehicle",
+      "author": "Roam_Man",
+      "license": "CC BY 4.0",
+      "url": "https://sketchfab.com/3d-models/free-armored-police-vehicle-9aea4465dc974c728b6167eac5ffd22e",
+      "changes": "the truck cut, burnt (our burnt bake), dented, glass gone",
+      "file": "truck_wreck.glb",
+      "triangles": 23637
+    }
+  }
+}

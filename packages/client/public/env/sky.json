@@ -1,0 +1,13 @@
+{
+  "sunny": {
+    "file": "sky_sunny.webp",
+    "source": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+    "license": "CC0 1.0",
+    "range": 4.0,
+    "gamma": 2.2,
+    "sunElevation": 47.9,
+    "sunAzimuth": 215.0,
+    "sourceSunAzimuth": 214.2,
+    "sourceUpperMean": 0.46477
+  }
+}

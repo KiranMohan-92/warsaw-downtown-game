@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Market remote gunfire comparison</title>
+    <style>
+      body {
+        background: #111b24;
+        color: #e7edf4;
+        font: 16px system-ui;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+      button,
+      a {
+        padding: 12px;
+        color: #c0eeff;
+      }
+      pre {
+        white-space: pre-wrap;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Market gunfire — controlled stereo comparison</h1>
+    <p>
+      Each half: left in open air, right in open air, left with simulated wall cover, right with
+      simulated wall cover. First half uses the previous distance-only routing; second half uses the
+      new routing. Use headphones. This is a local offline audio probe, not gameplay capture. Cover
+      flags are supplied manually here; actual Market walls and doorways are checked separately in
+      physics tests.
+    </p>
+    <button id="generate">Render comparison</button>
+    <button id="local" hidden>Save WAV locally</button>
+    <p id="status" role="status">Ready to render local firearm recordings.</p>
+    <audio id="player" controls></audio>
+    <p><a id="save" hidden download="market-gunfire-before-after.wav">Download WAV</a></p>
+    <pre id="receipt"></pre>
+    <script type="module">
+      import { Audio as GameAudio } from './src/audio/Audio.ts';
+      const rate = 48000;
+      let previousUrl;
+      let renderedBytes;
+      function wav(channels) {
+        const frames = channels[0].length;
+        const bytes = new ArrayBuffer(44 + frames * 4);
+        const view = new DataView(bytes);
+        const text = (offset, value) =>
+          [...value].forEach((c, i) => view.setUint8(offset + i, c.charCodeAt(0)));
+        text(0, 'RIFF');
+        view.setUint32(4, bytes.byteLength - 8, true);
+        text(8, 'WAVE');
+        text(12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, 2, true);
+        view.setUint32(24, rate, true);
+        view.setUint32(28, rate * 4, true);
+        view.setUint16(32, 4, true);
+        view.setUint16(34, 16, true);
+        text(36, 'data');
+        view.setUint32(40, frames * 4, true);
+        for (let i = 0; i < frames; i++)
+          for (let c = 0; c < 2; c++) {
+            const v = Math.max(-1, Math.min(1, channels[c][i]));
+            view.setInt16(44 + (i * 2 + c) * 2, Math.round(v * (v < 0 ? 32768 : 32767)), true);
+          }
+        return bytes;
+      }
+      function metrics(buffer) {
+        let peak = 0,
+          clipped = 0;
+        const rms = [0, 0];
+        for (let c = 0; c < 2; c++)
+          for (const v of buffer.getChannelData(c)) {
+            peak = Math.max(peak, Math.abs(v));
+            if (Math.abs(v) >= 1) clipped++;
+            rms[c] += (v * v) / buffer.length;
+          }
+        return { peak, clipped, rms: rms.map(Math.sqrt) };
+      }
+      async function render(encoded, upgraded, x, blocked, seconds) {
+        const ctx = new OfflineAudioContext(2, Math.ceil(rate * seconds), rate);
+        const clip = await ctx.decodeAudioData(encoded.slice(0));
+        const master = ctx.createGain();
+        master.gain.value = 0.7;
+        const compressor = ctx.createDynamicsCompressor();
+        compressor.threshold.value = -10;
+        compressor.ratio.value = 4;
+        master.connect(compressor).connect(ctx.destination);
+        // Prime the same master bus before scheduling, as in an already-running game.
+        // Starting a report at offline time zero can expose compressor startup transients.
+        const paused = ctx.suspend(0.25);
+        const finished = ctx.startRendering();
+        await paused;
+        const audio = new GameAudio();
+        // Offline contexts are suspended while scheduling. Only the diagnostic bypasses
+        // the running-state guard; all nodes/methods still use the real offline context.
+        Object.defineProperty(audio, 'ready', { get: () => true });
+        audio.ctx = ctx;
+        audio.master = master;
+        audio.buffers.set('rifle_shot', clip);
+        const originalRandom = Math.random;
+        try {
+          Math.random = () => 0.5; // identical recording/rate in all comparisons
+          if (upgraded)
+            audio.remoteGunshot('rifle', 15, {
+              source: { x, y: 1.6, z: -9 },
+              listener: { x: 0, y: 1.6, z: 0 },
+              forward: { x: 0, z: -1 },
+              blocked,
+            });
+          else audio.play('rifle_shot', { gain: 0.8, lowpass: 16000 - 15 * 180 });
+        } finally {
+          Math.random = originalRandom;
+        }
+        await ctx.resume();
+        return finished;
+      }
+      document.querySelector('#generate').onclick = async () => {
+        const button = document.querySelector('#generate');
+        button.disabled = true;
+        document.querySelector('#status').textContent = 'Rendering…';
+        try {
+          const response = await fetch(`${import.meta.env.BASE_URL}audio/rifle_shot.ogg`);
+          if (!response.ok) throw new Error(`Firearm asset HTTP ${response.status}`);
+          const encoded = await response.arrayBuffer();
+          const probe = new OfflineAudioContext(1, 1, rate);
+          const decoded = await probe.decodeAudioData(encoded.slice(0));
+          const seconds = Math.max(2.5, decoded.duration + 0.75);
+          const results = [],
+            records = [];
+          for (const upgraded of [false, true])
+            for (const [x, blocked] of [
+              [-12, false],
+              [12, false],
+              [-12, true],
+              [12, true],
+            ]) {
+              const buffer = await render(encoded, upgraded, x, blocked, seconds);
+              results.push(buffer);
+              records.push({
+                routing: upgraded ? 'after' : 'before',
+                side: x < 0 ? 'left' : 'right',
+                blocked,
+                ...metrics(buffer),
+              });
+            }
+          if (records.some((r) => r.clipped > 0 || r.peak === 0))
+            throw new Error('Clipped or silent render; inspect before accepting.');
+          const length = results.reduce((sum, b) => sum + b.length, 0);
+          const channels = [new Float32Array(length), new Float32Array(length)];
+          let offset = 0;
+          for (const b of results) {
+            for (let c = 0; c < 2; c++) channels[c].set(b.getChannelData(c), offset);
+            offset += b.length;
+          }
+          if (previousUrl) URL.revokeObjectURL(previousUrl);
+          renderedBytes = wav(channels);
+          previousUrl = URL.createObjectURL(new Blob([renderedBytes], { type: 'audio/wav' }));
+          document.querySelector('#player').src = previousUrl;
+          const save = document.querySelector('#save');
+          save.href = previousUrl;
+          save.hidden = false;
+          document.querySelector('#local').hidden = false;
+          document.querySelector('#receipt').textContent = JSON.stringify(
+            {
+              sample: 'rifle_shot.ogg',
+              sampleRate: rate,
+              secondsPerSegment: seconds,
+              totalSeconds: length / rate,
+              records,
+            },
+            null,
+            2,
+          );
+          document.querySelector('#status').textContent =
+            'Ready: eight segments rendered without clipping.';
+        } catch (error) {
+          document.querySelector('#status').textContent = `Failed: ${error.message}`;
+        } finally {
+          button.disabled = false;
+        }
+      };
+      document.querySelector('#local').onclick = async () => {
+        try {
+          const response = await fetch('http://127.0.0.1:5193/capture', {
+            method: 'POST',
+            headers: { 'Content-Type': 'audio/wav' },
+            body: renderedBytes,
+            signal: AbortSignal.timeout(8000),
+          });
+          if (!response.ok) throw new Error(`Local save HTTP ${response.status}`);
+          document.querySelector('#status').textContent = `Saved: ${(await response.json()).path}`;
+        } catch (error) {
+          document.querySelector('#status').textContent = `Save failed: ${error.message}`;
+        }
+      };
+    </script>
+  </body>
+</html>

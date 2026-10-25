@@ -1,0 +1,629 @@
+{
+  "scope": "Accepted matrix work, fixed window identity and modest group probabilities; AAA/frame spikes still open",
+  "classification": "progress",
+  "goal_complete": false,
+  "branch": "codex/isolated-finish",
+  "main_head": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+  "claude_hashes_checked": 7,
+  "claude_hashes_match": true,
+  "publication": null,
+  "cloud_jobs": 0,
+  "measured_cost": null,
+  "before_regressions": {
+    "expected_failures": 2,
+    "tests_passed": 8
+  },
+  "candidate_tests": {
+    "passed": 36,
+    "files": 6,
+    "duration_seconds": 3.74
+  },
+  "checks": {
+    "typecheck": "pass after backup renamed .ts.txt",
+    "scoped_lint": "pass after one unnecessary assertion cleanup",
+    "build": "pass",
+    "build_seconds": 7.38,
+    "build_modules": 263,
+    "bundle": "index-CnxV6yYv.js",
+    "format": "pass"
+  },
+  "ledger": {
+    "first_pass_acceptance": "not claimed; intentionally red tests preceded production fix",
+    "correction_rework": 3,
+    "duplicate_effort": "not measured",
+    "environment_failures": 0,
+    "verified_outcome": "four world matrix traversals per frame reduced to one; same matched A/B draws/shadows; moving-descendant and restoration tests pass",
+    "actual_elapsed_seconds": null,
+    "speedup_over_sequential": null
+  },
+  "snapshot_sha256": {
+    "packages/client/src/render/post.ts": "65c1d756e752f9a0f7bab6eb45a9d9c40536048ff086eb1d887fb01b95fccfc4",
+    "packages/client/src/render/post.test.ts": "06b8f3ae55e786ded7c1702e1a7022436ef1ad8bea006b40bd6c0ca28c3636b2",
+    "packages/client/frame-profile.html": "5eb261d40b3f2605451c779e6ec706458ee270683b019f278f309e9baea3b24c",
+    "packages/client/src/render/windowInterior.ts": "5327028754e6fa6880701af7ab4610e20fba6698e421251ce80d37dc7fbecf41",
+    "packages/client/src/render/windowInterior.test.ts": "53b8254b78325c140c5811686892af74fb0ecf4da3d3740d60e8bb943c264801",
+    "packages/client/window-seed-probe.html": "71d54987481ea0b4bc07bb4425757fb8e719305381f5de8029b6373b2e63e834"
+  },
+  "samples": [
+    {
+      "source": "tools/assets/build/market-matrices-baseline-a-20261008.json",
+      "source_sha256": "33fec8abafb1cf35503074726644c53b0a80074a0e88ce914b51e569427376ca",
+      "matrix_mode": "baseline",
+      "world_matrix_calls": {
+        "min": 4,
+        "max": 4
+      },
+      "timings": {
+        "intervalMs": {
+          "count": 684,
+          "medianMs": 17.90000000000873,
+          "p95Ms": 122.69999999999709,
+          "p99Ms": 125.19999999999709,
+          "maxMs": 249.10000000000582
+        },
+        "frameMs": {
+          "count": 685,
+          "medianMs": 10.600000023841858,
+          "p95Ms": 17.899999976158142,
+          "p99Ms": 29.399999976158142,
+          "maxMs": 64.80000007152557
+        },
+        "renderMs": {
+          "count": 685,
+          "medianMs": 10.400000095367432,
+          "p95Ms": 16.899999976158142,
+          "p99Ms": 27.899999976158142,
+          "maxMs": 64.30000007152557
+        },
+        "simMs": {
+          "count": 685,
+          "medianMs": 0.19999992847442627,
+          "p95Ms": 0.5,
+          "p99Ms": 1.2000001668930054,
+          "maxMs": 1.5
+        },
+        "postMs": {
+          "count": 685,
+          "medianMs": 8,
+          "p95Ms": 12.199999928474426,
+          "p99Ms": 17.899999976158142,
+          "maxMs": 49.59999990463257
+        },
+        "facadeMs": {
+          "count": 685,
+          "medianMs": 0,
+          "p95Ms": 0.10000002384185791,
+          "p99Ms": 0.20000004768371582,
+          "maxMs": 0.3999999761581421
+        },
+        "pass0_PrepassPassMs": {
+          "count": 685,
+          "medianMs": 0.8999999761581421,
+          "p95Ms": 1.600000023841858,
+          "p99Ms": 2.1999999284744263,
+          "maxMs": 4.699999928474426
+        },
+        "pass1_RenderPassMs": {
+          "count": 685,
+          "medianMs": 4.899999976158142,
+          "p95Ms": 7.300000071525574,
+          "p99Ms": 10.200000047683716,
+          "maxMs": 23.100000023841858
+        },
+        "pass2_ShadowPreservingAOPassMs": {
+          "count": 685,
+          "medianMs": 1.899999976158142,
+          "p95Ms": 3.1999999284744263,
+          "p99Ms": 4.899999976158142,
+          "maxMs": 33.199999928474426
+        },
+        "pass3_ClearPassMs": {
+          "count": 685,
+          "medianMs": 0,
+          "p95Ms": 0,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791
+        },
+        "pass4_RenderPassMs": {
+          "count": 685,
+          "medianMs": 0.20000004768371582,
+          "p95Ms": 0.3999999761581421,
+          "p99Ms": 0.5,
+          "maxMs": 1.100000023841858
+        },
+        "pass5_EffectPassMs": {
+          "count": 685,
+          "medianMs": 0.19999992847442627,
+          "p95Ms": 0.30000007152557373,
+          "p99Ms": 0.3999999761581421,
+          "maxMs": 1.2000000476837158
+        },
+        "pass6_EffectPassMs": {
+          "count": 685,
+          "medianMs": 0,
+          "p95Ms": 0.10000002384185791,
+          "p99Ms": 0.20000004768371582,
+          "maxMs": 0.6000000238418579
+        },
+        "shadowMs": {
+          "count": 685,
+          "medianMs": 0.7999999523162842,
+          "p95Ms": 1.3000000715255737,
+          "p99Ms": 1.8000000715255737,
+          "maxMs": 3.399999976158142
+        },
+        "worldMatricesMs": {
+          "count": 685,
+          "medianMs": 1.3000000715255737,
+          "p95Ms": 2.3000000715255737,
+          "p99Ms": 3.200000047683716,
+          "maxMs": 11.700000166893005
+        },
+        "aoDetectTransparencyMs": {
+          "count": 685,
+          "medianMs": 0,
+          "p95Ms": 0,
+          "p99Ms": 0,
+          "maxMs": 0.10000002384185791
+        },
+        "aoTransparencyMs": {
+          "count": 685,
+          "medianMs": 1.6999999284744263,
+          "p95Ms": 2.899999976158142,
+          "p99Ms": 4.5,
+          "maxMs": 31.199999928474426
+        }
+      },
+      "draw_calls": 444,
+      "triangles": 1533372,
+      "shadow_draw_calls": 104,
+      "gpu": {
+        "available": true,
+        "medianMs": 10.769152
+      },
+      "hidden_frames": 0,
+      "viewport": [870, 884],
+      "hardware": "ANGLE (NVIDIA, NVIDIA Quadro T2000 with Max-Q Design (0x00001FB8) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "source": "tools/assets/build/market-matrices-candidate-b-20261008.json",
+      "source_sha256": "0bdc68f3a853f19ca487822e797e4377c616d1479d58a80516793e25b5bc6ae5",
+      "matrix_mode": "candidate",
+      "world_matrix_calls": {
+        "min": 1,
+        "max": 1
+      },
+      "timings": {
+        "intervalMs": {
+          "count": 701,
+          "medianMs": 17.90000000000873,
+          "p95Ms": 108.19999999999709,
+          "p99Ms": 125.10000000000582,
+          "maxMs": 126.80000000000291
+        },
+        "frameMs": {
+          "count": 702,
+          "medianMs": 9.600000023841858,
+          "p95Ms": 13.899999976158142,
+          "p99Ms": 18.5,
+          "maxMs": 32.800000071525574
+        },
+        "renderMs": {
+          "count": 702,
+          "medianMs": 9.400000095367432,
+          "p95Ms": 13.300000071525574,
+          "p99Ms": 17.399999976158142,
+          "maxMs": 32.40000009536743
+        },
+        "simMs": {
+          "count": 702,
+          "medianMs": 0.19999992847442627,
+          "p95Ms": 0.3999999761581421,
+          "p99Ms": 1.1999999284744263,
+          "maxMs": 1.7999999523162842
+        },
+        "postMs": {
+          "count": 702,
+          "medianMs": 7.100000023841858,
+          "p95Ms": 9.5,
+          "p99Ms": 11.100000023841858,
+          "maxMs": 25.899999976158142
+        },
+        "facadeMs": {
+          "count": 702,
+          "medianMs": 0,
+          "p95Ms": 0.10000002384185791,
+          "p99Ms": 0.20000004768371582,
+          "maxMs": 0.20000004768371582
+        },
+        "pass0_PrepassPassMs": {
+          "count": 702,
+          "medianMs": 0.5,
+          "p95Ms": 0.7000000476837158,
+          "p99Ms": 1,
+          "maxMs": 2
+        },
+        "pass1_RenderPassMs": {
+          "count": 702,
+          "medianMs": 4.600000023841858,
+          "p95Ms": 6.100000023841858,
+          "p99Ms": 7.100000023841858,
+          "maxMs": 18.200000047683716
+        },
+        "pass2_ShadowPreservingAOPassMs": {
+          "count": 702,
+          "medianMs": 1.1999999284744263,
+          "p95Ms": 1.7999999523162842,
+          "p99Ms": 2.399999976158142,
+          "maxMs": 3
+        },
+        "pass3_ClearPassMs": {
+          "count": 702,
+          "medianMs": 0,
+          "p95Ms": 0,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791
+        },
+        "pass4_RenderPassMs": {
+          "count": 702,
+          "medianMs": 0.20000004768371582,
+          "p95Ms": 0.30000007152557373,
+          "p99Ms": 0.40000009536743164,
+          "maxMs": 0.7999999523162842
+        },
+        "pass5_EffectPassMs": {
+          "count": 702,
+          "medianMs": 0.19999992847442627,
+          "p95Ms": 0.30000007152557373,
+          "p99Ms": 0.3999999761581421,
+          "maxMs": 0.6000000238418579
+        },
+        "pass6_EffectPassMs": {
+          "count": 702,
+          "medianMs": 0,
+          "p95Ms": 0.10000002384185791,
+          "p99Ms": 0.19999992847442627,
+          "maxMs": 0.20000004768371582
+        },
+        "shadowMs": {
+          "count": 702,
+          "medianMs": 0.7000000476837158,
+          "p95Ms": 1.100000023841858,
+          "p99Ms": 1.5,
+          "maxMs": 4.100000023841858
+        },
+        "worldMatricesMs": {
+          "count": 702,
+          "medianMs": 0.3999999761581421,
+          "p95Ms": 0.6999999284744263,
+          "p99Ms": 1,
+          "maxMs": 1.7000000476837158
+        },
+        "aoDetectTransparencyMs": {
+          "count": 702,
+          "medianMs": 0,
+          "p95Ms": 0,
+          "p99Ms": 0,
+          "maxMs": 0.10000002384185791
+        },
+        "aoTransparencyMs": {
+          "count": 702,
+          "medianMs": 1,
+          "p95Ms": 1.600000023841858,
+          "p99Ms": 2.100000023841858,
+          "maxMs": 2.600000023841858
+        }
+      },
+      "draw_calls": 444,
+      "triangles": 1533372,
+      "shadow_draw_calls": 104,
+      "gpu": {
+        "available": true,
+        "medianMs": 11.482208
+      },
+      "hidden_frames": 0,
+      "viewport": [870, 884],
+      "hardware": "ANGLE (NVIDIA, NVIDIA Quadro T2000 with Max-Q Design (0x00001FB8) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "source": "tools/assets/build/market-matrices-baseline-c-20261008.json",
+      "source_sha256": "84840e4df3211efb61d8438766b1f08001357e8d98b2e61ab0d0881b5ea795c2",
+      "matrix_mode": "baseline",
+      "world_matrix_calls": {
+        "min": 4,
+        "max": 4
+      },
+      "timings": {
+        "intervalMs": {
+          "count": 696,
+          "medianMs": 17.89999999999418,
+          "p95Ms": 122.89999999999418,
+          "p99Ms": 125.60000000000582,
+          "maxMs": 141
+        },
+        "frameMs": {
+          "count": 697,
+          "medianMs": 10,
+          "p95Ms": 14.899999976158142,
+          "p99Ms": 21,
+          "maxMs": 32.09999990463257
+        },
+        "renderMs": {
+          "count": 697,
+          "medianMs": 9.899999976158142,
+          "p95Ms": 14.299999952316284,
+          "p99Ms": 20.5,
+          "maxMs": 31.699999928474426
+        },
+        "simMs": {
+          "count": 697,
+          "medianMs": 0.19999992847442627,
+          "p95Ms": 0.5,
+          "p99Ms": 1.2000000476837158,
+          "maxMs": 1.399999976158142
+        },
+        "postMs": {
+          "count": 697,
+          "medianMs": 7.699999928474426,
+          "p95Ms": 9.700000047683716,
+          "p99Ms": 12.600000023841858,
+          "maxMs": 21.899999976158142
+        },
+        "facadeMs": {
+          "count": 697,
+          "medianMs": 0,
+          "p95Ms": 0.10000002384185791,
+          "p99Ms": 0.20000004768371582,
+          "maxMs": 0.2999999523162842
+        },
+        "pass0_PrepassPassMs": {
+          "count": 697,
+          "medianMs": 0.7999999523162842,
+          "p95Ms": 1.3000000715255737,
+          "p99Ms": 1.899999976158142,
+          "maxMs": 3.600000023841858
+        },
+        "pass1_RenderPassMs": {
+          "count": 697,
+          "medianMs": 4.700000047683716,
+          "p95Ms": 6.100000023841858,
+          "p99Ms": 8.100000023841858,
+          "maxMs": 13.699999928474426
+        },
+        "pass2_ShadowPreservingAOPassMs": {
+          "count": 697,
+          "medianMs": 1.7000000476837158,
+          "p95Ms": 2.299999952316284,
+          "p99Ms": 2.899999976158142,
+          "maxMs": 3.899999976158142
+        },
+        "pass3_ClearPassMs": {
+          "count": 697,
+          "medianMs": 0,
+          "p95Ms": 0,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791
+        },
+        "pass4_RenderPassMs": {
+          "count": 697,
+          "medianMs": 0.20000004768371582,
+          "p95Ms": 0.30000007152557373,
+          "p99Ms": 0.40000009536743164,
+          "maxMs": 0.6000000238418579
+        },
+        "pass5_EffectPassMs": {
+          "count": 697,
+          "medianMs": 0.10000002384185791,
+          "p95Ms": 0.2999999523162842,
+          "p99Ms": 0.30000007152557373,
+          "maxMs": 0.5
+        },
+        "pass6_EffectPassMs": {
+          "count": 697,
+          "medianMs": 0,
+          "p95Ms": 0.10000002384185791,
+          "p99Ms": 0.19999992847442627,
+          "maxMs": 0.20000004768371582
+        },
+        "shadowMs": {
+          "count": 697,
+          "medianMs": 0.7000000476837158,
+          "p95Ms": 1,
+          "p99Ms": 1.399999976158142,
+          "maxMs": 2.700000047683716
+        },
+        "worldMatricesMs": {
+          "count": 697,
+          "medianMs": 1.2000001668930054,
+          "p95Ms": 1.8999998569488525,
+          "p99Ms": 2.299999952316284,
+          "maxMs": 3.9999998807907104
+        },
+        "aoDetectTransparencyMs": {
+          "count": 697,
+          "medianMs": 0,
+          "p95Ms": 0,
+          "p99Ms": 0,
+          "maxMs": 0.10000002384185791
+        },
+        "aoTransparencyMs": {
+          "count": 697,
+          "medianMs": 1.5999999046325684,
+          "p95Ms": 2.100000023841858,
+          "p99Ms": 2.700000047683716,
+          "maxMs": 3.600000023841858
+        }
+      },
+      "draw_calls": 447,
+      "triangles": 1558490,
+      "shadow_draw_calls": 104,
+      "gpu": {
+        "available": true,
+        "medianMs": 10.508448
+      },
+      "hidden_frames": 0,
+      "viewport": [870, 884],
+      "hardware": "ANGLE (NVIDIA, NVIDIA Quadro T2000 with Max-Q Design (0x00001FB8) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  ],
+  "open": [
+    ">100ms callback gaps; parent LoAF reports long rendering phases",
+    "moving combat performance",
+    "whole-map AAA art/physics/audio acceptance",
+    "existing night facade seam lines",
+    "larger architectural hierarchy",
+    "new Modal spending cap unanswered"
+  ],
+  "final_sample": {
+    "source": "tools/assets/build/market-matrices-final-d-20261008.json",
+    "sha256": "63c377e7aa185a56d9beeca310e338482263302eb02a18244ba0a8a6729eacd8",
+    "timings": {
+      "intervalMs": {
+        "count": 682,
+        "medianMs": 17.90000000000873,
+        "p95Ms": 108.39999999999418,
+        "p99Ms": 125.80000000000291,
+        "maxMs": 267.6999999999971
+      },
+      "frameMs": {
+        "count": 683,
+        "medianMs": 9.800000071525574,
+        "p95Ms": 18.699999928474426,
+        "p99Ms": 27.300000071525574,
+        "maxMs": 60.39999997615814
+      },
+      "renderMs": {
+        "count": 683,
+        "medianMs": 9.600000023841858,
+        "p95Ms": 18.200000047683716,
+        "p99Ms": 26.100000023841858,
+        "maxMs": 58.10000002384186
+      },
+      "simMs": {
+        "count": 683,
+        "medianMs": 0.19999992847442627,
+        "p95Ms": 0.6000000238418579,
+        "p99Ms": 1.399999976158142,
+        "maxMs": 2.1999999284744263
+      },
+      "postMs": {
+        "count": 683,
+        "medianMs": 7.199999928474426,
+        "p95Ms": 13,
+        "p99Ms": 18.600000023841858,
+        "maxMs": 48.39999997615814
+      },
+      "facadeMs": {
+        "count": 683,
+        "medianMs": 0.09999990463256836,
+        "p95Ms": 0.19999992847442627,
+        "p99Ms": 0.20000004768371582,
+        "maxMs": 0.6000000238418579
+      },
+      "pass0_PrepassPassMs": {
+        "count": 683,
+        "medianMs": 0.5,
+        "p95Ms": 1,
+        "p99Ms": 1.4000000953674316,
+        "maxMs": 8.899999976158142
+      },
+      "pass1_RenderPassMs": {
+        "count": 683,
+        "medianMs": 4.600000023841858,
+        "p95Ms": 7.800000071525574,
+        "p99Ms": 11.199999928474426,
+        "maxMs": 34.700000047683716
+      },
+      "pass2_ShadowPreservingAOPassMs": {
+        "count": 683,
+        "medianMs": 1.2999999523162842,
+        "p95Ms": 2.5,
+        "p99Ms": 3.4000000953674316,
+        "maxMs": 17.200000047683716
+      },
+      "pass3_ClearPassMs": {
+        "count": 683,
+        "medianMs": 0,
+        "p95Ms": 0,
+        "p99Ms": 0.10000002384185791,
+        "maxMs": 0.10000002384185791
+      },
+      "pass4_RenderPassMs": {
+        "count": 683,
+        "medianMs": 0.20000004768371582,
+        "p95Ms": 0.3999999761581421,
+        "p99Ms": 0.5,
+        "maxMs": 2.299999952316284
+      },
+      "pass5_EffectPassMs": {
+        "count": 683,
+        "medianMs": 0.10000002384185791,
+        "p95Ms": 0.30000007152557373,
+        "p99Ms": 0.5,
+        "maxMs": 2.3000000715255737
+      },
+      "pass6_EffectPassMs": {
+        "count": 683,
+        "medianMs": 0,
+        "p95Ms": 0.10000002384185791,
+        "p99Ms": 0.20000004768371582,
+        "maxMs": 0.20000004768371582
+      },
+      "shadowMs": {
+        "count": 683,
+        "medianMs": 0.7000000476837158,
+        "p95Ms": 1.5,
+        "p99Ms": 2.200000047683716,
+        "maxMs": 4.700000047683716
+      },
+      "worldMatricesMs": {
+        "count": 683,
+        "medianMs": 0.3999999761581421,
+        "p95Ms": 0.8999999761581421,
+        "p99Ms": 1.3000000715255737,
+        "maxMs": 2.4000000953674316
+      },
+      "aoDetectTransparencyMs": {
+        "count": 683,
+        "medianMs": 0,
+        "p95Ms": 0,
+        "p99Ms": 0,
+        "maxMs": 0.10000002384185791
+      },
+      "aoTransparencyMs": {
+        "count": 683,
+        "medianMs": 1.100000023841858,
+        "p95Ms": 2.200000047683716,
+        "p99Ms": 3,
+        "maxMs": 16.800000071525574
+      }
+    },
+    "matrix_calls": {
+      "min": 1,
+      "max": 1
+    },
+    "hidden_frames": 0,
+    "draws": 444,
+    "triangles": 1533372,
+    "gpu": {
+      "available": true,
+      "medianMs": 10.244736
+    },
+    "long_frames": 78,
+    "long_tasks": 6
+  },
+  "window_seed_gpu": {
+    "source": "tools/assets/build/market-window-seed-gpu-20261008.json",
+    "sha256": "f25f2ab6ba6507ad0f5125ad20adb570a1b4983efadda28b374877febffc405c",
+    "cases": 60,
+    "groups": 12,
+    "old_split_groups": 12,
+    "candidate_split_groups": 0,
+    "passed": true
+  },
+  "captures": [
+    "market-after34-hall.jpg",
+    "market-after34-forecourt.jpg",
+    "market-after34-neon-hall.jpg"
+  ]
+}

@@ -1,0 +1,1506 @@
+{
+  "date": "2026-10-08T00:52:00.156681+00:00",
+  "branch": "codex/isolated-finish",
+  "result": "progress; AAA and frame-pacing targets unproven",
+  "improvements": [29, 30, 31],
+  "sources": [
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\treeModels.ts",
+      "bytes": 19751,
+      "sha256": "49c0a19cc486b4a8604020d3969d25142d14625c587a10f64ef824e28b056db2"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\treeTextureMips.ts",
+      "bytes": 4766,
+      "sha256": "8d3c39a2d8766cb715330028ef39c66451547e1ab4708be993fbd3f7b912da51"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\treeModels.test.ts",
+      "bytes": 6180,
+      "sha256": "6648f5cf6feed8f1a0c6e945020e9428e3c733c4e6aa73ff72996ac3e8a49d27"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\src\\render\\treeTextureMips.test.ts",
+      "bytes": 4080,
+      "sha256": "2a7f60e95602aa6c15850189bec280141b589c943855bb9d7a90d0ec245fa132"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\bake\\treeSourceBake.html",
+      "bytes": 17841,
+      "sha256": "709dd173b6eeb251852ebb3d53d86b6180cd80f8ad5fc643aa763d01b6ddc9c7"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\bake\\treeBakeReduction.mjs",
+      "bytes": 4906,
+      "sha256": "4f4f0da0d434c5f28b83ca1ac6ac4fcfc023e15037e5e264a927e9ea5f800118"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\bake\\treeBakeReduction.test.mjs",
+      "bytes": 1579,
+      "sha256": "bd4f988ade928ded83053e121730f3bba3b5796bd9d62e47939e6eec3e6de606"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\stage_tree_source_bake.py",
+      "bytes": 6500,
+      "sha256": "af753aa4d18dcddfaeb9fe228b25a5bb1209e934705a0d629e86c5fc480cb3c5"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\test_stage_tree_source_bake.py",
+      "bytes": 7230,
+      "sha256": "bffaded43fa5aa73b60c4cccaf88cd8620f882bbe815319dced00f322392c8f0"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\check_tree_filtering.mjs",
+      "bytes": 4795,
+      "sha256": "27f8a80f7f39ef021c8ce86723070d7ff3495b0cd0de88c36cea1eb1888821c3"
+    }
+  ],
+  "installedAssets": [
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\models\\trees\\ash_impostor.webp",
+      "bytes": 155238,
+      "sha256": "6de2a3f7f3e3c24dd4161c5caeedc186a3d2b8023f472b19f8e367c4b50f86a1"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\models\\trees\\ash_impostor_n.webp",
+      "bytes": 511740,
+      "sha256": "a3b937e11bdea05d28ca8590a589b28dcf1837b7fb79327da6516416c3a5473c"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\models\\trees\\oak_impostor.webp",
+      "bytes": 134994,
+      "sha256": "e0046ed68e8d46637b17dd9ccc23620ffb811f15a9da015336736afabcdaeef0"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\models\\trees\\oak_impostor_n.webp",
+      "bytes": 542188,
+      "sha256": "34526c1a6d6345cfa3278e3f0f28a8cd45079f09568f8578536b7a20713a482b"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\models\\trees\\pine_impostor.webp",
+      "bytes": 95376,
+      "sha256": "cbd8c1266a8ed26f247cdf2147b1e773fc490658df50dfc5e9f8fb04812abb63"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\models\\trees\\pine_impostor_n.webp",
+      "bytes": 317250,
+      "sha256": "3863065a97f5ca640336fa75793e0e0217846e01e62c2e9c29694ea4d2bc5a29"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\packages\\client\\public\\models\\trees\\trees.json",
+      "bytes": 1142,
+      "sha256": "37f060ae5172f9b201e248485b1e7d7f94ff09a726454375d638dd8f12302be1"
+    }
+  ],
+  "candidateBundles": [
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-bake\\ash-candidate.json",
+      "bytes": 5595906,
+      "sha256": "5733e53c9ad7b2bbd12d7f09d1b712c33dcadc942378f3cef6ed1e8652e3f8b2"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-bake\\oak-candidate.json",
+      "bytes": 5595898,
+      "sha256": "dac57ba4f1a3c87fc3f794d5fad46f6372e6ae3302eccec15fd4a5a397274ea3"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-bake\\pine-candidate.json",
+      "bytes": 5595903,
+      "sha256": "b5805def3dc5b0372f453412e9549a813d4ec6a2a32c755378613bd24021c156"
+    }
+  ],
+  "candidateValidation": {
+    "scope": "Candidate assets only; not installed or AAA-accepted",
+    "species": [
+      {
+        "species": "ash",
+        "maxNormalLengthError": 0.006278843038372006,
+        "maxReferenceBoundsErrorPixels": 1,
+        "coverageRatiosTo1x": [
+          1.152542372881356, 1.144885598923284, 1.1448913483601026, 1.1505852578298006,
+          1.152542372881356, 1.1447217923703155, 1.1448140900195696, 1.1503764155121148
+        ],
+        "meanCoveredAO": 0.9852660319137496,
+        "outputs": [
+          {
+            "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-staged\\ash_impostor.webp",
+            "bytes": 155238,
+            "sha256": "6de2a3f7f3e3c24dd4161c5caeedc186a3d2b8023f472b19f8e367c4b50f86a1"
+          },
+          {
+            "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-staged\\ash_impostor_n.webp",
+            "bytes": 511740,
+            "sha256": "a3b937e11bdea05d28ca8590a589b28dcf1837b7fb79327da6516416c3a5473c"
+          }
+        ]
+      },
+      {
+        "species": "oak",
+        "maxNormalLengthError": 0.006464570847540818,
+        "maxReferenceBoundsErrorPixels": 1,
+        "coverageRatiosTo1x": [
+          1.0384999287038357, 1.0370668006027122, 1.0372097589710862, 1.0405236039548809,
+          1.0384487429304692, 1.0370686624139835, 1.0373116009622465, 1.0405236039548809
+        ],
+        "meanCoveredAO": 0.9842611857398638,
+        "outputs": [
+          {
+            "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-staged\\oak_impostor.webp",
+            "bytes": 134994,
+            "sha256": "e0046ed68e8d46637b17dd9ccc23620ffb811f15a9da015336736afabcdaeef0"
+          },
+          {
+            "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-staged\\oak_impostor_n.webp",
+            "bytes": 542188,
+            "sha256": "34526c1a6d6345cfa3278e3f0f28a8cd45079f09568f8578536b7a20713a482b"
+          }
+        ]
+      },
+      {
+        "species": "pine",
+        "maxNormalLengthError": 0.006636952745543434,
+        "maxReferenceBoundsErrorPixels": 1,
+        "coverageRatiosTo1x": [
+          1.1089211618257262, 1.1087607456775814, 1.1050447901933051, 1.1101645692158761,
+          1.1094852635948527, 1.1088678516228747, 1.1047421514094466, 1.1099496709252807
+        ],
+        "meanCoveredAO": 0.9832292821901636,
+        "outputs": [
+          {
+            "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-staged\\pine_impostor.webp",
+            "bytes": 95376,
+            "sha256": "cbd8c1266a8ed26f247cdf2147b1e773fc490658df50dfc5e9f8fb04812abb63"
+          },
+          {
+            "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown-codex\\tools\\assets\\build\\tree-source-staged\\pine_impostor_n.webp",
+            "bytes": 317250,
+            "sha256": "3863065a97f5ca640336fa75793e0e0217846e01e62c2e9c29694ea4d2bc5a29"
+          }
+        ]
+      }
+    ]
+  },
+  "assetChecks": {
+    "measuredAt": "2026-10-08T00:48:50.048Z",
+    "scope": "Shipped atlas filtering; no browser performance claim",
+    "rows": [
+      {
+        "id": "ash",
+        "atlas": [2048, 256],
+        "leaf": [512, 512],
+        "colorBytes": 2796220,
+        "originalColorBytes": 2796220,
+        "normalBytes": 2796220,
+        "leafBytes": 1398100,
+        "maxNormalLengthError": 0.006526487833136696,
+        "packedAO": true,
+        "minAO": 0.9254901960784314,
+        "coverage": [
+          {
+            "width": 2048,
+            "height": 256,
+            "perView": [
+              0.28533935546875, 0.2595977783203125, 0.2588653564453125, 0.2774810791015625,
+              0.28533935546875, 0.259613037109375, 0.2588653564453125, 0.2774658203125
+            ],
+            "globalBefore": [
+              0.28533935546875, 0.2595977783203125, 0.2588653564453125, 0.2774810791015625,
+              0.28533935546875, 0.259613037109375, 0.2588653564453125, 0.2774658203125
+            ]
+          },
+          {
+            "width": 1024,
+            "height": 128,
+            "perView": [
+              0.285400390625, 0.2608642578125, 0.2606201171875, 0.2799072265625, 0.285400390625,
+              0.2608642578125, 0.2606201171875, 0.2799072265625
+            ],
+            "globalBefore": [
+              0.285400390625, 0.2608642578125, 0.2606201171875, 0.2799072265625, 0.285400390625,
+              0.2608642578125, 0.2606201171875, 0.2799072265625
+            ]
+          },
+          {
+            "width": 512,
+            "height": 64,
+            "perView": [
+              0.285400390625, 0.260009765625, 0.260498046875, 0.280517578125, 0.285400390625,
+              0.260009765625, 0.260498046875, 0.280517578125
+            ],
+            "globalBefore": [
+              0.28515625, 0.2587890625, 0.260498046875, 0.280517578125, 0.28515625, 0.2587890625,
+              0.260498046875, 0.280517578125
+            ]
+          },
+          {
+            "width": 256,
+            "height": 32,
+            "perView": [
+              0.2919921875, 0.263671875, 0.26171875, 0.28125, 0.2919921875, 0.2626953125,
+              0.26171875, 0.28125
+            ],
+            "globalBefore": [
+              0.2919921875, 0.263671875, 0.26171875, 0.28125, 0.2919921875, 0.2626953125,
+              0.26171875, 0.28125
+            ]
+          },
+          {
+            "width": 128,
+            "height": 16,
+            "perView": [
+              0.2890625, 0.26171875, 0.26171875, 0.28125, 0.2890625, 0.26171875, 0.26171875, 0.28125
+            ],
+            "globalBefore": [
+              0.27734375, 0.2578125, 0.265625, 0.28515625, 0.27734375, 0.2578125, 0.265625,
+              0.28515625
+            ]
+          },
+          {
+            "width": 64,
+            "height": 8,
+            "perView": [
+              0.296875, 0.265625, 0.265625, 0.28125, 0.296875, 0.265625, 0.265625, 0.28125
+            ],
+            "globalBefore": [0.265625, 0.296875, 0.25, 0.28125, 0.265625, 0.296875, 0.25, 0.28125]
+          },
+          {
+            "width": 32,
+            "height": 4,
+            "perView": [0.3125, 0.3125, 0.3125, 0.3125, 0.3125, 0.3125, 0.3125, 0.3125],
+            "globalBefore": [0.3125, 0.3125, 0.25, 0.25, 0.3125, 0.3125, 0.25, 0.25]
+          },
+          {
+            "width": 16,
+            "height": 2,
+            "perView": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+            "globalBefore": [0.5, 0.25, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25]
+          },
+          {
+            "width": 8,
+            "height": 1,
+            "perView": [1, 1, 1, 1, 1, 1, 1, 1],
+            "globalBefore": [1, 0, 0, 1, 1, 0, 0, 1]
+          }
+        ]
+      },
+      {
+        "id": "oak",
+        "atlas": [2048, 256],
+        "leaf": [512, 512],
+        "colorBytes": 2796220,
+        "originalColorBytes": 2796220,
+        "normalBytes": 2796220,
+        "leafBytes": 1398100,
+        "maxNormalLengthError": 0.006526487833136696,
+        "packedAO": true,
+        "minAO": 0.9176470588235294,
+        "coverage": [
+          {
+            "width": 2048,
+            "height": 256,
+            "perView": [
+              0.3333892822265625, 0.3150634765625, 0.3224029541015625, 0.342041015625,
+              0.333404541015625, 0.3150482177734375, 0.3224029541015625, 0.342041015625
+            ],
+            "globalBefore": [
+              0.3333892822265625, 0.3150634765625, 0.3224029541015625, 0.342041015625,
+              0.333404541015625, 0.3150482177734375, 0.3224029541015625, 0.342041015625
+            ]
+          },
+          {
+            "width": 1024,
+            "height": 128,
+            "perView": [
+              0.33551025390625, 0.316650390625, 0.3236083984375, 0.34442138671875, 0.33551025390625,
+              0.31671142578125, 0.3236083984375, 0.34442138671875
+            ],
+            "globalBefore": [
+              0.33551025390625, 0.316650390625, 0.3236083984375, 0.34442138671875, 0.33551025390625,
+              0.31671142578125, 0.3236083984375, 0.34442138671875
+            ]
+          },
+          {
+            "width": 512,
+            "height": 64,
+            "perView": [
+              0.3369140625, 0.318603515625, 0.327392578125, 0.344482421875, 0.3369140625,
+              0.318603515625, 0.327392578125, 0.344482421875
+            ],
+            "globalBefore": [
+              0.3369140625, 0.318603515625, 0.327392578125, 0.344482421875, 0.3369140625,
+              0.318603515625, 0.327392578125, 0.344482421875
+            ]
+          },
+          {
+            "width": 256,
+            "height": 32,
+            "perView": [
+              0.3427734375, 0.328125, 0.326171875, 0.349609375, 0.3427734375, 0.328125, 0.326171875,
+              0.349609375
+            ],
+            "globalBefore": [
+              0.3427734375, 0.328125, 0.326171875, 0.349609375, 0.3427734375, 0.328125, 0.326171875,
+              0.349609375
+            ]
+          },
+          {
+            "width": 128,
+            "height": 16,
+            "perView": [
+              0.3515625, 0.31640625, 0.32421875, 0.3515625, 0.3515625, 0.31640625, 0.32421875,
+              0.3515625
+            ],
+            "globalBefore": [
+              0.3515625, 0.31640625, 0.31640625, 0.3515625, 0.3515625, 0.31640625, 0.31640625,
+              0.3515625
+            ]
+          },
+          {
+            "width": 64,
+            "height": 8,
+            "perView": [
+              0.34375, 0.328125, 0.328125, 0.390625, 0.34375, 0.328125, 0.328125, 0.390625
+            ],
+            "globalBefore": [
+              0.296875, 0.328125, 0.3125, 0.390625, 0.296875, 0.328125, 0.3125, 0.390625
+            ]
+          },
+          {
+            "width": 32,
+            "height": 4,
+            "perView": [0.375, 0.375, 0.375, 0.375, 0.375, 0.375, 0.375, 0.375],
+            "globalBefore": [0.3125, 0.3125, 0.375, 0.3125, 0.3125, 0.3125, 0.375, 0.375]
+          },
+          {
+            "width": 16,
+            "height": 2,
+            "perView": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+            "globalBefore": [0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5]
+          },
+          {
+            "width": 8,
+            "height": 1,
+            "perView": [1, 1, 1, 1, 1, 1, 1, 1],
+            "globalBefore": [1, 0, 0, 1, 1, 0, 0, 1]
+          }
+        ]
+      },
+      {
+        "id": "pine",
+        "atlas": [2048, 256],
+        "leaf": [512, 512],
+        "colorBytes": 2796220,
+        "originalColorBytes": 2796220,
+        "normalBytes": 2796220,
+        "leafBytes": 1398100,
+        "maxNormalLengthError": 0.006278843038371895,
+        "packedAO": true,
+        "minAO": 0.9254901960784314,
+        "coverage": [
+          {
+            "width": 2048,
+            "height": 256,
+            "perView": [
+              0.163116455078125, 0.1751556396484375, 0.1788177490234375, 0.17498779296875,
+              0.1631317138671875, 0.1751556396484375, 0.178802490234375, 0.17498779296875
+            ],
+            "globalBefore": [
+              0.163116455078125, 0.1751556396484375, 0.1788177490234375, 0.17498779296875,
+              0.1631317138671875, 0.1751556396484375, 0.178802490234375, 0.17498779296875
+            ]
+          },
+          {
+            "width": 1024,
+            "height": 128,
+            "perView": [
+              0.16424560546875, 0.17523193359375, 0.179931640625, 0.17498779296875,
+              0.16424560546875, 0.17523193359375, 0.1798095703125, 0.17498779296875
+            ],
+            "globalBefore": [
+              0.16253662109375, 0.17523193359375, 0.179931640625, 0.17626953125, 0.1624755859375,
+              0.17523193359375, 0.1798095703125, 0.17626953125
+            ]
+          },
+          {
+            "width": 512,
+            "height": 64,
+            "perView": [
+              0.163330078125, 0.175537109375, 0.179443359375, 0.175048828125, 0.163330078125,
+              0.175537109375, 0.179443359375, 0.175048828125
+            ],
+            "globalBefore": [
+              0.16357421875, 0.1748046875, 0.177978515625, 0.17578125, 0.16357421875, 0.1748046875,
+              0.177978515625, 0.17578125
+            ]
+          },
+          {
+            "width": 256,
+            "height": 32,
+            "perView": [
+              0.1640625, 0.17578125, 0.1796875, 0.17578125, 0.1640625, 0.17578125, 0.1796875,
+              0.17578125
+            ],
+            "globalBefore": [
+              0.1640625, 0.173828125, 0.1787109375, 0.17578125, 0.1640625, 0.173828125,
+              0.1787109375, 0.17578125
+            ]
+          },
+          {
+            "width": 128,
+            "height": 16,
+            "perView": [
+              0.1640625, 0.17578125, 0.1953125, 0.17578125, 0.1640625, 0.17578125, 0.1953125,
+              0.17578125
+            ],
+            "globalBefore": [
+              0.16015625, 0.1640625, 0.19921875, 0.171875, 0.16015625, 0.1640625, 0.19921875,
+              0.171875
+            ]
+          },
+          {
+            "width": 64,
+            "height": 8,
+            "perView": [0.171875, 0.1875, 0.1875, 0.1875, 0.171875, 0.1875, 0.1875, 0.1875],
+            "globalBefore": [
+              0.15625, 0.171875, 0.1875, 0.171875, 0.171875, 0.171875, 0.1875, 0.171875
+            ]
+          },
+          {
+            "width": 32,
+            "height": 4,
+            "perView": [0.1875, 0.1875, 0.1875, 0.1875, 0.1875, 0.1875, 0.1875, 0.1875],
+            "globalBefore": [0.125, 0.25, 0.1875, 0.1875, 0.125, 0.25, 0.1875, 0.1875]
+          },
+          {
+            "width": 16,
+            "height": 2,
+            "perView": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25],
+            "globalBefore": [0.25, 0.25, 0.25, 0, 0.25, 0.25, 0.25, 0]
+          },
+          {
+            "width": 8,
+            "height": 1,
+            "perView": [1, 1, 1, 1, 1, 1, 1, 1],
+            "globalBefore": [0, 0, 1, 0, 0, 0, 1, 0]
+          }
+        ]
+      }
+    ]
+  },
+  "staticSamples": {
+    "before": {
+      "measuredAt": "2026-10-08T00:45:01.346Z",
+      "scope": "Static actual-game view, not a moving/combat benchmark",
+      "pose": "hall balcony",
+      "hardware": "ANGLE (NVIDIA, NVIDIA Quadro T2000 with Max-Q Design (0x00001FB8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": [870, 884],
+      "hiddenFrames": 0,
+      "durationMs": 15014.699999999997,
+      "frames": 368,
+      "medianMs": 35.39999999999418,
+      "p95Ms": 108,
+      "p99Ms": 248.39999999999418,
+      "startState": {
+        "slot": "rifle",
+        "target": "rifle",
+        "mode": "standard",
+        "grenades": 1,
+        "liveGrenades": 0,
+        "lastExplosion": null,
+        "health": 100,
+        "guard": false,
+        "stun": 0,
+        "counter": 0,
+        "partner": null,
+        "map": {
+          "name": "Plac Defilad \u00e2\u20ac\u201d Market \u00e2\u20ac\u201d close quarters (Palace forecourt + Plac Defilad market)",
+          "spawns": 10,
+          "bounds": {
+            "minX": 38,
+            "maxX": 170,
+            "minZ": -62,
+            "maxZ": 64
+          }
+        },
+        "tactical": {
+          "smokes": 1,
+          "jammers": 1,
+          "droneCharges": 0,
+          "flying": false,
+          "drone": null,
+          "spotted": [],
+          "jammed": 0,
+          "smokeClouds": 0
+        },
+        "radar": {
+          "live": 0,
+          "charges": 0,
+          "pickups": [
+            {
+              "id": "radar1",
+              "pos": {
+                "x": 146,
+                "y": 3.6,
+                "z": 21
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "radar2",
+              "pos": {
+                "x": 105,
+                "y": -5,
+                "z": 0
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "drone3",
+              "pos": {
+                "x": 133,
+                "y": 0,
+                "z": 18
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit4",
+              "pos": {
+                "x": 60,
+                "y": 0,
+                "z": -40
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit5",
+              "pos": {
+                "x": 56,
+                "y": 0,
+                "z": 42
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit6",
+              "pos": {
+                "x": 88,
+                "y": 0,
+                "z": -12
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit7",
+              "pos": {
+                "x": 108,
+                "y": 0,
+                "z": 32
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit8",
+              "pos": {
+                "x": 146,
+                "y": 0,
+                "z": 24
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit9",
+              "pos": {
+                "x": 124,
+                "y": 0,
+                "z": -20
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit10",
+              "pos": {
+                "x": 152,
+                "y": 0,
+                "z": 48
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit11",
+              "pos": {
+                "x": 138,
+                "y": 2.59,
+                "z": -42
+              },
+              "cooldown": 0
+            }
+          ]
+        },
+        "jetpack": {
+          "mode": 0,
+          "fuel": 0,
+          "thrust": false,
+          "items": [
+            {
+              "id": 0,
+              "pos": {
+                "x": 72,
+                "y": 0,
+                "z": -8
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 1,
+              "pos": {
+                "x": 139,
+                "y": 0,
+                "z": -5
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 2,
+              "pos": {
+                "x": 98,
+                "y": 0,
+                "z": 38
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            }
+          ],
+          "fx": {
+            "particles": 0,
+            "flames": 0
+          }
+        },
+        "pos": {
+          "x": 128.7000135433408,
+          "y": 3.6200172072291026,
+          "z": 18.099988181694815
+        },
+        "vel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "crouched": false,
+        "sprinting": false,
+        "eyeHeight": 1.62,
+        "ammo": 30,
+        "reserve": 120,
+        "reloading": false,
+        "adsAmount": 0,
+        "yaw": 1.5707963267948966,
+        "pitch": 0.04,
+        "stats": {
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "deaths": 0
+        },
+        "camera": {
+          "mode": "play",
+          "time": 0,
+          "enabled": true,
+          "killer": null,
+          "pos": {
+            "x": 128.7000135364504,
+            "y": 5.239980148196191,
+            "z": 18.099988181694815
+          },
+          "localSoldier": false
+        },
+        "drawCalls": 444,
+        "triangles": 1533372,
+        "shadowTriangles": 384858,
+        "shadowDrawCalls": 104,
+        "shaderPrograms": 231,
+        "gpuTiming": {
+          "available": true,
+          "medianMs": 12.099072
+        },
+        "fps": 27.866242038216868,
+        "quality": "high",
+        "weather": "sunny",
+        "resolutionScale": 1,
+        "overlaps": false,
+        "online": null
+      },
+      "endState": {
+        "slot": "rifle",
+        "target": "rifle",
+        "mode": "standard",
+        "grenades": 1,
+        "liveGrenades": 0,
+        "lastExplosion": null,
+        "health": 100,
+        "guard": false,
+        "stun": 0,
+        "counter": 0,
+        "partner": null,
+        "map": {
+          "name": "Plac Defilad \u00e2\u20ac\u201d Market \u00e2\u20ac\u201d close quarters (Palace forecourt + Plac Defilad market)",
+          "spawns": 10,
+          "bounds": {
+            "minX": 38,
+            "maxX": 170,
+            "minZ": -62,
+            "maxZ": 64
+          }
+        },
+        "tactical": {
+          "smokes": 1,
+          "jammers": 1,
+          "droneCharges": 0,
+          "flying": false,
+          "drone": null,
+          "spotted": [],
+          "jammed": 0,
+          "smokeClouds": 0
+        },
+        "radar": {
+          "live": 0,
+          "charges": 0,
+          "pickups": [
+            {
+              "id": "radar1",
+              "pos": {
+                "x": 146,
+                "y": 3.6,
+                "z": 21
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "radar2",
+              "pos": {
+                "x": 105,
+                "y": -5,
+                "z": 0
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "drone3",
+              "pos": {
+                "x": 133,
+                "y": 0,
+                "z": 18
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit4",
+              "pos": {
+                "x": 60,
+                "y": 0,
+                "z": -40
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit5",
+              "pos": {
+                "x": 56,
+                "y": 0,
+                "z": 42
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit6",
+              "pos": {
+                "x": 88,
+                "y": 0,
+                "z": -12
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit7",
+              "pos": {
+                "x": 108,
+                "y": 0,
+                "z": 32
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit8",
+              "pos": {
+                "x": 146,
+                "y": 0,
+                "z": 24
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit9",
+              "pos": {
+                "x": 124,
+                "y": 0,
+                "z": -20
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit10",
+              "pos": {
+                "x": 152,
+                "y": 0,
+                "z": 48
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit11",
+              "pos": {
+                "x": 138,
+                "y": 2.59,
+                "z": -42
+              },
+              "cooldown": 0
+            }
+          ]
+        },
+        "jetpack": {
+          "mode": 0,
+          "fuel": 0,
+          "thrust": false,
+          "items": [
+            {
+              "id": 0,
+              "pos": {
+                "x": 72,
+                "y": 0,
+                "z": -8
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 1,
+              "pos": {
+                "x": 139,
+                "y": 0,
+                "z": -5
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 2,
+              "pos": {
+                "x": 98,
+                "y": 0,
+                "z": 38
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            }
+          ],
+          "fx": {
+            "particles": 0,
+            "flames": 0
+          }
+        },
+        "pos": {
+          "x": 128.7000192385731,
+          "y": 3.6200294672540623,
+          "z": 18.099988181694815
+        },
+        "vel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "crouched": false,
+        "sprinting": false,
+        "eyeHeight": 1.62,
+        "ammo": 30,
+        "reserve": 120,
+        "reloading": false,
+        "adsAmount": 0,
+        "yaw": 1.5707963267948966,
+        "pitch": 0.04,
+        "stats": {
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "deaths": 0
+        },
+        "camera": {
+          "mode": "play",
+          "time": 0,
+          "enabled": true,
+          "killer": null,
+          "pos": {
+            "x": 128.70001923645555,
+            "y": 5.240025685098954,
+            "z": 18.099988181694815
+          },
+          "localSoldier": false
+        },
+        "drawCalls": 444,
+        "triangles": 1533372,
+        "shadowTriangles": 384858,
+        "shadowDrawCalls": 104,
+        "shaderPrograms": 231,
+        "gpuTiming": {
+          "available": true,
+          "medianMs": 16.125792
+        },
+        "fps": 25.081998842368773,
+        "quality": "high",
+        "weather": "sunny",
+        "resolutionScale": 1,
+        "overlaps": false,
+        "online": null
+      }
+    },
+    "after": {
+      "measuredAt": "2026-10-08T00:49:31.687Z",
+      "scope": "Static actual-game view, not a moving/combat benchmark",
+      "pose": "hall balcony",
+      "hardware": "ANGLE (NVIDIA, NVIDIA Quadro T2000 with Max-Q Design (0x00001FB8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": [870, 884],
+      "hiddenFrames": 0,
+      "durationMs": 15000.899999999994,
+      "frames": 479,
+      "medianMs": 18,
+      "p95Ms": 107.60000000000582,
+      "p99Ms": 126.19999999999709,
+      "startState": {
+        "slot": "rifle",
+        "target": "rifle",
+        "mode": "standard",
+        "grenades": 1,
+        "liveGrenades": 0,
+        "lastExplosion": null,
+        "health": 100,
+        "guard": false,
+        "stun": 0,
+        "counter": 0,
+        "partner": null,
+        "map": {
+          "name": "Plac Defilad \u00e2\u20ac\u201d Market \u00e2\u20ac\u201d close quarters (Palace forecourt + Plac Defilad market)",
+          "spawns": 10,
+          "bounds": {
+            "minX": 38,
+            "maxX": 170,
+            "minZ": -62,
+            "maxZ": 64
+          }
+        },
+        "tactical": {
+          "smokes": 1,
+          "jammers": 1,
+          "droneCharges": 0,
+          "flying": false,
+          "drone": null,
+          "spotted": [],
+          "jammed": 0,
+          "smokeClouds": 0
+        },
+        "radar": {
+          "live": 0,
+          "charges": 0,
+          "pickups": [
+            {
+              "id": "radar1",
+              "pos": {
+                "x": 146,
+                "y": 3.6,
+                "z": 21
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "radar2",
+              "pos": {
+                "x": 105,
+                "y": -5,
+                "z": 0
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "drone3",
+              "pos": {
+                "x": 133,
+                "y": 0,
+                "z": 18
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit4",
+              "pos": {
+                "x": 60,
+                "y": 0,
+                "z": -40
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit5",
+              "pos": {
+                "x": 56,
+                "y": 0,
+                "z": 42
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit6",
+              "pos": {
+                "x": 88,
+                "y": 0,
+                "z": -12
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit7",
+              "pos": {
+                "x": 108,
+                "y": 0,
+                "z": 32
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit8",
+              "pos": {
+                "x": 146,
+                "y": 0,
+                "z": 24
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit9",
+              "pos": {
+                "x": 124,
+                "y": 0,
+                "z": -20
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit10",
+              "pos": {
+                "x": 152,
+                "y": 0,
+                "z": 48
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit11",
+              "pos": {
+                "x": 138,
+                "y": 2.59,
+                "z": -42
+              },
+              "cooldown": 0
+            }
+          ]
+        },
+        "jetpack": {
+          "mode": 0,
+          "fuel": 0,
+          "thrust": false,
+          "items": [
+            {
+              "id": 0,
+              "pos": {
+                "x": 72,
+                "y": 0,
+                "z": -8
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 1,
+              "pos": {
+                "x": 139,
+                "y": 0,
+                "z": -5
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 2,
+              "pos": {
+                "x": 98,
+                "y": 0,
+                "z": 38
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            }
+          ],
+          "fx": {
+            "particles": 0,
+            "flames": 0
+          }
+        },
+        "pos": {
+          "x": 128.70002443429362,
+          "y": 3.6199996594565165,
+          "z": 18.099982182772383
+        },
+        "vel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "crouched": false,
+        "sprinting": false,
+        "eyeHeight": 1.62,
+        "ammo": 30,
+        "reserve": 120,
+        "reloading": false,
+        "adsAmount": 0,
+        "yaw": 1.5707963267948966,
+        "pitch": 0.04,
+        "stats": {
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "deaths": 0
+        },
+        "camera": {
+          "mode": "play",
+          "time": 0,
+          "enabled": true,
+          "killer": null,
+          "pos": {
+            "x": 128.70002443429362,
+            "y": 5.240042352848221,
+            "z": 18.099982283987824
+          },
+          "localSoldier": false
+        },
+        "drawCalls": 450,
+        "triangles": 1583608,
+        "shadowTriangles": 409976,
+        "shadowDrawCalls": 107,
+        "shaderPrograms": 231,
+        "gpuTiming": {
+          "available": true,
+          "medianMs": 9.854144
+        },
+        "fps": 36.77182117282755,
+        "quality": "high",
+        "weather": "sunny",
+        "resolutionScale": 1,
+        "overlaps": false,
+        "online": null
+      },
+      "endState": {
+        "slot": "rifle",
+        "target": "rifle",
+        "mode": "standard",
+        "grenades": 1,
+        "liveGrenades": 0,
+        "lastExplosion": null,
+        "health": 100,
+        "guard": false,
+        "stun": 0,
+        "counter": 0,
+        "partner": null,
+        "map": {
+          "name": "Plac Defilad \u00e2\u20ac\u201d Market \u00e2\u20ac\u201d close quarters (Palace forecourt + Plac Defilad market)",
+          "spawns": 10,
+          "bounds": {
+            "minX": 38,
+            "maxX": 170,
+            "minZ": -62,
+            "maxZ": 64
+          }
+        },
+        "tactical": {
+          "smokes": 1,
+          "jammers": 1,
+          "droneCharges": 0,
+          "flying": false,
+          "drone": null,
+          "spotted": [],
+          "jammed": 0,
+          "smokeClouds": 0
+        },
+        "radar": {
+          "live": 0,
+          "charges": 0,
+          "pickups": [
+            {
+              "id": "radar1",
+              "pos": {
+                "x": 146,
+                "y": 3.6,
+                "z": 21
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "radar2",
+              "pos": {
+                "x": 105,
+                "y": -5,
+                "z": 0
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "drone3",
+              "pos": {
+                "x": 133,
+                "y": 0,
+                "z": 18
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit4",
+              "pos": {
+                "x": 60,
+                "y": 0,
+                "z": -40
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit5",
+              "pos": {
+                "x": 56,
+                "y": 0,
+                "z": 42
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit6",
+              "pos": {
+                "x": 88,
+                "y": 0,
+                "z": -12
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit7",
+              "pos": {
+                "x": 108,
+                "y": 0,
+                "z": 32
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit8",
+              "pos": {
+                "x": 146,
+                "y": 0,
+                "z": 24
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit9",
+              "pos": {
+                "x": 124,
+                "y": 0,
+                "z": -20
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit10",
+              "pos": {
+                "x": 152,
+                "y": 0,
+                "z": 48
+              },
+              "cooldown": 0
+            },
+            {
+              "id": "medkit11",
+              "pos": {
+                "x": 138,
+                "y": 2.59,
+                "z": -42
+              },
+              "cooldown": 0
+            }
+          ]
+        },
+        "jetpack": {
+          "mode": 0,
+          "fuel": 0,
+          "thrust": false,
+          "items": [
+            {
+              "id": 0,
+              "pos": {
+                "x": 72,
+                "y": 0,
+                "z": -8
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 1,
+              "pos": {
+                "x": 139,
+                "y": 0,
+                "z": -5
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            },
+            {
+              "id": 2,
+              "pos": {
+                "x": 98,
+                "y": 0,
+                "z": 38
+              },
+              "carrier": null,
+              "armed": false,
+              "spent": false
+            }
+          ],
+          "fx": {
+            "particles": 0,
+            "flames": 0
+          }
+        },
+        "pos": {
+          "x": 128.70003271599072,
+          "y": 3.620094102012081,
+          "z": 18.099982169738258
+        },
+        "vel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "crouched": false,
+        "sprinting": false,
+        "eyeHeight": 1.62,
+        "ammo": 30,
+        "reserve": 120,
+        "reloading": false,
+        "adsAmount": 0,
+        "yaw": 1.5707963267948966,
+        "pitch": 0.04,
+        "stats": {
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "deaths": 0
+        },
+        "camera": {
+          "mode": "play",
+          "time": 0,
+          "enabled": true,
+          "killer": null,
+          "pos": {
+            "x": 128.70003271239665,
+            "y": 5.240057878941385,
+            "z": 18.099982169738258
+          },
+          "localSoldier": false
+        },
+        "drawCalls": 450,
+        "triangles": 1583608,
+        "shadowTriangles": 409976,
+        "shadowDrawCalls": 107,
+        "shaderPrograms": 231,
+        "gpuTiming": {
+          "available": true,
+          "medianMs": 11.531008
+        },
+        "fps": 27.89400278940072,
+        "quality": "high",
+        "weather": "sunny",
+        "resolutionScale": 1,
+        "overlaps": false,
+        "online": null
+      }
+    }
+  },
+  "validation": {
+    "runtimeTests": 11,
+    "runtimeSeconds": 4.7,
+    "reducerTests": 3,
+    "validatorTests": 7,
+    "types": "pass",
+    "scopedLint": "pass",
+    "format": "pass",
+    "build": "pass",
+    "buildSeconds": 5.47,
+    "buildIndex": "index-CLuXMlH2.js",
+    "runtimeWarningsErrors": [],
+    "offlineBakeWarning": "NVIDIA N8AO gradient in varying loop",
+    "environmentFailures": [
+      "Vitest temporary-module ENOENT; one-worker non-isolated run passed",
+      "Wrong root Vite executable path; client package command passed"
+    ],
+    "testCorrection": "Assertion substring matched indirectDiffuse; field-name regex fixed"
+  },
+  "preservation": {
+    "mainHead": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+    "claudeFilesChecked": 7,
+    "claudeFilesChanged": 0,
+    "commit": false,
+    "push": false,
+    "cloudJobs": 0
+  },
+  "execution": {
+    "compressedAtlasBytesBefore": 755802,
+    "compressedAtlasBytesAfter": 1756786,
+    "helperLane": "bounded validator tests only",
+    "duplicateEffort": 0,
+    "sequentialBaselineSeconds": null,
+    "speedup": null,
+    "cost": null,
+    "totalElapsedSeconds": null,
+    "interruptedOvernight": true,
+    "firstPassRuntimeTestAcceptance": false,
+    "lesson": "Validate provenance before installation, separate AO from coverage, and do not attribute host/scene frame changes to texture work."
+  },
+  "remaining": [
+    "controlled moving/combat performance and host spikes",
+    "volumetric distant tree transitions",
+    "higher fidelity distant facades",
+    "all bot/object ground contact cases",
+    "whole-map AAA visual/audio/physics acceptance",
+    "Modal job awaits spending cap"
+  ]
+}

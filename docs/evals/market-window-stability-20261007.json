@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-07",
+  "scope": "Improvements 19-21, bounded geometry and rig probes",
+  "sources": [
+    {
+      "path": "packages/client/src/render/windowInterior.ts",
+      "sha256": "fadef5366b5e9e64db5dd76e0cde7baa034ecb178aca995aad3941adfa2722d0"
+    },
+    {
+      "path": "packages/client/src/render/facadeShaders.test.ts",
+      "sha256": "fb355cccf36f8541e126319bb67d5164c50c21faf49ecc179a0ed4f3b8cc7b0f"
+    },
+    {
+      "path": "packages/client/src/render/footPlant.ts",
+      "sha256": "15c1fdd8a0b70f38c76b409baf80250a8794ff1f132da2aba1072c7caf709c89"
+    },
+    {
+      "path": "packages/client/src/render/soldierMovingContact.test.ts",
+      "sha256": "f6b7b6b0cd58823586bf1bee49779a22819fe80480b867ba789adc12671b4b12"
+    },
+    {
+      "path": "packages/client/src/render/facadeRelief.ts",
+      "sha256": "c16d138d8efe67421e5cdcd0720f537b6ded797010ff7fea2164f82e7c2d21a3"
+    },
+    {
+      "path": "packages/client/src/render/facadeRelief.test.ts",
+      "sha256": "cecd8cc6d46d88ad02b2671c685dff4602504a00bf809385f6fa1da62941192a"
+    },
+    {
+      "path": "packages/client/src/render/facadeDetail.test.ts",
+      "sha256": "aa4668ce2aeaedb971b7140ff98663519b790749eb40730a61b600cf9ec3c9d0"
+    }
+  ],
+  "mainHead": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+  "preserved": [
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown\\tools\\assets\\export_mannequin_tpose.py",
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown\\tools\\handoff\\PROTOCOL.md",
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown\\tools\\handoff\\stop.sh",
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown\\tools\\handoff\\stop.cmd",
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown\\.claude\\worktrees\\lane-vehicle-art\\tools\\assets\\test_wreck_rays.py",
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown\\.claude\\worktrees\\lane-vehicle-art\\tools\\assets\\wreck_rays_rapier.ts",
+      "matches": true
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\warsaw-downtown\\.claude\\worktrees\\lane-vehicle-art\\packages\\shared\\src\\maps\\wreckGeometry.ts",
+      "matches": true
+    }
+  ],
+  "sourceCost": {
+    "scope": "Near-LOD source quads; merged front triangulation measured separately",
+    "before": 154540,
+    "after": 162070,
+    "ratio": 1.0487252491264398,
+    "targetMaximumRatio": 1.15
+  },
+  "bufferCost": {
+    "scope": "Actual Market facade buffers; same High-tier model camera poses, no GPU timing claim",
+    "beforeBytes": 36924718,
+    "afterBytes": 38791534,
+    "views": [
+      {
+        "name": "hall",
+        "before": {
+          "draws": 3,
+          "triangles": 112179,
+          "shadowTriangles": 2986
+        },
+        "after": {
+          "draws": 3,
+          "triangles": 121739,
+          "shadowTriangles": 2986
+        },
+        "triangleRatio": 1.0852209415309462
+      },
+      {
+        "name": "forecourt",
+        "before": {
+          "draws": 3,
+          "triangles": 129852,
+          "shadowTriangles": 2986
+        },
+        "after": {
+          "draws": 3,
+          "triangles": 139932,
+          "shadowTriangles": 2986
+        },
+        "triangleRatio": 1.0776268367064041
+      }
+    ]
+  },
+  "verification": {
+    "types": "pass",
+    "scopedLint": "pass",
+    "finalGeometryTests": 42,
+    "screenshot": "blocked: supported capture methods fail; prototype not accepted final",
+    "gameplayFramePacing": "prior p95 failure unresolved",
+    "build": "pass"
+  },
+  "execution": {
+    "measuredCostUsd": null,
+    "rework": "Three geometry cost failures led to bounded single-profile detail",
+    "elapsedComparableBaseline": null,
+    "pushes": 0,
+    "commits": 0,
+    "modalJobs": 0,
+    "duplicateEffort": "No helper edits; read-only reviews"
+  }
+}

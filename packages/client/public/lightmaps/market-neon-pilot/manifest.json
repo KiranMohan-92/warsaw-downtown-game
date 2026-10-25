@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "kind": "market-neon-ground",
+  "sceneHash": "0608001d02fe75",
+  "layoutHash": "1f8605625ccbab",
+  "bounds": [76, 30, 112, 62],
+  "receiverY": 0.02,
+  "occlusionPadding": 16,
+  "emitters": [
+    {
+      "label": "NOCNY RYNEK",
+      "sublabel": "OPEN 24H",
+      "x": 93,
+      "y": 4.25,
+      "z": 45,
+      "yaw": 180,
+      "w": 4.2,
+      "h": 1.35,
+      "color": 16727485,
+      "radiance": 120
+    }
+  ],
+  "geometryFingerprint": "c54be666611af4de88edee5ad47985ea3a5bafef07ec6a17dfc9f8261f249197",
+  "lightingFingerprint": "cb6bdc7afb508122d699651432601476ab7989b98a43102bf60fdfa983ff299f",
+  "sourceFingerprints": {
+    "tools/bake/export-market-neon.mjs": "28681e80f649d46c51ed7426c74791f3c24f7d442369f618984723bbeda65171",
+    "tools/bake/market_neon_bake.py": "a9f0e9c1b395677deb70a2e11fee77ad5f8477466b9349cbe9371ba9fc0704c3",
+    "tools/bake/courtyard_bake.py": "6bd5b5b27144f4ce6d1888ac07c930c734698e3a9c1bc334678843b18b3f8fa2",
+    "packages/client/src/render/neonDistrict.ts": "ee0949a401ba6654cd4169e98eda50a6189e91f773bf1cc6c8731325aa050bcb",
+    "packages/client/src/render/setDressing.ts": "d47fe4780e0d225503b686f2bf9d70754a44aa906a7bc3282d338f15be51bcf4",
+    "packages/client/src/render/marketStallFinish.ts": "935f1151de37d5728d4642235e79664d33807be28c06c257ddf962fe80b78048",
+    "packages/client/src/render/marketStallProps.ts": "8e005e50db54948287d64e259128adfd91ed0d20a2bbd83a720932837f51a362",
+    "packages/shared/src/maps/propGeometry.gen.json": "6823d641fdd02a8a8167e8a61a5a537fa6da04832aa9331f28ffba4d7bb34799",
+    "packages/shared/src/maps/propModels.ts": "498a5e30861dd51005d8e83f0f93892107a559809f57a33fd4e55e6f41b583ec",
+    "packages/shared/src/maps/lightmap.ts": "3e4c6205785ee5d5f2c19ed7a4914ded22b5985a1de0028b99a3807687ed2dca",
+    "packages/shared/src/maps/registry.ts": "f832808b091c391f124978b417ce151406636a7a6a871045680a00194b465138",
+    "packages/shared/src/maps/builder.ts": "826ea7f66bf8b9df3269b05e87912b8aaa875dc1540e1e75595444d62815b83a",
+    "packages/shared/src/maps/geom.ts": "83f51f59119f7732d58a8758983d978ff92dd8acac627f6f4c15d32e904d2800",
+    "packages/shared/src/maps/props.ts": "3e7de527244d370c01c940489f517a730b8f5919acd9c15ca86cc43a87a0d682",
+    "packages/shared/src/maps/solids.ts": "5eb1d1173fc7215a77544d9f0738def76229d133af6ffd82798ae03ef24eecd9",
+    "packages/shared/src/maps/coverFill.ts": "b3f1323d3c84260720d9151f9baf9ea954fdb7477ca0d36be4cd4369a7fc1685",
+    "packages/shared/src/maps/decor.ts": "cb29f8774b0b4b46fc3040974a9b7f7a9c5a9adeddb6199563929bd37571ef81",
+    "packages/shared/src/maps/placDefilad/index.ts": "1f9c75d6757eaec78cbbe74a5b1f5e844d047f0352a3c7a829ed2d78e4a24a76",
+    "packages/shared/src/maps/placDefilad/market.ts": "71d169e399fb80b43279b192ecd800754d05a6b973ca1bf7664d8112c75bf99e",
+    "packages/shared/src/maps/placDefilad/palace.ts": "d62f27e2cdb57da434ae8bfc692b9b988b1f233ae5add275cfcb358d7eb5e8be",
+    "packages/shared/src/maps/placDefilad/osm.gen.json": "035ad0c6ff81f724050d40301c4d797acbf8619cdaf5c3e816cbdfb9f6fb1caf",
+    "packages/shared/src/math/quat.ts": "684adfaab690f834b452d7fe3df9038d9d53593053eded2051c6b2e838d5ffcd"
+  },
+  "limitations": [
+    "Landmark ground only; receiver does not represent raised floors, walls, actors or underground surfaces.",
+    "Occluders and emitters are selected within 16 m of the tile; more distant illumination and bounces are omitted.",
+    "Hero/wreck models, tree crowns, soft foliage cards, centimetre-sized produce and district trims are omitted; authored solid hedge boxes, main solids, scanned static props and actual stall awnings/posts/trays are exported.",
+    "Occluders use flat approximate diffuse colours, not their browser textures, metallic BRDFs or translucent cloth.",
+    "Only selected neon panels emit: stall strips, sun, sky, hall lamps, moving actors and wet reflections stay outside this bake.",
+    "Uniform panel radiance is an artistic calibration, not measured photometric signage; actual sign lettering/alpha is not baked.",
+    "Existing additive neon ground decals must be reviewed when integrating this illumination to avoid double lighting."
+  ],
+  "file": "market-neon-ground.png",
+  "width": 512,
+  "height": 512,
+  "radianceScale": 16.0,
+  "encoding": "linear RGBA8 white Lambert diffuse radiance E/PI; row zero minimum world Z; flipY false",
+  "inputSha256": "cc0114e3122ac6f899b163c691be34902b779277d9363aade736df289738bb9a",
+  "textureHash": "6269a5cf0fac2b3838ef33ebb3ffcb5f22d6124a3dc21e0733cf757f4dff95fa",
+  "device": "CPU",
+  "gpuDevices": [],
+  "samples": 128,
+  "metrics": {
+    "elapsedSeconds": 11.792,
+    "meshes": 306,
+    "triangles": 114336,
+    "pngBytes": 28269,
+    "pixels": {
+      "min": 0.0,
+      "max": 3.607968807220459,
+      "mean": 0.08504133837084882,
+      "nonzeroChannels": 259805,
+      "clippedChannels": 0
+    }
+  }
+}

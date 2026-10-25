@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-06",
+  "branch": "codex/isolated-finish",
+  "improvement": 18,
+  "sourceSha256": {
+    "packages/client/facade-review.html": "8f02b7ef9e3e4c0d938ce171a295c9ec74dcfb84984d8bf58046ad3bcc4018a0",
+    "packages/client/src/render/facadeWeathering.ts": "0bd56537bf2aa953b1c41f4b72a56c0d26308dafde386f9169a5c6f391d4401b",
+    "packages/client/src/render/palaceEntranceStone.test.ts": "ecfb21d87b3e211919be062ef569dcc53920bffa6fb486b948853a97d02dfa97",
+    "packages/client/src/render/palaceEntranceStone.ts": "91b98e132e37ac7a2eb5445ba712d9c4dc0ac16e569ee494c65db099337a5e6c",
+    "packages/client/src/render/facadeDetail.ts": "bfca76e05e0427e12a47bc5653004ccc0d27e1eb0959beaffeb209d5374f5c94",
+    "packages/client/src/render/soldierMovingContact.test.ts": "a66ccfc73ce037dce8a868c78be8a6549177b37d2ddb8f46cc11025840ab7d0d",
+    "packages/client/src/render/facadeShaders.test.ts": "c4d4370763e8c981780ab08ddc576256c3b5c1ffd522a55947b8f906835b8d90",
+    "packages/client/src/render/facadeDetail.test.ts": "3876ba3506c2f1981b5799268c10025c4b8bdf77395acf61e129cc85b520a6d9"
+  },
+  "verification": {
+    "scopedLint": "pass",
+    "typecheck": "pass",
+    "movingTest": {
+      "swingMaxPenetrationMetres": 0.03428,
+      "durationSeconds": 22.03,
+      "passed": 1,
+      "plantedMaxGapMetres": 0.012009,
+      "limitations": [
+        "planted classification follows current animation rule",
+        "no continuous KCC stair navigation"
+      ]
+    },
+    "build": {
+      "status": "pass",
+      "gzipKilobytes": 3045.08,
+      "modules": 261,
+      "bundle": "index-BxrAH5sa.js",
+      "kilobytes": 8092.93,
+      "durationSeconds": 4.59,
+      "warning": "existing large chunk"
+    },
+    "facadeTests": {
+      "files": 5,
+      "passed": 62,
+      "durationSeconds": 47.01
+    }
+  },
+  "mainPreservation": {
+    "files": 7,
+    "head": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+    "changed": 0
+  },
+  "runtime": {
+    "acceptance": "fail",
+    "p99Ms": 66.7,
+    "receipt": "C:/Users/kiran/myprojects/gameplay-captures/2026-10-06/market-quality/market-facade-frame-sample-fixed-720p.json",
+    "renderer": "NVIDIA Quadro T2000 Max-Q via ANGLE D3D11 in IAB",
+    "comparativePerformance": "unverified",
+    "viewport": [1280, 720],
+    "p95Ms": 65.9,
+    "medianMs": 16.7,
+    "p95TargetMs": 25
+  },
+  "screenshots": [
+    "market-facade-before-18-hall.png",
+    "market-facade-after-18-hall.png",
+    "market-facade-before-18-forecourt.png",
+    "market-facade-after-18-forecourt.png",
+    "market-facade-after-18-hall-neon.png"
+  ],
+  "captureDirectory": "C:/Users/kiran/myprojects/gameplay-captures/2026-10-06/market-quality",
+  "publication": {
+    "push": false,
+    "commit": false,
+    "modalSpend": null,
+    "modalRun": false
+  },
+  "retrospective": {
+    "duplicateEffort": null,
+    "measuredCost": null,
+    "elapsedSeconds": null,
+    "sequentialSpeedup": null,
+    "remaining": [
+      "whole-map AAA acceptance",
+      "swing-foot toe clipping",
+      "moving combat frame pacing",
+      "audio listening",
+      "actual CUDA receipt with approved spend cap"
+    ],
+    "corrections": [
+      "obsolete paint-material test expectation",
+      "unused helper import",
+      "dev fixture unsupported weather ID",
+      "dev fixture explicit settings apply",
+      "viewport change excluded from timing comparison"
+    ],
+    "environmentFailures": [
+      "sandbox EPERM running local Node",
+      "review tab timeout and log flood; isolated Vite restarted"
+    ],
+    "firstPassAcceptance": false,
+    "visualAcceptance": "improved material coherence; shallow depth, repeated windows and soft grime remain"
+  },
+  "neonReview": {
+    "stalledOriginalTab": "browser API could not bind; recovered using fresh tab",
+    "previewRestart": "isolated 5174 only",
+    "tab": 4,
+    "fixture": "corrected weather ID and explicit applySettings",
+    "status": "visually verified",
+    "viewportOverride": "reset",
+    "consoleErrors": 0,
+    "liveServerSession": 52941
+  }
+}

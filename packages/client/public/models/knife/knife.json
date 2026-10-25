@@ -1,0 +1,15 @@
+{
+  "source": "tools/assets/build_knife.py (own Blender work; Codex image_generation texture sources, Kiran, 2026-10-01)",
+  "triangles": 1719,
+  "anchors": {
+    "knife_grip": [0.0, 0.0, 0.0],
+    "knife_tip": [0.0, -0.006, -0.276],
+    "knife_edge": [0.0, -0.0135, -0.156],
+    "knife_guard": [0.0, 0.0, -0.066],
+    "knife_pommel": [0.0, 0.0, 0.0698]
+  },
+  "bladeLength": 0.21,
+  "clipDeg": 26.6,
+  "texture": 1024,
+  "textureLow": 512
+}

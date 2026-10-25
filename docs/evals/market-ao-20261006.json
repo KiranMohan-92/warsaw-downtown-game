@@ -1,0 +1,248 @@
+{
+  "date": "2026-10-06",
+  "recordedAt": "2026-10-06T12:08:09.9112904+02:00",
+  "branch": "codex/isolated-finish",
+  "improvement": 16,
+  "publication": "none",
+  "mainHead": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+  "preservedMainFiles": 7,
+  "preservedMainFilesMatched": 7,
+  "sourceSnapshot": [
+    {
+      "path": "packages/client/src/render/post.ts",
+      "sha256": "5cebbad21b4dbc86e001e4b61d3b6da0826e0bc0c0cc0ded889ea8f369317cf4"
+    },
+    {
+      "path": "packages/client/src/render/shadowPreservingAO.ts",
+      "sha256": "56e397a0b49aeed2d24a252b5fedce27bf4531b5b9673c0a1a8b5b98e7aadd2c"
+    },
+    {
+      "path": "packages/client/src/render/shadowPreservingAO.test.ts",
+      "sha256": "3d2e6eda932f28c5de0816680903fbfa882e73ae6e18f80d4dbb86631231e2a9"
+    },
+    {
+      "path": "packages/client/src/render/post.test.ts",
+      "sha256": "e29e0951c68e9e72efb0e993317efca6003d65a0c0acf286005ae8dfda6a71b2"
+    },
+    {
+      "path": "packages/client/src/render/depthPrepass.ts",
+      "sha256": "4776381946b33aac4654db2d0db8461c68b67b461aa23ba0a9ff4830b50cfeaf"
+    },
+    {
+      "path": "packages/client/src/render/depthPrepass.test.ts",
+      "sha256": "4cbf6b28d8b2f4e7be1e2dbb324073d1e08445f85fa4f1cc912c944529184cf7"
+    },
+    {
+      "path": "packages/client/src/render/marketNeonStaticManifest.ts",
+      "sha256": "ade88e325740cf7d135a1a473f48f6eae1ace832da67fb1536edf259943cd6b2"
+    },
+    {
+      "path": "tools/_marketDistrictReview/controls.mjs",
+      "sha256": "8c230f92de2d760c49b9e25c3fbb946df381e2b0fedaad4186d7267dc10f0daf"
+    },
+    {
+      "path": "tools/assets/probe-soldier-stair-reach.mjs",
+      "sha256": "2da9c0df266817cbba314e684d48ee78bf187c7c3403212b9cf7d579df283faa"
+    },
+    {
+      "path": "tools/bake/export-market-neon-static.mjs",
+      "sha256": "5f2b8ca35ddf3088c5aa94ad63fb8a03601ec0424a27d54d0a3786f85c648520"
+    },
+    {
+      "path": "packages/client/src/render/marketNeonStaticBake.test.ts",
+      "sha256": "7050fabe074508202b62e7b4393c170562722c6a2cf208b5e89a83dcec5f76b3"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-06\\market-quality\\market-shadow-audit-original.json",
+      "sha256": "e51471c6df483d347009509e0fc461b03a1d931283c89fe12dfc209d0a46697a"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-06\\market-quality\\market-shadow-audit-preserved.json",
+      "sha256": "ed426007bae6cd2be78db89baa58c410d9ade68b4696eb99b87b80c18ae0442f"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-06\\market-quality\\market-handler-fixed-original.json",
+      "sha256": "ef00989abb746f5a3516570dce110a0a28caf9fc3bb3c2f1f3333a583686fc84"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-06\\market-quality\\market-handler-fixed-preserved.json",
+      "sha256": "e144a98068aa96b23e24ce2223d8f299efa27aa47260b260e8408657ce10e213"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-06\\market-quality\\market-handler-after-stationary.json",
+      "sha256": "caa7df131f7a93ef7c62125438d233e7aa13444991851f6500a1b943123b659f"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-06\\market-quality\\market-handler-after-moving.json",
+      "sha256": "08795506cfcf84be329cc5aaeaa1a3753622b9b38d507846c6477aac73c92747"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-06\\market-quality\\market-before-16-fixed.png",
+      "sha256": "3a3864c130a3161dc6bb490e1cba58cf8bb4b893ac69566cb01a47c3b45bd89e"
+    },
+    {
+      "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-06\\market-quality\\market-after-16-fixed.png",
+      "sha256": "501a01d532b8b6db313c01b378a452d0891191014d23246863713911dc30d746"
+    }
+  ],
+  "verification": {
+    "targetedTests": 21,
+    "suites": 3,
+    "typecheck": "pass",
+    "eslint": "pass",
+    "prettier": "pass",
+    "productionBuild": "pass",
+    "buildSeconds": 2.38,
+    "bundle": "index-Ct9ACaXv.js",
+    "mainBundleKb": 8086.3,
+    "gzipKb": 3042.83,
+    "existingLargeChunkWarning": true,
+    "playableEndpoint": "http://127.0.0.1:5174/",
+    "endpointStatus": 200,
+    "staticRuntimeTests": 6,
+    "staticExporterTests": 3
+  },
+  "liveAudit": {
+    "originalEligibleSunUpdates": 3,
+    "preservedEligibleSunUpdates": 1,
+    "worldVisibleCasters": 232,
+    "auxiliaryVisibleCasters": [40, 41],
+    "note": "Visible scene count, not final shadow-camera draw count"
+  },
+  "comparison": [
+    {
+      "aoShadowMode": "preserved",
+      "mode": "stationary",
+      "pose": "Night market sign",
+      "warmupSeconds": 2,
+      "measuredSeconds": 8,
+      "frames": 326,
+      "focus": true,
+      "visible": true,
+      "osOcclusion": "unknown",
+      "weather": "sunny",
+      "quality": "high",
+      "drawingBuffer": [1280, 720],
+      "intervalMs": {
+        "p50": 16.70000000001164,
+        "p95": 33.30000000001746,
+        "p99": 33.39999999999418,
+        "max": 50.20000000001164
+      },
+      "frameHandlerWallMs": {
+        "p50": 21.399999976158142,
+        "p95": 29.299999952316284,
+        "p99": 31,
+        "max": 34.80000001192093
+      },
+      "simWallMs": {
+        "p50": 0.20000004768371582,
+        "p95": 0.40000003576278687,
+        "p99": 0.7999999523162842,
+        "max": 2.100000023841858
+      },
+      "renderWallMs": {
+        "p50": 21.099999964237213,
+        "p95": 28.80000001192093,
+        "p99": 30.700000047683716,
+        "max": 34.39999997615814
+      },
+      "gpu": {
+        "available": true,
+        "medianMs": 9.154336
+      },
+      "drawCalls": 500,
+      "triangles": 1585970,
+      "programs": 233
+    },
+    {
+      "aoShadowMode": "original",
+      "mode": "stationary",
+      "pose": "Night market sign",
+      "warmupSeconds": 2,
+      "measuredSeconds": 8,
+      "frames": 428,
+      "focus": true,
+      "visible": true,
+      "osOcclusion": "unknown",
+      "weather": "sunny",
+      "quality": "high",
+      "drawingBuffer": [1280, 720],
+      "intervalMs": {
+        "p50": 16.60000000000582,
+        "p95": 33.29999999998836,
+        "p99": 33.30000000001746,
+        "max": 33.39999999999418
+      },
+      "frameHandlerWallMs": {
+        "p50": 12,
+        "p95": 25.5,
+        "p99": 29.299999952316284,
+        "max": 30.100000023841858
+      },
+      "simWallMs": {
+        "p50": 0.19999998807907104,
+        "p95": 0.30000001192092896,
+        "p99": 0.40000003576278687,
+        "max": 0.6000000238418579
+      },
+      "renderWallMs": {
+        "p50": 11.800000011920929,
+        "p95": 25.30000001192093,
+        "p99": 28.80000001192093,
+        "max": 29.69999998807907
+      },
+      "gpu": {
+        "available": true,
+        "medianMs": 10.52576
+      },
+      "drawCalls": 520,
+      "triangles": 1625350,
+      "programs": 233
+    }
+  ],
+  "limitations": [
+    "No measured speedup established",
+    "Sustained 60fps acceptance unmet",
+    "Short offline checks do not establish full bot combat performance",
+    "Earlier outlier windows retained",
+    "Root stair support does not measure animated boot contact",
+    "No real Modal GPU job or GPU receipt"
+  ],
+  "retrospective": {
+    "firstLintPass": "fail: N8AO import needed import type",
+    "codeCorrections": 1,
+    "unsupportedHelper": "explore role Spark model unavailable; no work performed",
+    "readOnlyHelper": "Unsaved reach claims superseded by root-created GLB probe/report; executor helper followed parent goal instead of its assigned probe and was stopped.",
+    "unexpectedManifestRewrite": "Helper formatted outside assigned probe ownership, invalidating static exporter fingerprint; root refreshed export/CPU bake and isolated installation. Texture unchanged; final app bundle reflects new provenance.",
+    "testFailures": 0,
+    "duplicateEffort": "Helper repeated parent AO verification and formatting; root implemented missing diagnostic.",
+    "elapsedSeconds": null,
+    "cost": null,
+    "speedup": null,
+    "lesson": "Use bounded fresh-context helper assignments with explicit excluded UI/source ownership. Root-ground distance is not boot clearance. Preserve raw timing and reject causal speedup claims from concurrent contexts."
+  },
+  "localBake": {
+    "scene": "tools/assets/build/market-neon-static-ao-20261006/scene.json",
+    "output": "tools/assets/build/market-neon-static-ao-20261006/cpu",
+    "inputSha256": "3b8f3a2b9910be7cad98738dacc1aa522671fc40acd6534dae40c0568c5e8bdb",
+    "textureSha256": "59521c2db3bb0a0e13a8db5073fcbb5216e8274bbc2018ac710d583c790e84b1",
+    "device": "CPU",
+    "samples": 128,
+    "elapsedSeconds": 14.869,
+    "pngBytes": 25209,
+    "clippedChannels": 0,
+    "firstAttempt": "Nonempty directory rejected; fresh output subdirectory succeeded"
+  },
+  "stairDiagnostic": {
+    "script": "tools/assets/probe-soldier-stair-reach.mjs",
+    "report": "tools/assets/build/soldier-stair-reach-20261006.json",
+    "reportSha256": "c7eef678920c54a9ab7cbaadcb0e712af605754c00fd8892382e762f8f8952f2",
+    "poses": 10,
+    "footBoneSamples": 48,
+    "productionFix": false,
+    "limitation": "Ankle bone heights are not boot sole clearance or full IK/shot-alignment acceptance."
+  }
+}

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Market tree source bake</title>
+    <style>
+      body {
+        margin: 0;
+        background: #111b22;
+        color: #e4ecef;
+        font: 14px system-ui;
+        padding: 18px;
+      }
+      header {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      button,
+      select {
+        padding: 9px;
+        color: #e4ecef;
+        background: #263d49;
+        border: 1px solid #6b8793;
+      }
+      .views {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 18px 0;
+      }
+      figure {
+        margin: 0;
+        padding: 10px;
+        background: #25343b;
+      }
+      canvas,
+      img {
+        display: block;
+        width: 256px;
+        height: 256px;
+        background: #617783;
+        image-rendering: auto;
+      }
+      figcaption {
+        margin-top: 8px;
+        max-width: 256px;
+      }
+      pre {
+        white-space: pre-wrap;
+        font-size: 11px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>Market — candidate tree bake</strong>
+      <label
+        >Species
+        <select id="species">
+          <option>ash</option>
+          <option>oak</option>
+          <option>pine</option>
+        </select></label
+      >
+      <button id="bake">Bake eight views at 4×</button>
+      <button id="download" disabled>Download candidate bundle</button>
+      <span id="status">Production assets are unchanged.</span>
+    </header>
+    <p>
+      Existing shipped mesh → 1024-pixel render per view → original 256-pixel frame. Candidate only;
+      AO is view-dependent screen-space occlusion.
+    </p>
+    <div class="views">
+      <figure>
+        <canvas id="old"></canvas>
+        <figcaption>Current shipped colour, view 0</figcaption>
+      </figure>
+      <figure>
+        <canvas id="ref"></canvas>
+        <figcaption>Same mesh and materials, 1× reference</figcaption>
+      </figure>
+      <figure>
+        <canvas id="color"></canvas>
+        <figcaption>Candidate colour, view 0 — unlit</figcaption>
+      </figure>
+      <figure>
+        <canvas id="ao"></canvas>
+        <figcaption>Candidate AO, view 0 — white means unoccluded</figcaption>
+      </figure>
+    </div>
+    <details open>
+      <summary>Bake receipt and checks</summary>
+      <pre id="receipt">No candidate baked.</pre>
+    </details>
+    <script type="module">
+      import * as THREE from 'three';
+      import { N8AOPass } from 'n8ao';
+      import { gltfLoader } from '../src/render/gltfLoader.ts';
+      import { coverageMips } from '../src/render/treeTextureMips.ts';
+      import { reduceTreeView, treeReductionChecks } from './treeBakeReduction.mjs';
+      const status = document.querySelector('#status');
+      const receiptElement = document.querySelector('#receipt');
+      let result;
+      const FRAME = 256;
+      const FACTOR = 4;
+      const SIZE = FRAME * FACTOR;
+      const base = '/models/trees/';
+      const manifest = await (await fetch(base + 'trees.json')).json();
+      const readPixels = (renderer, target) => {
+        const data = new Uint8Array(SIZE * SIZE * 4);
+        renderer.readRenderTargetPixels(target, 0, 0, SIZE, SIZE, data);
+        return data;
+      };
+      function display(id, data) {
+        const canvas = document.querySelector('#' + id);
+        canvas.width = canvas.height = FRAME;
+        canvas
+          .getContext('2d')
+          .putImageData(new ImageData(new Uint8ClampedArray(data), FRAME, FRAME), 0, 0);
+      }
+      function atlasFrame(atlas, frame) {
+        const data = new Uint8Array(FRAME * FRAME * 4);
+        for (let y = 0; y < FRAME; y++)
+          data.set(
+            atlas.subarray(
+              (y * FRAME * 8 + frame * FRAME) * 4,
+              (y * FRAME * 8 + frame * FRAME + FRAME) * 4,
+            ),
+            y * FRAME * 4,
+          );
+        return data;
+      }
+      function frameMetrics(data) {
+        let covered = 0;
+        let partial = 0;
+        let error = 0;
+        let aoSum = 0;
+        let aoCount = 0;
+        const bounds = [FRAME, FRAME, -1, -1];
+        for (let y = 0; y < FRAME; y++)
+          for (let x = 0; x < FRAME; x++) {
+            const i = (y * FRAME + x) * 4;
+            if (data.color[i + 3] >= 128) {
+              covered++;
+              bounds[0] = Math.min(bounds[0], x);
+              bounds[1] = Math.min(bounds[1], y);
+              bounds[2] = Math.max(bounds[2], x);
+              bounds[3] = Math.max(bounds[3], y);
+            }
+            if (data.color[i + 3] > 0 && data.color[i + 3] < 255) partial++;
+            if (data.color[i + 3] > 0) {
+              const n = [0, 1, 2].map((ch) => (data.normals[i + ch] / 255) * 2 - 1);
+              error = Math.max(error, Math.abs(Math.hypot(...n) - 1));
+              aoSum += data.normals[i + 3] / 255;
+              aoCount++;
+            }
+          }
+        if (error > 0.014) throw new Error('Normal encoding exceeded unit-vector tolerance');
+        return {
+          covered,
+          partial,
+          bounds,
+          maxNormalLengthError: error,
+          meanCoveredAO: aoSum / aoCount,
+        };
+      }
+      function bytes64(data) {
+        let s = '';
+        for (let i = 0; i < data.length; i += 32768)
+          s += String.fromCharCode(...data.subarray(i, i + 32768));
+        return btoa(s);
+      }
+      async function sourceHash(path) {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error('Source fetch failed: ' + path);
+        const bytes = await response.arrayBuffer();
+        return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), (b) =>
+          b.toString(16).padStart(2, '0'),
+        ).join('');
+      }
+      document.querySelector('#bake').onclick = async () => {
+        document.querySelector('#bake').disabled = true;
+        document.querySelector('#download').disabled = true;
+        result = undefined;
+        let renderer;
+        let ao;
+        let colorTarget;
+        let normalTarget;
+        let aoTarget;
+        const materials = [];
+        const textures = [];
+        const geometries = [];
+        try {
+          const checks = treeReductionChecks();
+          const id = document.querySelector('#species').value;
+          const info = manifest.species[id];
+          if (info.frame.frames !== 8 || info.frame.size !== FRAME)
+            throw new Error('Unexpected shipped atlas layout');
+          const start = performance.now();
+          status.textContent = 'Loading shipped ' + id + '…';
+          const loader = new THREE.TextureLoader();
+          const [gltf, bark, loadedLeaf, oldTexture, glbHash] = await Promise.all([
+            gltfLoader().loadAsync(base + id + '.glb'),
+            loader.loadAsync(base + 'bark_' + info.bark + '_color.webp'),
+            loader.loadAsync(base + 'leaf_' + info.leaf + '.webp'),
+            loader.loadAsync(base + id + '_impostor.webp'),
+            sourceHash(base + id + '.glb'),
+          ]);
+          const sourcePaths = [
+            base + 'trees.json',
+            base + id + '.glb',
+            base + 'bark_' + info.bark + '_color.webp',
+            base + 'leaf_' + info.leaf + '.webp',
+            base + id + '_impostor.webp',
+          ];
+          const sourceFingerprints = Object.fromEntries(
+            await Promise.all(sourcePaths.map(async (path) => [path, await sourceHash(path)])),
+          );
+          const leafCanvas = new OffscreenCanvas(loadedLeaf.image.width, loadedLeaf.image.height);
+          const leafContext = leafCanvas.getContext('2d');
+          leafContext.drawImage(loadedLeaf.image, 0, 0);
+          const leafPixels = leafContext.getImageData(0, 0, leafCanvas.width, leafCanvas.height);
+          const levels = coverageMips(leafPixels.data, leafCanvas.width, leafCanvas.height);
+          const leaf = new THREE.DataTexture(
+            levels[0].data,
+            leafCanvas.width,
+            leafCanvas.height,
+            THREE.RGBAFormat,
+          );
+          leaf.mipmaps = levels;
+          leaf.generateMipmaps = false;
+          leaf.minFilter = THREE.LinearMipmapLinearFilter;
+          leaf.magFilter = THREE.LinearFilter;
+          textures.push(bark, loadedLeaf, leaf, oldTexture);
+          bark.flipY = leaf.flipY = false;
+          bark.colorSpace = leaf.colorSpace = THREE.SRGBColorSpace;
+          bark.wrapS = bark.wrapT = THREE.RepeatWrapping;
+          bark.needsUpdate = leaf.needsUpdate = true;
+          const oldCanvas = document.querySelector('#old');
+          oldCanvas.width = oldCanvas.height = FRAME;
+          oldCanvas
+            .getContext('2d')
+            .drawImage(oldTexture.image, 0, 0, FRAME, FRAME, 0, 0, FRAME, FRAME);
+          gltf.scene.updateMatrixWorld(true);
+          const geometry = (name) => {
+            const mesh = gltf.scene.getObjectByName(name);
+            if (!mesh?.isMesh) throw new Error('Missing shipped mesh: ' + name);
+            const g = mesh.geometry.clone().applyMatrix4(mesh.matrixWorld);
+            geometries.push(g);
+            return g;
+          };
+          const bGeo = geometry('branches');
+          const lGeo = geometry('leaves');
+          const triangles = { branches: bGeo.index.count / 3, leaves: lGeo.index.count / 3 };
+          if (
+            triangles.branches !== info.triangles.branches ||
+            triangles.leaves !== info.triangles.leaves
+          )
+            throw new Error('Shipped mesh triangle count differs from manifest');
+          const colorMat = (map, tint, alpha) => {
+            const m = new THREE.MeshBasicMaterial({
+              map,
+              color: tint,
+              alphaTest: alpha ? 0.5 : 0,
+              side: THREE.DoubleSide,
+            });
+            materials.push(m);
+            return m;
+          };
+          const normalMat = (map, alpha) => {
+            const m = new THREE.ShaderMaterial({
+              uniforms: { leafMap: { value: map }, cut: { value: alpha ? 1 : 0 } },
+              vertexShader:
+                'varying vec3 n; varying vec2 uvOut; void main(){n=normalize(mat3(modelMatrix)*normal);uvOut=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+              fragmentShader:
+                'uniform sampler2D leafMap; uniform float cut; varying vec3 n; varying vec2 uvOut; void main(){if(cut>0.5&&texture2D(leafMap,uvOut).a<0.5)discard;gl_FragColor=vec4(normalize(n)*(gl_FrontFacing?1.0:-1.0)*0.5+0.5,1.0);}',
+              side: THREE.DoubleSide,
+            });
+            materials.push(m);
+            return m;
+          };
+          const bm = colorMat(bark, info.barkTint, false);
+          const lm = colorMat(leaf, info.leafTint, true);
+          const bn = normalMat(bark, false);
+          const ln = normalMat(leaf, true);
+          const scene = new THREE.Scene();
+          const branchMesh = new THREE.Mesh(bGeo, bm);
+          const leafMesh = new THREE.Mesh(lGeo, lm);
+          scene.add(branchMesh, leafMesh);
+          renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: false,
+            premultipliedAlpha: false,
+          });
+          renderer.setPixelRatio(1);
+          bark.anisotropy = leaf.anisotropy = renderer.capabilities.getMaxAnisotropy();
+          renderer.setSize(SIZE, SIZE);
+          renderer.setClearColor(0, 0);
+          renderer.toneMapping = THREE.NoToneMapping;
+          renderer.outputColorSpace = THREE.SRGBColorSpace;
+          const target = (space) => {
+            const rt = new THREE.WebGLRenderTarget(SIZE, SIZE);
+            rt.texture.colorSpace = space;
+            return rt;
+          };
+          colorTarget = target(THREE.SRGBColorSpace);
+          normalTarget = target(THREE.NoColorSpace);
+          aoTarget = target(THREE.NoColorSpace);
+          const half = info.frame.half;
+          const camera = new THREE.OrthographicCamera(-half, half, half, -half, 0.01, 10);
+          ao = new N8AOPass(scene, camera, SIZE, SIZE);
+          ao.setQualityMode('Ultra');
+          ao.setDisplayMode('AO');
+          Object.assign(ao.configuration, {
+            aoRadius: 0.035,
+            distanceFalloff: 0.12,
+            intensity: 1,
+            denoiseRadius: 3,
+            denoiseIterations: 2,
+            gammaCorrection: false,
+            accumulate: false,
+            halfRes: false,
+          });
+          const colorAtlas = new Uint8Array(FRAME * 8 * FRAME * 4);
+          const normalAtlas = new Uint8Array(colorAtlas.length);
+          const views = [];
+          const references = [];
+          for (let f = 0; f < 8; f++) {
+            status.textContent = id + ' · view ' + (f + 1) + '/8 · offline 4× bake';
+            await new Promise(requestAnimationFrame);
+            const angle = (f / 8) * Math.PI * 2;
+            camera.position.set(Math.sin(angle) * 4, 0.5, Math.cos(angle) * 4);
+            camera.lookAt(0, 0.5, 0);
+            camera.updateMatrixWorld();
+            branchMesh.material = bm;
+            leafMesh.material = lm;
+            renderer.setRenderTarget(colorTarget);
+            renderer.setViewport(0, 0, FRAME, FRAME);
+            renderer.clear();
+            renderer.render(scene, camera);
+            const referencePixels = new Uint8Array(FRAME * FRAME * 4);
+            renderer.readRenderTargetPixels(colorTarget, 0, 0, FRAME, FRAME, referencePixels);
+            const reference = reduceTreeView(
+              referencePixels,
+              new Uint8Array(referencePixels.length).fill(255),
+              new Uint8Array(referencePixels.length).fill(255),
+              FRAME,
+              1,
+            );
+            references.push(frameMetrics(reference));
+            if (f === 0) display('ref', reference.color);
+            renderer.setViewport(0, 0, SIZE, SIZE);
+            renderer.clear();
+            renderer.render(scene, camera);
+            const color = readPixels(renderer, colorTarget);
+            branchMesh.material = bn;
+            leafMesh.material = ln;
+            renderer.setRenderTarget(normalTarget);
+            renderer.clear();
+            renderer.render(scene, camera);
+            const normals = readPixels(renderer, normalTarget);
+            branchMesh.material = bm;
+            leafMesh.material = lm;
+            ao.firstFrame();
+            ao.render(renderer, aoTarget, null, 0, false);
+            const ambient = readPixels(renderer, aoTarget);
+            const reduced = reduceTreeView(color, normals, ambient, SIZE, FACTOR);
+            views.push(frameMetrics(reduced));
+            for (let y = 0; y < FRAME; y++) {
+              const src = y * FRAME * 4;
+              const dst = (y * FRAME * 8 + f * FRAME) * 4;
+              colorAtlas.set(reduced.color.subarray(src, src + FRAME * 4), dst);
+              normalAtlas.set(reduced.normals.subarray(src, src + FRAME * 4), dst);
+            }
+            if (f === 0) {
+              display('color', reduced.color);
+              const gray = new Uint8Array(reduced.color.length);
+              for (let i = 0; i < gray.length; i += 4) {
+                gray[i] = gray[i + 1] = gray[i + 2] = reduced.normals[i + 3];
+                gray[i + 3] = reduced.color[i + 3];
+              }
+              display('ao', gray);
+            }
+          }
+          const gl = renderer.getContext();
+          const extension = gl.getExtension('WEBGL_debug_renderer_info');
+          const receipt = {
+            id,
+            generatedAt: new Date().toISOString(),
+            checks,
+            sourceGlbSha256: glbHash,
+            sourceFingerprints,
+            triangleCounts: triangles,
+            frame: info.frame,
+            inputSize: SIZE,
+            output: [FRAME * 8, FRAME],
+            viewConvention: '+Z toward +X, centre y=0.5, unchanged manifest half',
+            ao: {
+              technique: 'N8AO 2.0.1 view-dependent screen-space AO',
+              samples: 64,
+              radius: 0.035,
+              minimum: 0.65,
+              directLightBaked: false,
+              receiverPlane: false,
+              encoding: 'normal RGBA alpha = AO; colour alpha = coverage',
+            },
+            hardware: extension ? gl.getParameter(extension.UNMASKED_RENDERER_WEBGL) : 'unknown',
+            seconds: (performance.now() - start) / 1000,
+            views,
+            references,
+            adoptedInProduction: false,
+            cloudJob: false,
+          };
+          result = { receipt, colorRGBA: bytes64(colorAtlas), normalAoRGBA: bytes64(normalAtlas) };
+          receiptElement.textContent = JSON.stringify(receipt, null, 2);
+          status.textContent = id + ' candidate ready · production assets unchanged';
+          document.querySelector('#download').disabled = false;
+        } catch (error) {
+          status.textContent = 'Bake failed: ' + error.message;
+          receiptElement.textContent = error.stack;
+        } finally {
+          for (const t of textures) t.dispose();
+          for (const m of materials) m.dispose();
+          for (const g of geometries) g.dispose();
+          for (const rt of [colorTarget, normalTarget, aoTarget]) rt?.dispose();
+          ao?.dispose();
+          renderer?.dispose();
+          renderer?.forceContextLoss();
+          document.querySelector('#bake').disabled = false;
+        }
+      };
+      document.querySelector('#download').onclick = () => {
+        if (!result) return;
+        const url = URL.createObjectURL(
+          new Blob([JSON.stringify(result)], { type: 'application/json' }),
+        );
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = result.receipt.id + '-tree-bake-candidate.json';
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      };
+    </script>
+  </body>
+</html>

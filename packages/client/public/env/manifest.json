@@ -1,0 +1,44 @@
+{
+  "kloofendal_48d_partly_cloudy_puresky": {
+    "file": "kloofendal_48d_partly_cloudy_puresky.hdr",
+    "source": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+    "license": "CC0 1.0",
+    "width": 512,
+    "height": 256,
+    "presets": ["sunny"],
+    "sourceSunAzimuth": 124.1,
+    "sunAzimuth": 214.8,
+    "sunElevation": 48.2,
+    "sunClampRelative": 6.953,
+    "sunRegionRelative": 1.311,
+    "sourceUpperMean": 0.39923
+  },
+  "dresden_square": {
+    "file": "dresden_square.hdr",
+    "source": "https://polyhaven.com/a/dresden_square",
+    "license": "CC0 1.0",
+    "width": 512,
+    "height": 256,
+    "presets": ["overcast"],
+    "sourceSunAzimuth": 274.6,
+    "sunAzimuth": 200.0,
+    "sunElevation": 20.0,
+    "sunClampRelative": 5.914,
+    "sunRegionRelative": 1.918,
+    "sourceUpperMean": 2.62937
+  },
+  "potsdamer_platz": {
+    "file": "potsdamer_platz.hdr",
+    "source": "https://polyhaven.com/a/potsdamer_platz",
+    "license": "CC0 1.0",
+    "width": 512,
+    "height": 256,
+    "presets": ["rain"],
+    "sourceSunAzimuth": 39.0,
+    "sunAzimuth": 190.2,
+    "sunElevation": 20.7,
+    "sunClampRelative": 10.219,
+    "sunRegionRelative": 0.855,
+    "sourceUpperMean": 1.32754
+  }
+}

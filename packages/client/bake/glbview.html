@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- Dev-only model preview (not part of the build): four views of ?glb=<url> under sun + sky. -->
+<html>
+  <body style="margin: 0; background: #000">
+    <script type="module">
+      import * as THREE from 'three';
+      import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+      const url = new URLSearchParams(location.search).get('glb');
+      const S = 640;
+      const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+      renderer.setSize(S * 2, S * 2);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.AgXToneMapping;
+      renderer.shadowMap.enabled = true;
+      renderer.setScissorTest(true);
+      document.body.appendChild(renderer.domElement);
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x8fb3d9);
+      scene.add(new THREE.HemisphereLight(0xcfe3ff, 0x5a5040, 1.4));
+      const sun = new THREE.DirectionalLight(0xfff1dc, 3.2);
+      sun.position.set(4, 8, 3);
+      sun.castShadow = true;
+      sun.shadow.mapSize.set(2048, 2048);
+      scene.add(sun);
+      const ground = new THREE.Mesh(
+        new THREE.PlaneGeometry(60, 60),
+        new THREE.MeshStandardMaterial({ color: 0x8a8680, roughness: 0.95 }),
+      );
+      ground.rotation.x = -Math.PI / 2;
+      ground.receiveShadow = true;
+      scene.add(ground);
+      const gltf = await new GLTFLoader().loadAsync(url);
+      const root = gltf.scene;
+      let tris = 0;
+      root.traverse((o) => {
+        if (o.isMesh) {
+          o.castShadow = true;
+          const g = o.geometry;
+          tris += (g.index ? g.index.count : g.attributes.position.count) / 3;
+        }
+      });
+      const box = new THREE.Box3().setFromObject(root);
+      const size = box.getSize(new THREE.Vector3());
+      root.position.sub(
+        new THREE.Vector3((box.min.x + box.max.x) / 2, box.min.y, (box.min.z + box.max.z) / 2),
+      );
+      scene.add(root);
+      const r = Math.max(size.x, size.y, size.z);
+      sun.shadow.camera.left = sun.shadow.camera.bottom = -r;
+      sun.shadow.camera.right = sun.shadow.camera.top = r;
+      sun.shadow.camera.updateProjectionMatrix();
+      const cam = new THREE.PerspectiveCamera(40, 1, 0.05, 200);
+      const views = [
+        [1, 0.45, 1],
+        [-1, 0.3, 0.6],
+        [0.2, 0.25, -1],
+        [0.5, 1.6, 0.3],
+      ];
+      views.forEach(([x, y, z], i) => {
+        const d = r * 1.6;
+        cam.position.set(x * d, y * d + size.y * 0.4, z * d);
+        cam.lookAt(0, size.y * 0.4, 0);
+        const vx = (i % 2) * S;
+        const vy = (1 - Math.floor(i / 2)) * S;
+        renderer.setViewport(vx, vy, S, S);
+        renderer.setScissor(vx, vy, S, S);
+        renderer.render(scene, cam);
+      });
+      window.__info = {
+        tris,
+        size: size.toArray().map((v) => +v.toFixed(2)),
+        textures: gltf.parser.json.images?.length ?? 0,
+      };
+      window.__done = renderer.domElement.toDataURL('image/jpeg', 0.9);
+    </script>
+  </body>
+</html>

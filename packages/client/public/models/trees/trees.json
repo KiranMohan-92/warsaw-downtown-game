@@ -1,0 +1,58 @@
+{
+  "species": {
+    "ash": {
+      "preset": "Ash Medium",
+      "crown": 0.4999,
+      "frame": {
+        "frames": 8,
+        "size": 256,
+        "half": 0.51,
+        "ambientOcclusion": true
+      },
+      "triangles": {
+        "branches": 4154,
+        "leaves": 6400
+      },
+      "bark": "oak",
+      "leaf": "ash",
+      "barkTint": 13552830,
+      "leafTint": 16777215
+    },
+    "oak": {
+      "preset": "Oak Medium",
+      "crown": 0.4947,
+      "frame": {
+        "frames": 8,
+        "size": 256,
+        "half": 0.51,
+        "ambientOcclusion": true
+      },
+      "triangles": {
+        "branches": 2806,
+        "leaves": 6160
+      },
+      "bark": "oak",
+      "leaf": "oak",
+      "barkTint": 16774097,
+      "leafTint": 14013901
+    },
+    "pine": {
+      "preset": "Pine Medium",
+      "crown": 0.3501,
+      "frame": {
+        "frames": 8,
+        "size": 256,
+        "half": 0.51,
+        "ambientOcclusion": true
+      },
+      "triangles": {
+        "branches": 3420,
+        "leaves": 5248
+      },
+      "bark": "pine",
+      "leaf": "pine",
+      "barkTint": 16777215,
+      "leafTint": 16777215
+    }
+  }
+}

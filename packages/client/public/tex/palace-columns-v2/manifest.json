@@ -1,0 +1,42 @@
+{
+  "sourceKind": "AI-authored base colour; inferred relief, roughness and cavity data",
+  "sourceSize": [1254, 1254],
+  "sourceSha256": "8b29f0765f47340acf2429eb76c4f67af22abd77d987fabc50817c80d9fb9661",
+  "size": 1024,
+  "tileMetres": [1.35, 2.2],
+  "normalConvention": "OpenGL tangent space, positive green upward",
+  "ormChannels": {
+    "r": "local pore occlusion",
+    "g": "roughness",
+    "b": "unused; zero before lossy WebP encode"
+  },
+  "colourSpace": {
+    "albedo": "sRGB",
+    "normal": "linear",
+    "orm": "linear"
+  },
+  "albedoMeanLinear": [0.7911227296112986, 0.6858087930381822, 0.519902574363886],
+  "albedoPalette": "#e6d8bf",
+  "filters": {
+    "albedo": "gaussian 0.5 px",
+    "normal": "median 3 px then gaussian 2 px",
+    "orm": "median 3 px then gaussian 2 px"
+  },
+  "bytes": 251106,
+  "estimatedRGBA8GpuBytesWithMipmaps": 16777216,
+  "elapsedSeconds": 3.553,
+  "files": {
+    "stone_albedo.webp": {
+      "bytes": 199198,
+      "sha256": "933809633dee656193b230cb41698fdb559cda1eca39a5482f4660e7e8b07af8"
+    },
+    "stone_normal.webp": {
+      "bytes": 24546,
+      "sha256": "c9bec894ea32af89f7ae40bc680f134eb46b06479b07cbb4151d495a718dd3d6"
+    },
+    "stone_orm.webp": {
+      "bytes": 27362,
+      "sha256": "ee7d771950268ffd1d4f232dcaa9583bdf6598c3ef0597ec4642d55759856175"
+    }
+  }
+}

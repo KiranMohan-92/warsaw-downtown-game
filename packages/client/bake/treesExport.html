@@ -1,0 +1,143 @@
+<!doctype html>
+<!-- Dev-only tree export page (not part of the build): see tools/assets/bake_trees.mjs. -->
+<html>
+  <body style="margin: 0; background: #000">
+    <script type="module">
+      import * as THREE from 'three';
+      import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
+      import { Tree } from '@dgreenheck/ez-tree';
+
+      const q = new URLSearchParams(location.search);
+      const preset = q.get('preset');
+      const tune = JSON.parse(q.get('tune') ?? '{}');
+      const FRAMES = 8;
+      const FRAME = 256;
+
+      const tree = new Tree();
+      tree.loadPreset(preset);
+      const deep = (dst, src) => {
+        for (const [k, v] of Object.entries(src)) {
+          if (v && typeof v === 'object') deep(dst[k], v);
+          else dst[k] = v;
+        }
+      };
+      deep(tree.options, tune);
+      tree.generate();
+      const maps = [];
+      tree.traverse((m) => {
+        if (!m.material) return;
+        for (const k of ['map', 'normalMap', 'roughnessMap', 'aoMap', 'alphaMap'])
+          if (m.material[k]) maps.push(m.material[k]);
+      });
+      for (let i = 0; i < 200 && maps.some((t) => !t.image || !t.image.width); i++)
+        await new Promise((r) => setTimeout(r, 50));
+
+      // Normalise: trunk base at the origin, height 1 (uniform scale).
+      const box = new THREE.Box3().setFromObject(tree);
+      const k = 1 / (box.max.y - box.min.y);
+      const bake = (mesh) => {
+        const g = mesh.geometry.clone();
+        g.applyMatrix4(mesh.matrixWorld);
+        g.translate(0, -box.min.y, 0);
+        g.scale(k, k, k);
+        return g;
+      };
+      tree.updateMatrixWorld(true);
+      const branches = bake(tree.branchesMesh);
+      const leaves = bake(tree.leavesMesh);
+      // Crown radius: horizontal reach of the leaves (the map's `crown` scales to this).
+      let crown = 0;
+      const lp = leaves.getAttribute('position');
+      for (let i = 0; i < lp.count; i++)
+        crown = Math.max(crown, Math.hypot(lp.getX(i), lp.getZ(i)));
+
+      // --- geometry export (maps are shared files, loaded by the game) ---
+      const bm = tree.branchesMesh.material;
+      const lm = tree.leavesMesh.material;
+      const exportScene = new THREE.Scene();
+      const plain = (name) => new THREE.MeshStandardMaterial({ name });
+      const b = new THREE.Mesh(branches, plain('bark'));
+      b.name = 'branches';
+      const l = new THREE.Mesh(leaves, plain('leaves'));
+      l.name = 'leaves';
+      exportScene.add(b, l);
+      const glb = await new GLTFExporter().parseAsync(exportScene, { binary: true });
+
+      // --- impostor atlas: FRAMES azimuths, unlit colour + world normal ---
+      const renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        alpha: true,
+        preserveDrawingBuffer: true,
+      });
+      renderer.setPixelRatio(1);
+      renderer.setSize(FRAME * FRAMES, FRAME);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.setClearColor(0x000000, 0);
+      renderer.setScissorTest(true);
+      const half = Math.max(crown, 0.5) * 1.02;
+      // Bounds are relative to the camera, which sits level with the tree centre (y 0.5).
+      const cam = new THREE.OrthographicCamera(-half, half, half, -half, 0.01, 10);
+      const colorMat = (src, alpha) =>
+        new THREE.MeshBasicMaterial({
+          map: src.map,
+          color: src.color,
+          alphaTest: alpha ? 0.5 : 0,
+          side: THREE.DoubleSide,
+        });
+      const normalMat = (src, alpha) =>
+        new THREE.ShaderMaterial({
+          uniforms: { map: { value: src.map }, useAlpha: { value: alpha ? 1 : 0 } },
+          vertexShader: `varying vec3 vN; varying vec2 vUv;
+            void main() { vN = normalize( mat3( modelMatrix ) * normal ); vUv = uv;
+              gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }`,
+          fragmentShader: `uniform sampler2D map; uniform float useAlpha; varying vec3 vN; varying vec2 vUv;
+            void main() { if ( useAlpha > 0.5 && texture2D( map, vUv ).a < 0.5 ) discard;
+              vec3 n = normalize( vN ) * ( gl_FrontFacing ? 1.0 : -1.0 );
+              gl_FragColor = vec4( n * 0.5 + 0.5, 1.0 ); }`,
+          side: THREE.DoubleSide,
+        });
+      const shoot = (bMat, lMat) => {
+        const s = new THREE.Scene();
+        s.add(new THREE.Mesh(branches, bMat), new THREE.Mesh(leaves, lMat));
+        renderer.clear();
+        for (let f = 0; f < FRAMES; f++) {
+          const a = (f / FRAMES) * Math.PI * 2;
+          cam.position.set(Math.sin(a) * 4, 0.5, Math.cos(a) * 4);
+          cam.lookAt(0, 0.5, 0);
+          renderer.setViewport(f * FRAME, 0, FRAME, FRAME);
+          renderer.setScissor(f * FRAME, 0, FRAME, FRAME);
+          renderer.render(s, cam);
+        }
+        return renderer.domElement.toDataURL('image/png');
+      };
+      const color = shoot(colorMat(bm, false), colorMat(lm, true));
+      renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+      const normals = shoot(normalMat(bm, false), normalMat(lm, true));
+
+      const b64 = (buf) => {
+        let s = '';
+        const u8 = new Uint8Array(buf);
+        for (let i = 0; i < u8.length; i += 0x8000)
+          s += String.fromCharCode(...u8.subarray(i, i + 0x8000));
+        return btoa(s);
+      };
+      const tris = (g) => g.index.count / 3;
+      window.__out = {
+        glb: b64(glb),
+        color: color.split(',')[1],
+        normals: normals.split(',')[1],
+        info: {
+          preset,
+          crown: +crown.toFixed(4),
+          frame: { frames: FRAMES, size: FRAME, half: +half.toFixed(4) },
+          triangles: { branches: tris(branches), leaves: tris(leaves) },
+          bark: tree.options.bark.type,
+          leaf: tree.options.leaves.type,
+          barkTint: bm.color.getHex(),
+          leafTint: lm.color.getHex(),
+        },
+      };
+    </script>
+  </body>
+</html>

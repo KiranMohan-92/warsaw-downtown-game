@@ -1,0 +1,27 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+coverage/
+test-results/
+playwright-report/
+e2e/artifacts/
+.DS_Store
+*.log
+.vite/
+.omx/
+tools/audio/raw/
+tools/osm/raw/
+tools/osm/preview/*.json
+tools/assets/raw/
+__pycache__/
+*.pyc
+.claude/worktrees/
+tools/assets/build/
+tools/_*
+tools/blender/
+
+# fresh-review reports (tools/review/fresh-review.mjs, .claude/workflows/fresh-review.js)
+.review/

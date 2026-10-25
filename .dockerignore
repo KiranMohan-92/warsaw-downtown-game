@@ -1,0 +1,17 @@
+.git
+.claude
+.codex
+.agents
+.omx
+**/node_modules
+**/dist
+**/*.tsbuildinfo
+**/.env
+**/.env.*
+**/*.log
+coverage
+test-results
+playwright-report
+e2e
+tools
+.static-client-test-*

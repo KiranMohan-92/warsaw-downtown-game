@@ -1,0 +1,158 @@
+/* Jetpack module (jetpack/JetpackHud.ts): ring timer, altitude bar to the ceiling, low fuel. */
+.jet-hud {
+  position: absolute;
+  left: 50%;
+  bottom: 46px;
+  transform: translateX(-310px);
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px 6px 8px;
+  color: var(--hud-ink);
+  background: linear-gradient(90deg, rgba(var(--hud-accent-rgb), 0.22), rgba(4, 14, 20, 0.5));
+  border-left: 2px solid var(--hud-accent);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  text-shadow: 0 0 6px rgba(var(--hud-accent-rgb), 0.7);
+  pointer-events: none;
+}
+.jet-hud.on {
+  display: flex;
+  animation: jet-in 0.24s ease-out;
+}
+.jet-dial {
+  position: relative;
+  width: 52px;
+  height: 52px;
+}
+.jet-ring {
+  width: 52px;
+  height: 52px;
+  transform: rotate(-90deg);
+}
+.jet-ring circle {
+  fill: none;
+  stroke-width: 5;
+}
+.jet-ring .track {
+  stroke: rgba(var(--hud-accent-rgb), 0.18);
+}
+.jet-ring .fill {
+  stroke: var(--hud-accent);
+  filter: drop-shadow(0 0 3px var(--hud-accent));
+  transition: stroke-dashoffset 0.2s linear;
+}
+.jet-time {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.jet-side {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 150px;
+}
+.jet-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+}
+.jet-alt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.jet-alt-bar {
+  position: relative;
+  width: 90px;
+  height: 6px;
+  background: rgba(var(--hud-accent-rgb), 0.16);
+}
+/* The bar fills to the right as you climb; the cap mark is the 15 ft ceiling. */
+.jet-alt-bar i {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(var(--hud-accent-rgb), 0.5), var(--hud-accent));
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.jet-alt-bar b {
+  position: absolute;
+  right: -2px;
+  top: -3px;
+  width: 2px;
+  height: 12px;
+  background: #ffd36a;
+  box-shadow: 0 0 5px #ffd36a;
+}
+.jet-hint {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  opacity: 0.8;
+}
+.jet-hud.mode1 .jet-dial {
+  opacity: 0.6;
+}
+.jet-hud.low {
+  --hud-accent: #ffb03a;
+  --hud-accent-rgb: 255, 176, 58;
+}
+.jet-hud.low .jet-label,
+.jet-hud.low .jet-time {
+  animation: jet-blink 0.5s steps(2) infinite;
+}
+.jet-hud.mode3 {
+  --hud-accent: #ff6a3a;
+  --hud-accent-rgb: 255, 106, 58;
+}
+@keyframes jet-blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes jet-in {
+  from {
+    opacity: 0;
+    transform: translateX(-322px);
+  }
+}
+/* Nozzle glow at the bottom edges of the screen while flying (first person). */
+.jet-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  display: none;
+}
+.jet-vignette.on {
+  display: block;
+}
+.jet-vignette i,
+.jet-vignette b {
+  position: absolute;
+  bottom: -18vh;
+  width: 46vw;
+  height: 40vh;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(255, 170, 90, 0.42),
+    rgba(120, 200, 255, 0.12) 45%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+.jet-vignette i {
+  left: -10vw;
+}
+.jet-vignette b {
+  right: -10vw;
+}
+#hud.cine-on .jet-hud,
+#hud.cine-on .jet-vignette {
+  display: none;
+}

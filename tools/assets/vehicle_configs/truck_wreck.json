@@ -1,0 +1,448 @@
+{
+  "_source": "[Free] Armored Police Vehicle by Roam_Man, CC BY 4.0, https://sketchfab.com/3d-models/free-armored-police-vehicle-9aea4465dc974c728b6167eac5ffd22e (destroyed variant: same cut)",
+  "id": "truck_wreck",
+  "palette": "technical_burnt",
+  "materials": [
+    ["windows", "drop"],
+    ["lights", "plastic"],
+    ["interior", "interior"],
+    ["exterior", "paint"],
+    ["wheel", "metal"]
+  ],
+  "input": "vehicles/free-armored-police-vehicle/source/Armored Police Vehicle.fbx",
+  "scale": 1.0,
+  "yaw": 0,
+  "contract": "truck",
+  "replace_images": {
+    "exterior_normal": "vehicles/free-armored-police-vehicle/textures/exterior_normal.png",
+    "interior_normal": "vehicles/free-armored-police-vehicle/textures/interior_normal.png",
+    "wheel_normal": "vehicles/free-armored-police-vehicle/textures/wheel_normal.png",
+    "exterior_basecolor": "vehicles/free-armored-police-vehicle/textures/exterior_basecolor.png",
+    "exterior_roughness": "vehicles/free-armored-police-vehicle/textures/exterior_roughness.png",
+    "interior_roughnes": "vehicles/free-armored-police-vehicle/textures/interior_roughnes.png",
+    "wheel_metallic": "vehicles/free-armored-police-vehicle/textures/wheel_metallic.png",
+    "wheel_toughness": "vehicles/free-armored-police-vehicle/textures/wheel_roughness.png"
+  },
+  "object_kinds": [
+    ["seats", "fabric"],
+    ["axle_*", "metal"],
+    ["shock_absorber_*", "metal"],
+    ["underside*", "metal"],
+    ["grill", "metal"],
+    ["bumper_extra", "metal"],
+    ["step_side", "metal"],
+    ["body_mid_hinges", "metal"],
+    ["wheel_??", "tyre"]
+  ],
+  "drop_objects": [
+    "roof_lights",
+    "body_mid_extra.02",
+    "body_rear_extra.01",
+    "body_rear_extra.02",
+    "body_rear_antennas",
+    "step_rear",
+    "door_rl*",
+    "door_rr*",
+    "door_rear*",
+    "door_handle_rear",
+    "rear_in",
+    "storage_space*",
+    "body_rear_rail_roof",
+    "body_rear_hinges*",
+    "body_mid_rails"
+  ],
+  "wheels": {
+    "wheel_fl": "wheel_fl",
+    "wheel_fr": "wheel_fr",
+    "wheel_rl": "wheel_rl",
+    "wheel_rr": "wheel_rr"
+  },
+  "fit_wheelbase": true,
+  "fit_track": true,
+  "cut": [
+    {
+      "min": [-2.0, 1.09, -3.5],
+      "max": [2.0, 4.0, -0.15],
+      "bisect": [
+        [2, "max"],
+        [1, "min"]
+      ]
+    }
+  ],
+  "add": [
+    {
+      "c": [0, 1.05, -1.42],
+      "s": [1.98, 0.06, 2.2],
+      "kind": "bed"
+    },
+    {
+      "c": [0.99, 1.285, -1.42],
+      "s": [0.07, 0.41, 2.2],
+      "kind": "paint"
+    },
+    {
+      "c": [-0.99, 1.285, -1.42],
+      "s": [0.07, 0.41, 2.2],
+      "kind": "paint"
+    },
+    {
+      "c": [0, 1.285, -2.49],
+      "s": [2.05, 0.41, 0.07],
+      "kind": "paint"
+    },
+    {
+      "c": [0, 1.56, -0.26],
+      "s": [1.98, 0.96, 0.08],
+      "kind": "paint"
+    },
+    {
+      "c": [0.995, 1.52, -1.42],
+      "s": [0.11, 0.06, 2.22],
+      "kind": "paint",
+      "bevel": 0.015
+    },
+    {
+      "c": [-0.995, 1.52, -1.42],
+      "s": [0.11, 0.06, 2.22],
+      "kind": "paint",
+      "bevel": 0.015
+    },
+    {
+      "c": [0, 1.52, -2.49],
+      "s": [2.1, 0.06, 0.1],
+      "kind": "paint",
+      "bevel": 0.015
+    },
+    {
+      "c": [1.05, 1.43, -0.55],
+      "s": [0.05, 0.1, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [1.05, 1.43, -1.42],
+      "s": [0.05, 0.1, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [1.05, 1.43, -2.29],
+      "s": [0.05, 0.1, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [-1.05, 1.43, -0.55],
+      "s": [0.05, 0.1, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [-1.05, 1.43, -1.42],
+      "s": [0.05, 0.1, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [-1.05, 1.43, -2.29],
+      "s": [0.05, 0.1, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [0.94, 1.15, -0.7],
+      "s": [0.04, 0.05, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [0.94, 1.15, -2.25],
+      "s": [0.04, 0.05, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [-0.94, 1.15, -0.7],
+      "s": [0.04, 0.05, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [-0.94, 1.15, -2.25],
+      "s": [0.04, 0.05, 0.07],
+      "kind": "metal"
+    },
+    {
+      "c": [0.6, 1.1, -2.535],
+      "s": [0.14, 0.06, 0.05],
+      "kind": "metal"
+    },
+    {
+      "c": [-0.6, 1.1, -2.535],
+      "s": [0.14, 0.06, 0.05],
+      "kind": "metal"
+    },
+    {
+      "c": [0.97, 1.44, -2.535],
+      "s": [0.05, 0.1, 0.04],
+      "kind": "metal"
+    },
+    {
+      "c": [-0.97, 1.44, -2.535],
+      "s": [0.05, 0.1, 0.04],
+      "kind": "metal"
+    },
+    {
+      "c": [0, 1.38, -1.45],
+      "s": [1.6, 0.08, 0.42],
+      "kind": "fabric"
+    },
+    {
+      "c": [0, 1.325, -1.45],
+      "s": [1.66, 0.03, 0.46],
+      "kind": "metal"
+    },
+    {
+      "c": [0.75, 1.21, -1.27],
+      "s": [0.04, 0.24, 0.04],
+      "kind": "metal"
+    },
+    {
+      "c": [0.75, 1.21, -1.63],
+      "s": [0.04, 0.24, 0.04],
+      "kind": "metal"
+    },
+    {
+      "c": [-0.75, 1.21, -1.27],
+      "s": [0.04, 0.24, 0.04],
+      "kind": "metal"
+    },
+    {
+      "c": [-0.75, 1.21, -1.63],
+      "s": [0.04, 0.24, 0.04],
+      "kind": "metal"
+    },
+    {
+      "c": [0, 1.64, -1.7],
+      "s": [1.6, 0.36, 0.07],
+      "kind": "fabric"
+    },
+    {
+      "c": [0.8, 1.56, -1.745],
+      "s": [0.04, 0.5, 0.04],
+      "kind": "metal"
+    },
+    {
+      "c": [-0.8, 1.56, -1.745],
+      "s": [0.04, 0.5, 0.04],
+      "kind": "metal"
+    },
+    {
+      "c": [1.033, 1.285, -0.45],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -0.45],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [1.033, 1.285, -0.67],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -0.67],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [1.033, 1.285, -0.89],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -0.89],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [1.033, 1.285, -1.11],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -1.11],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [1.033, 1.285, -1.33],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -1.33],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [1.033, 1.285, -1.55],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -1.55],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [1.033, 1.285, -1.77],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -1.77],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [1.033, 1.285, -1.99],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -1.99],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [1.033, 1.285, -2.21],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [-1.033, 1.285, -2.21],
+      "s": [0.018, 0.36, 0.035],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [0, 1.2, -2.533],
+      "s": [1.9, 0.035, 0.016],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [0, 1.38, -2.533],
+      "s": [1.9, 0.035, 0.016],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [0, 1.25, -0.307],
+      "s": [1.9, 0.03, 0.016],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [0, 1.5, -0.307],
+      "s": [1.9, 0.03, 0.016],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [0, 1.75, -0.307],
+      "s": [1.9, 0.03, 0.016],
+      "kind": "paint",
+      "hi_only": true,
+      "bevel": 0.006
+    },
+    {
+      "c": [0.99, 1.085, -1.42],
+      "s": [0.09, 0.012, 2.2],
+      "kind": "metal",
+      "hi_only": true,
+      "bevel": 0.004
+    },
+    {
+      "c": [-0.99, 1.085, -1.42],
+      "s": [0.09, 0.012, 2.2],
+      "kind": "metal",
+      "hi_only": true,
+      "bevel": 0.004
+    }
+  ],
+  "seats": {
+    "seat_driver": [0.45, 1.12, 0.45],
+    "seat_front": [-0.45, 1.12, 0.45],
+    "seat_rear_l": [0.55, 1.5, -1.35],
+    "seat_rear_r": [-0.55, 1.5, -1.35],
+    "exit_l": [1.55, 0.0, 0.3],
+    "exit_r": [-1.55, 0.0, 0.3]
+  },
+  "keep_source_normals": true,
+  "smooth_angle": 50,
+  "envelope": false,
+  "budget": [24000, 3500],
+  "size": 2048,
+  "out_size": 1024,
+  "dent": {
+    "strength": 0.06,
+    "scale": 0.45
+  },
+  "wheel_shape": false,
+  "wheel_width": 0.34,
+  "wheel_radius": 0.46,
+  "move": [
+    {
+      "min": [-2.0, 0.3, 2.2],
+      "max": [2.0, 2.2, 3.5],
+      "pivot": [0.0, 0.8, 2.2],
+      "rot": [-5, 0, 3],
+      "translate": [0.0, -0.03, -0.14]
+    }
+  ],
+  "tyre_maps": {
+    "base": "vehicles/free-armored-police-vehicle/textures/wheel_basecolor.png",
+    "normal": "vehicles/free-armored-police-vehicle/textures/wheel_normal.png",
+    "rough": "vehicles/free-armored-police-vehicle/textures/wheel_roughness.png",
+    "mud": 0.7,
+    "burnt": true
+  },
+  "wheel_bulge": 0.25,
+  "uv_small_area": 0.03,
+  "uv_margin": 0.002,
+  "uv_angle": 60
+}

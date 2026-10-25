@@ -1,0 +1,57 @@
+{
+  "_source": "Leopard 2 A6 by buh-late, CC BY 4.0, https://sketchfab.com/3d-models/leopard-2-a6-7cb23d5322df4b409a880de635826067",
+  "id": "tank_wreck",
+  "input": "vehicles/leopard-2-a6/source/leopard 2 A6 low.blend",
+  "scale": 1.0,
+  "yaw": 90,
+  "palette": "tank",
+  "contract": null,
+  "materials": [
+    ["track", "rubber"],
+    ["body", "hull"],
+    ["turret", "hull"],
+    ["*", "metal"]
+  ],
+  "fit": {
+    "axis": "x",
+    "length": 7.2,
+    "objects": "track*"
+  },
+  "move": [
+    {
+      "objects": "turret",
+      "min": [-9, -1, -5],
+      "max": [9, 6, 5],
+      "pivot": [-0.83, 1.75, 0.0],
+      "rot": [8.041, 21.368, 6.687],
+      "translate": [0.43, 0.2, 0.2]
+    },
+    {
+      "objects": "gun",
+      "min": [-9, -1, -5],
+      "max": [9, 6, 5],
+      "pivot": [-0.83, 1.75, 0.0],
+      "rot": [8.041, 21.368, 6.687],
+      "translate": [0.43, 0.2, 0.2]
+    }
+  ],
+  "tilt": [0, 0, 1.5],
+  "sink": 0.04,
+  "dent": {
+    "strength": 0.03,
+    "scale": 0.7
+  },
+  "debris": {
+    "count": 14,
+    "inner": [-3.8, -1.9, 3.8, 1.9],
+    "outer": [-7, -4, 6, 4],
+    "kind": "metal"
+  },
+  "scorch": {
+    "radius": 6.5
+  },
+  "smooth_angle": 40,
+  "budget": [30000, 3000],
+  "size": 2048,
+  "out_size": 1024
+}

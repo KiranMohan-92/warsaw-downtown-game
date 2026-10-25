@@ -1,0 +1,82 @@
+{
+  "_source": "Military Helicopter Blackhawk Gameready by Vavtrudner, CC BY 4.0, https://sketchfab.com/3d-models/military-helicopter-blackhawk-gameready-ef68553cd30a420d8b62b22affb545e6",
+  "_todo": "v0: placement only; next: door openings, interior floor, tail break, blades, collision fit",
+  "id": "heli_wreck",
+  "input": "vehicles/military-helicopter-blackhawk-gameready/source/military helicopter Blackhawk gameready.glb",
+  "scale": 15.5,
+  "yaw": 0,
+  "palette": "heli",
+  "contract": null,
+  "materials": [["*", "hull"]],
+  "move": [
+    {
+      "min": [-1.5, 2.8, 1.7],
+      "max": [2.5, 4.5, 9],
+      "pivot": [0.5, 3.2, 1.7],
+      "rot": [33, 18, 0]
+    },
+    {
+      "min": [5.8, -1, -3],
+      "max": [12, 6, 3],
+      "pivot": [5.8, 0.7, 0],
+      "rot": [0, -15, -12],
+      "translate": [0.2, -0.3, 0.3]
+    }
+  ],
+  "tilt": [0, 0, 3],
+  "sink": 0.35,
+  "dent": {
+    "strength": 0.04,
+    "scale": 0.6
+  },
+  "debris": {
+    "count": 16,
+    "inner": [-5, -1.6, 5, 1.6],
+    "outer": [-7, -5, 11, 6],
+    "kind": "hull"
+  },
+  "scorch": {
+    "radius": 7.5,
+    "center": [1.5, 0.5]
+  },
+  "keep_source_normals": true,
+  "budget": [60000, 6000],
+  "size": 2048,
+  "out_size": 1024,
+  "offset": [2.0, 0, 0],
+  "cut": [
+    {
+      "min": [-1.8, 0.8, -2.0],
+      "max": [0.2, 2.8, -1.15]
+    },
+    {
+      "min": [-1.0, 0.8, 1.15],
+      "max": [1.0, 2.8, 2.0]
+    },
+    {
+      "min": [-9, 2.85, -1],
+      "max": [-2.0, 4, 1]
+    },
+    {
+      "min": [2.6, 3.0, -0.4],
+      "max": [6.8, 4, 0.4]
+    },
+    {
+      "min": [-1.5, 2.8, -9],
+      "max": [2.5, 4.5, -2.4]
+    }
+  ],
+  "add": [
+    {
+      "c": [0.0, 0.67, 0],
+      "s": [5.6, 0.1, 2.8],
+      "kind": "inner"
+    },
+    {
+      "c": [2.8, 1.85, 0],
+      "s": [0.08, 2.2, 2.6],
+      "kind": "inner"
+    }
+  ],
+  "smooth_angle": 55
+}

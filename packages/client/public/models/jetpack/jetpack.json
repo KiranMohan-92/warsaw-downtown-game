@@ -1,0 +1,11 @@
+{
+  "source": "tools/assets/build_jetpack.py (own Blender work; healed Codex texture library, Kiran, 2026-10-01)",
+  "triangles": 9500,
+  "anchors": {
+    "jetpack_nozzle_l": [-0.165, -0.245, 0.095],
+    "jetpack_nozzle_r": [0.165, -0.245, 0.095],
+    "jetpack_top": [0.0, 0.255, 0.085]
+  },
+  "texture": 1024,
+  "textureLow": 512
+}

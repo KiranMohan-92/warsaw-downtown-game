@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-08",
+  "branch": "codex/isolated-finish",
+  "improvements": [36, 37],
+  "priorGoalTurn": "no-progress (branch status verification)",
+  "thisTurn": "progress",
+  "productionResult": "Artificial seam ridges removed; structural LOD continuity retained within unchanged facade triangle budget",
+  "geometry": {
+    "scope": "Actual Market source quads and all shared segment front profiles",
+    "faces": 1493,
+    "intervals": 7316,
+    "closedStructuralSteps": 8,
+    "failures": 0,
+    "failureExamples": [],
+    "nearQuads": 157301,
+    "coarseQuads": 37645,
+    "glassPanes": 6284
+  },
+  "lowFacadeBudget": {
+    "scope": "Full-map facade only, Low plaza camera; not whole-game GPU cost",
+    "triangles": 62721,
+    "limit": 65000,
+    "shadowTriangles": 2986,
+    "draws": 2
+  },
+  "checks": {
+    "focusedTests": 54,
+    "files": 5,
+    "typecheck": "pass",
+    "scopedLint": "pass",
+    "formatting": "pass",
+    "productionBuild": "pass",
+    "modules": 264,
+    "buildAsset": "index-DSgjn1JZ.js"
+  },
+  "staticFrameSample": {
+    "scope": "Static actual-game view, not a moving/combat benchmark",
+    "hardware": "ANGLE (NVIDIA, NVIDIA Quadro T2000 with Max-Q Design (0x00001FB8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": [1280, 720],
+    "frames": 451,
+    "durationMs": 15034.700000000012,
+    "hiddenFrames": 0,
+    "medianMs": 33.20000000001164,
+    "p95Ms": 49.89999999999418,
+    "p99Ms": 66.5
+  },
+  "snapshot": [
+    {
+      "file": "packages/client/src/render/facadeRelief.ts",
+      "sha256": "46cf02aeb3d443e0caf24108d79a5217d85e9b30c56ce3ed7c2b56e5025cffb7"
+    },
+    {
+      "file": "packages/client/src/render/facadeRelief.test.ts",
+      "sha256": "5c5479ca6024cb24292f6146196ea33bd73c1412eba87dff955d067a7a4d0881"
+    },
+    {
+      "file": "packages/client/src/render/facadeDetail.ts",
+      "sha256": "e536843cb31979a72392a24d515f9542be728b3d20d4be8efdb403d58986e633"
+    },
+    {
+      "file": "packages/client/src/render/facadeDetail.test.ts",
+      "sha256": "0b9061328d3b795afb94cf46011f1735db4faae225a56b6006fddb6d407656d8"
+    },
+    {
+      "file": "packages/client/src/render/facadeLodContinuity.test.ts",
+      "sha256": "3745f49b894e0df3c8907284d136c550cb18e61f87eb3881d65f019421f2b05c"
+    },
+    {
+      "file": "packages/client/src/render/facadeTriangulation.ts",
+      "sha256": "9bcc3cc2a80770c7ba7240accf054da086dc53f65d93013643b844375cd7dc2c"
+    },
+    {
+      "file": "packages/client/src/render/facadeTriangulation.test.ts",
+      "sha256": "11758ba1e61bb458e3e885852029c194806c4d2b53e72adc6eb8d2d18e4d1148"
+    },
+    {
+      "file": "packages/client/facade-review.html",
+      "sha256": "1b0e3083bf4ac938cd6fdea39dd0f69c797803f7b10ba69f637c6438520df939"
+    }
+  ],
+  "mainHead": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+  "preservedClaudeFiles": 7,
+  "preservedMismatches": 0,
+  "commits": 0,
+  "pushes": 0,
+  "paidJobs": 0,
+  "firstPassAcceptance": false,
+  "cost": null,
+  "comparableSequentialBaseline": null,
+  "corrections": [
+    "Course ends needed mixed-LOD border caps",
+    "Audit interval guard corrected from assumed10000 to actual7316",
+    "Eight authored crown steps require side-face closure, not identical depths",
+    "Intermediate Low budget failure resolved without relaxing limit"
+  ],
+  "remaining": [
+    "Whole-map AAA architectural/material acceptance",
+    "Moving/combat frame pacing",
+    "Broad contact/physics acceptance",
+    "Audio acceptance",
+    "Later Modal work spending limit unresolved"
+  ]
+}

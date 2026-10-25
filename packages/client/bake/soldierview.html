@@ -1,0 +1,132 @@
+<!doctype html>
+<!-- Dev-only soldier preview (not part of the build): ?id=m01 → a contact sheet of clips. -->
+<html>
+  <body style="margin: 0; background: #000">
+    <script type="module">
+      import * as THREE from 'three';
+      import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+      const q = new URLSearchParams(location.search);
+      const id = q.get('id') ?? 'm01';
+      const view = q.get('view') ?? 'front';
+      const base = '/models/soldiers/';
+      const S = 400;
+      const clipsWanted = (
+        q.get('clips') ?? 'idle,walk,jog,sprint,crouchIdle,crouchWalk,fall,death'
+      ).split(',');
+      const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+      renderer.setSize(S * 4, S * 2);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.AgXToneMapping;
+      renderer.shadowMap.enabled = true;
+      renderer.setScissorTest(true);
+      document.body.appendChild(renderer.domElement);
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x8fb3d9);
+      scene.add(new THREE.HemisphereLight(0xcfe3ff, 0x5a5040, 1.3));
+      const sun = new THREE.DirectionalLight(0xfff1dc, 3.2);
+      sun.position.set(3, 6, 4);
+      scene.add(sun);
+      const ground = new THREE.Mesh(
+        new THREE.PlaneGeometry(20, 20),
+        new THREE.MeshStandardMaterial({ color: 0x8a8680, roughness: 0.95 }),
+      );
+      ground.rotation.x = -Math.PI / 2;
+      scene.add(ground);
+      const manifest = await (await fetch(`${base}soldiers.json`)).json();
+      const info = manifest.soldiers[id];
+      const tl = new THREE.TextureLoader();
+      const tex = async (u, srgb) => {
+        const t = await tl.loadAsync(u);
+        t.flipY = false;
+        t.colorSpace = srgb ? THREE.SRGBColorSpace : THREE.NoColorSpace;
+        return t;
+      };
+      const mat = new THREE.MeshStandardMaterial({
+        map: await tex(`${base}${id}_albedo.webp`, true),
+        normalMap: await tex(`${base}${id}_normal.webp`, false),
+        roughness: 0.85,
+      });
+      const gltf = await new GLTFLoader().loadAsync(`${base}${id}.glb`);
+      const gun = (await new GLTFLoader().loadAsync('/models/guns/rifle.gltf')).scene;
+      gun.traverse((o) => {
+        if (o.isMesh) {
+          o.material = new THREE.MeshStandardMaterial({
+            color: 0x2b2d2f,
+            roughness: 0.5,
+            metalness: 0.6,
+          });
+          o.position.set(0, -0.078, -0.015);
+        }
+      });
+      const root = gltf.scene;
+      const gearMat = new THREE.MeshStandardMaterial({
+        map: await tex(`${base}gear_albedo.webp`, true),
+        normalMap: await tex(`${base}gear_normal.webp`, false),
+        roughnessMap: await tex(`${base}gear_orm.webp`, false),
+        roughness: 1,
+        metalness: 0.15,
+        emissiveMap: await tex(`${base}gear_emissive.webp`, true),
+        emissive: new THREE.Color('#ffffff'),
+        emissiveIntensity: 1.6,
+      });
+      root.traverse((o) => {
+        if (o.isMesh) o.material = o.name.startsWith('gear') ? gearMat : mat;
+      });
+      const hand = root.getObjectByName('Bip01_R_Hand') ?? root.getObjectByName('Bip01 R Hand');
+      const mk = ['gun_o', 'gun_f', 'gun_u'].map((n) => root.getObjectByName(n));
+      scene.add(root, gun);
+      const place = () => {
+        root.updateMatrixWorld(true);
+        const [o, f, u] = mk.map((b) => b.getWorldPosition(new THREE.Vector3()));
+        const back = o.clone().sub(f).normalize(); // gun +z = back
+        const up = u.clone().sub(o).normalize();
+        const right = up.clone().cross(back).normalize();
+        up.copy(back).cross(right);
+        gun.matrixAutoUpdate = false;
+        gun.matrix.makeBasis(right, up, back).setPosition(o);
+      };
+      const mixer = new THREE.AnimationMixer(root);
+      const clips = Object.fromEntries(gltf.animations.map((c) => [c.name, c]));
+      const cam = new THREE.PerspectiveCamera(35, 1, 0.05, 100);
+      const dirs = {
+        front: [1.2, 0.3, 3.0],
+        side: [3.2, 0.2, 0],
+        back: [-1, 0.4, -3],
+        face: [0.25, 0.75, 0.9],
+        quarter: [-1.6, 0.5, -1.6],
+      };
+      clipsWanted.forEach((name, i) => {
+        mixer.stopAllAction();
+        const a = mixer.clipAction(clips[name]);
+        a.reset().play();
+        mixer.setTime(name === 'death' ? clips[name].duration - 0.05 : clips[name].duration * 0.3);
+        place();
+        const [x, y, z] = dirs[view];
+        cam.position.set(x, 0.9 + y, z);
+        cam.lookAt(0, view === 'face' ? 1.55 : 0.9, 0);
+        const vx = (i % 4) * S;
+        const vy = (1 - Math.floor(i / 4)) * S;
+        renderer.setViewport(vx, vy, S, S);
+        renderer.setScissor(vx, vy, S, S);
+        renderer.render(scene, cam);
+      });
+      mixer.stopAllAction();
+      mixer.clipAction(clips.idle).reset().play();
+      mixer.setTime(0.5);
+      root.updateMatrixWorld(true);
+      const w = (b) =>
+        b
+          .getWorldPosition(new THREE.Vector3())
+          .toArray()
+          .map((v) => +v.toFixed(3));
+      window.__info = {
+        hand: w(hand),
+        marks: mk.map(w),
+        markParents: mk.map((b) => b.parent?.name),
+        gunPos: gun.position.toArray(),
+        gunInScene: gun.parent === scene,
+      };
+      window.__done = renderer.domElement.toDataURL('image/jpeg', 0.9);
+    </script>
+  </body>
+</html>

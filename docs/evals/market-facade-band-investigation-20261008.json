@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-08",
+  "branch": "codex/isolated-finish",
+  "improvement": 35,
+  "priorGoalTurn": "no-progress (branch status check)",
+  "thisTurn": "progress",
+  "productionResult": "Opposed course/frame coplanar faces removed; remaining visible bands unresolved",
+  "overlapPairs": {
+    "marketAfter": 0,
+    "syntheticBefore": 90,
+    "syntheticAfter": 0,
+    "marketBefore": 707
+  },
+  "checks": {
+    "typecheck": "pass",
+    "formatting": "pass",
+    "buildAsset": "index-CK2qraEe.js",
+    "testFiles": 3,
+    "focusedTests": 46,
+    "scopedLint": "pass",
+    "productionBuild": "pass",
+    "modules": 263
+  },
+  "preservedClaudeFiles": 7,
+  "preservedMismatches": 0,
+  "commits": 0,
+  "pushes": 0,
+  "paidJobs": 0,
+  "firstPassAcceptance": false,
+  "cost": null,
+  "comparableSequentialBaseline": null,
+  "snapshot": [
+    {
+      "file": "packages/client/src/render/facadeRelief.ts",
+      "sha256": "E70B1282665A17C456151039249DECDA4B30180FCB6C1725AD22A28C199A5B7E"
+    },
+    {
+      "file": "packages/client/src/render/facadeRelief.test.ts",
+      "sha256": "0D46C67BC38A86B57F343FFD8EC9734118C8126C45ACF0C2B9CF2A24669A4C5B"
+    },
+    {
+      "file": "packages/client/facade-review.html",
+      "sha256": "1B0E3083BF4AC938CD6FDEA39DD0F69C797803F7B10BA69F637C6438520DF939"
+    }
+  ],
+  "captures": [
+    "C:/Users/kiran/myprojects/gameplay-captures/2026-10-08/market-quality/market-after35-day-hall.jpg",
+    "C:/Users/kiran/myprojects/gameplay-captures/2026-10-08/market-quality/market-after35-neon-hall.jpg"
+  ],
+  "remaining": [
+    "Authored segment-ridge/course dark bands",
+    "Whole-map AAA art acceptance",
+    "Combat frame spikes",
+    "Broad physics and audio acceptance"
+  ]
+}

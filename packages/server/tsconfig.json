@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../node_modules/.tsc/server",
+    "tsBuildInfoFile": "../../node_modules/.tsc/server.tsbuildinfo",
+    "rootDir": ".",
+    "types": ["node"]
+  },
+  "include": ["src", "tsup.config.ts"],
+  "references": [{ "path": "../shared" }, { "path": "../client" }]
+}

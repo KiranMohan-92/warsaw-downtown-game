@@ -1,0 +1,167 @@
+{
+  "date": "2026-10-07",
+  "branch": "codex/isolated-finish",
+  "sources": [
+    {
+      "path": "packages/client/src/audio/Audio.ts",
+      "sha256": "44947a8c27ac76b41d6f03f9676c06c5206b64017c601fa94f692a20527ff7e8"
+    },
+    {
+      "path": "packages/client/src/audio/BlastAudioQueue.ts",
+      "sha256": "ff66c4277e17e4599206d2540a076ce9f5f47e06ff5f12358a260214a0ea5687"
+    },
+    {
+      "path": "packages/client/src/audio/blastAcoustics.ts",
+      "sha256": "db697d129b4e661733b53f25bac26c73fe6f01bb1d2659027e1301fc1ed8c2b9"
+    },
+    {
+      "path": "packages/client/src/audio/blastAcoustics.test.ts",
+      "sha256": "e3837027eb9c0141498fc0045b5e1800168fb17a6e837e42a45e87f274b5d58a"
+    },
+    {
+      "path": "packages/client/src/audio/RemoteShotAudioQueue.ts",
+      "sha256": "baa9577ac675e07e856aef0cd64de99247602095971ea4ac9fd4bae9c0c23a4e"
+    },
+    {
+      "path": "packages/client/src/audio/RemoteShotAudioQueue.test.ts",
+      "sha256": "ca88aa44650845e080ca10552ca2c2d8e31adb726ad4aeaa585f732cba072653"
+    },
+    {
+      "path": "packages/client/src/game/Game.ts",
+      "sha256": "3c68d757911f5349c4a176e33c48d10efd2b58daa84bc1d20a4bbf0c6fc44e49"
+    },
+    {
+      "path": "packages/client/audio-review.html",
+      "sha256": "6f59dcd5ac1b0d74a168db2e2b0a43d2f3ae9127d3ab13a4f24bdd0a1c8a51e3"
+    },
+    {
+      "path": "tools/review/save-audio.mjs",
+      "sha256": "61f406068746a6a05638c57be030873c4d05316f965ef059509480df1c74e622"
+    },
+    {
+      "path": "packages/client/public/audio/rifle_shot.ogg",
+      "sha256": "d88e56a0bbcaa7c28491baedf6716455d06d42c39860dbd6a9d0335d1267e4d0"
+    }
+  ],
+  "tests": {
+    "scopedLint": "pass",
+    "seconds": 9.49,
+    "files": 4,
+    "buildSeconds": 2.19,
+    "types": "pass",
+    "passed": 40,
+    "build": "pass",
+    "formatting": "pass"
+  },
+  "audio": {
+    "bytes": 3840044,
+    "receipt": {
+      "sample": "rifle_shot.ogg",
+      "sampleRate": 48000,
+      "secondsPerSegment": 2.5,
+      "totalSeconds": 20,
+      "records": [
+        {
+          "routing": "before",
+          "side": "left",
+          "blocked": false,
+          "peak": 0.5034742951393127,
+          "clipped": 0,
+          "rms": [0.011982801091552794, 0.011982801091552794]
+        },
+        {
+          "routing": "before",
+          "side": "right",
+          "blocked": false,
+          "peak": 0.5034742951393127,
+          "clipped": 0,
+          "rms": [0.011982801091552794, 0.011982801091552794]
+        },
+        {
+          "routing": "before",
+          "side": "left",
+          "blocked": true,
+          "peak": 0.5034742951393127,
+          "clipped": 0,
+          "rms": [0.011982801091552794, 0.011982801091552794]
+        },
+        {
+          "routing": "before",
+          "side": "right",
+          "blocked": true,
+          "peak": 0.5034742951393127,
+          "clipped": 0,
+          "rms": [0.011982801091552794, 0.011982801091552794]
+        },
+        {
+          "routing": "after",
+          "side": "left",
+          "blocked": false,
+          "peak": 0.4843226671218872,
+          "clipped": 0,
+          "rms": [0.01181370632115235, 0.0018711071654681285]
+        },
+        {
+          "routing": "after",
+          "side": "right",
+          "blocked": false,
+          "peak": 0.4843226671218872,
+          "clipped": 0,
+          "rms": [0.0018711071654681285, 0.01181370632115235]
+        },
+        {
+          "routing": "after",
+          "side": "left",
+          "blocked": true,
+          "peak": 0.1628279834985733,
+          "clipped": 0,
+          "rms": [0.0056223546833747825, 0.0008904934453108278]
+        },
+        {
+          "routing": "after",
+          "side": "right",
+          "blocked": true,
+          "peak": 0.1628279834985733,
+          "clipped": 0,
+          "rms": [0.0008904934453108278, 0.0056223546833747825]
+        }
+      ]
+    },
+    "path": "C:\\Users\\kiran\\myprojects\\gameplay-captures\\2026-10-07\\market-quality\\market-gunfire-before-after.wav",
+    "scope": "Controlled offline actual recording; manual cover flags, not gameplay",
+    "sha256": "ac37c121e83190310a4dd8535e23fdffed3f758342c1cf05eee1cb0fe1ff271d"
+  },
+  "review": {
+    "lowSeverityHarnessLabels": 1,
+    "labelsCorrected": true,
+    "productionIssues": 0
+  },
+  "preservation": {
+    "commits": 0,
+    "pushes": 0,
+    "claudeFiles": 7,
+    "changedClaudeFiles": 0,
+    "modalJobs": 0,
+    "mainHead": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e"
+  },
+  "execution": {
+    "environmentFailures": [
+      "Sandbox Node dependency-link EPERM",
+      "Initial build path",
+      "Browser screenshot and download capture"
+    ],
+    "comparableSequentialBaseline": null,
+    "writers": 1,
+    "readOnlyReviewers": 1,
+    "codeTestFailures": 0,
+    "measuredCloudCost": null
+  },
+  "remaining": [
+    "Frame pacing",
+    "Continuous KCC stairs",
+    "Combat mix/listening",
+    "Whole Market AAA art",
+    "Modal budget and actual CUDA receipt",
+    "Final screenshots 19-21"
+  ]
+}

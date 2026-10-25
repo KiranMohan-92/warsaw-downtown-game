@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-06",
+  "branch": "codex/isolated-finish",
+  "publication": "none",
+  "mainHead": "cb35f065f7b5b78a2e38a61bc61a321fc5c6244e",
+  "preservedMainFiles": 7,
+  "preservedMainFilesMatched": 7,
+  "sourceSnapshot": [
+    {
+      "path": "packages/client/src/render/heroModels.ts",
+      "sha256": "8079dab31e8a7ad6a4e823f3303749d7cf82ca2b014bf3bd67f53d38581737dd"
+    },
+    {
+      "path": "packages/client/src/render/heroModels.test.ts",
+      "sha256": "604cb33d03f2730f24ff27c4f6e2a9220db4a3a4b9c01032596b807af98a9606"
+    },
+    {
+      "path": "packages/client/src/audio/BlastAudioQueue.ts",
+      "sha256": "4cdeeb7e9625d939b46a8f2fd862295bbf71f58f8430be63c359bc445318e76e"
+    },
+    {
+      "path": "packages/client/src/audio/BlastAudioQueue.test.ts",
+      "sha256": "9914357bdcdd775309ee2958a08586bcc41d2ecad154754cee5b61f6c7febc64"
+    },
+    {
+      "path": "packages/client/src/game/Game.ts",
+      "sha256": "67da9f36dfd313533372331912b662521dea324ce43a4741175fe16c7bcccd2b"
+    },
+    {
+      "path": "packages/shared/src/physics/world.ts",
+      "sha256": "70ae1320a2062777867e2271cbbafda8139b3a9c332c08d6b8a3cf9b45bb74b5"
+    },
+    {
+      "path": "packages/shared/src/physics/physics.test.ts",
+      "sha256": "7fc70afbdfec33a90cd9d5e2495fa48b7ffc013e02538fa3dd18a20fd6cc4399"
+    },
+    {
+      "path": "packages/shared/src/sim/hitscan.ts",
+      "sha256": "02c741c21f46e8314ee7b68f20fe28c71e2d1f816177babb89f8cfd652a305cd"
+    },
+    {
+      "path": "packages/client/src/render/marketNeonStaticManifest.ts",
+      "sha256": "167a1b3e1bdec1df9b9a9bd00bbd868444a25bb17f17a476463838b8ce16c118"
+    },
+    {
+      "path": "tools/bake/modal_market_neon.py",
+      "sha256": "2a22905067f33e70527738b3ff986462374e483f12dddcf77c02c52705131808"
+    },
+    {
+      "path": "tools/bake/market_neon_static_bake.py",
+      "sha256": "0d017fe076eccb5e5e22b3ce065cb90beb4a37ff2d4462af799d0aaa98e5d272"
+    },
+    {
+      "path": "tools/bake/install_market_neon_static.py",
+      "sha256": "4fca1e733d9dc84ae2cf4e87d8a82744b468d7ab42a3e78fffa6a558da5f9a71"
+    },
+    {
+      "path": "tools/bake/test_modal_market_neon.py",
+      "sha256": "687e15dfb92275dbbc186da7cc0a8b40c67ced2a12cc152a4a31fb6d9bdaef25"
+    },
+    {
+      "path": "tools/bake/test_market_neon_static_bake.py",
+      "sha256": "69943a0a87bcef0485fc5780aa32733f92c87146436bd8a986e7381d1321d731"
+    },
+    {
+      "path": "tools/bake/test_install_market_neon_static.py",
+      "sha256": "58cf590b9a3cff636360b3433e107bb5d9552e65314ccd572e823c72be963dff"
+    }
+  ],
+  "verification": {
+    "typescriptFocusedTests": 48,
+    "atlasRuntimeTests": 6,
+    "pythonBoundaryTests": 22,
+    "typecheck": "pass",
+    "scopedLint": "pass",
+    "scopedFormatting": "pass",
+    "productionBuild": "pass",
+    "buildSeconds": 2.47,
+    "paidModalJob": "not run",
+    "playableHttpStatus": 200,
+    "stairSupportAcceptance": "fail: grounded capsule root gaps 96.48 to 279.92 mm"
+  },
+  "frameEvidence": {
+    "weather": "sunny",
+    "stationaryPose": "Night market sign",
+    "intervals": 375,
+    "medianMs": 16.6,
+    "p95Ms": 49.9,
+    "p99Ms": 66.5,
+    "gpuMedianSeparateSnapshotMs": 14.99,
+    "focus": true,
+    "visible": true,
+    "osOcclusion": "unknown",
+    "renderer": "ANGLE NVIDIA Quadro T2000 Max-Q D3D11",
+    "drawingBuffer": [1280, 720]
+  },
+  "retrospective": {
+    "firstPassAccepted": false,
+    "rework": [
+      "Position-only LOD alignment replaced BufferGeometry.translate after packed-normal mutation was detected.",
+      "One Python expected-error regex was corrected to match the existing sparse-atlas validator."
+    ],
+    "environmentFailures": [
+      "Sandbox EPERM reading existing installed Vite dependency; build passed under approved local escalation.",
+      "Stopped branch server restarted on 5174."
+    ],
+    "duplicateEffort": "unknown",
+    "elapsedSeconds": null,
+    "costUsd": null,
+    "sequentialComparison": null,
+    "verifiedOutcome": "Distance presentation improvements and local pipeline verified; AAA and smooth-motion acceptance remain unmet."
+  },
+  "remaining": [
+    "Foot/stance adaptation with head and hit-volume checks; saved real-stair diagnostic now reproduces the gap",
+    "Distant facade art quality",
+    "Moving/combat frame pacing",
+    "Actual authorized Modal CUDA receipt",
+    "Whole-map AAA evaluation"
+  ]
+}

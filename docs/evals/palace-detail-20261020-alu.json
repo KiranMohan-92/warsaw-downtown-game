@@ -1,0 +1,221 @@
+{
+  "before": {
+    "commit": "333706f5e2e0e933192ca8cfee8992690dea5460",
+    "model": {
+      "scope": "333706f near, sun-facing Palace painted-panel stone fragment; fine and broad variation enabled, one directional light; counts facadeWeathering patch only, excluding unchanged Three PBR, maps, windowInterior and non-Low weather()",
+      "kind": "conservative scalar source expansion before compiler optimization; not GPU ISA or timing",
+      "primitive": "Each scalar +, -, *, /, min, max, floor, fract, step, sqrt, inversesqrt, dFdx, dFdy and abs = 1. Vector arithmetic counted per consumed component. Assignments, constructors, swizzles and control flow excluded. No constant folding, common-subexpression elimination or fused operations.",
+      "expansions": {
+        "dot3": 5,
+        "normalize3": 9,
+        "distance3": 9,
+        "clamp": 2,
+        "mix": 3,
+        "mod": 4,
+        "smoothstep": 9,
+        "fwidth_per_component": 5,
+        "inverseTransformDirection": 30,
+        "palaceBlockHash": 30,
+        "palaceBlockPresence": 11,
+        "palaceBand": 10,
+        "palaceRevealRatio": 9
+      },
+      "transform_detail": "Three inverseTransformDirection consumes xyz of vec4(dir,0)*viewMatrix: 3 dot4 outputs = 21, normalize3 = 9. Literal multiply-by-zero terms retained; unused w output excluded. A zero-folded transform is 24 instead.",
+      "path_condition": "vFacadeStone.x>0, vFacadeStone.z>0.5, reach>0, stoneWindow<0.5, fine>0, broad>0, sunUp>0 and facing>0"
+    },
+    "groups": {
+      "palaceStoneTone": 214,
+      "palaceReliefShade": 230,
+      "sun_and_normal_transforms_and_strength": 71,
+      "derivatives_and_window_classification": 23,
+      "facadeAO_existing": 8,
+      "shade_lighting_multiplications": 14
+    },
+    "tone_detail": {
+      "reach": 19,
+      "weight": 1,
+      "fine": 11,
+      "broad": 13,
+      "block": 31,
+      "tone": 3,
+      "broadTone": 36,
+      "wall": 1,
+      "base": 10,
+      "cell": 8,
+      "underCourse": 11,
+      "belowSill": 1,
+      "streakColumns": 21,
+      "streak": 15,
+      "weatherMultiply": 8,
+      "topMultiply": 3,
+      "mineral": 7,
+      "finalBlend": 15
+    },
+    "relief_detail": {
+      "reach": 19,
+      "facing": 5,
+      "away": 2,
+      "shelteredSide": 4,
+      "cavity": 7,
+      "p": 8,
+      "along": 6,
+      "height": 10,
+      "width": 10,
+      "sides": 22,
+      "head": 11,
+      "leftRatio": 11,
+      "rightRatio": 11,
+      "headRatio": 10,
+      "revealMultiply": 10,
+      "drop": 5,
+      "belowCourse": 9,
+      "course": 10,
+      "lit": 10,
+      "direct": 3,
+      "courseCavity": 4,
+      "courseTop": 10,
+      "sillTop": 21,
+      "highlight": 5,
+      "blend": 7
+    },
+    "total_scalar_alu": 560,
+    "total_without_existing_facade_ao": 552,
+    "detail_panel_without_painted_window_classification": 549,
+    "texture_fetches_added": 0,
+    "dependent_texture_fetches_added": 0,
+    "pow_exp": 0,
+    "dynamic_branch_sites": 10,
+    "branch_comparisons": 11,
+    "branch_logical_or": 1,
+    "branch_detail": {
+      "painted_window_guard": 1,
+      "stoneTone_palace_weight_guards": 2,
+      "stoneTone_fine_ternary_and_broad_if": 2,
+      "main_palace_guard": 1,
+      "relief_palace_reach_panel_guards": 3,
+      "courseDrop_sun_and_facing_guard": 1
+    },
+    "inventory": {
+      "palaceBand": 12,
+      "palaceBlockHash": 2,
+      "palaceBlockPresence": 2,
+      "distance": 2,
+      "inverseTransformDirection": 2,
+      "palaceRevealRatio": 3
+    },
+    "notes": [
+      "Generic weather() and entrance textureGrad layers are preprocessed out on Low by TONE_MAPPING.",
+      "No new dependent texture fetch exists in this patch; ALU and control flow are the static cost candidates.",
+      "Compiler folding can share distances and transforms and remove constant arithmetic, so these counts are a repeatable source metric only.",
+      "Existing facadeAO group predates 333706f; other groups also include some pre-existing Palace tone infrastructure, not exclusively the incremental round-2 diff."
+    ],
+    "previous_commit_patch_scalar_alu": 169,
+    "previous_commit_stone_tone_detail": {
+      "reach": 19,
+      "weight": 1,
+      "fine": 11,
+      "broad": 13,
+      "broadTone": 36,
+      "fineTone": 34,
+      "wall": 1,
+      "base": 10,
+      "shelter": 1,
+      "weatherMultiply": 6,
+      "finalBlend": 6
+    },
+    "round2_incremental_scalar_alu": 391,
+    "round2_increment_groups": {
+      "relief_and_light_setup": 315,
+      "tone_delta": 76
+    }
+  },
+  "after": {
+    "model": {
+      "scope": "Revised near, sun-facing Palace painted-panel stone fragment; one variation hash, one directional light; counts facadeWeathering patch only, excluding unchanged Three PBR, maps, windowInterior and non-Low weather()",
+      "kind": "conservative scalar source expansion before compiler optimization; not GPU ISA or timing",
+      "primitive": "Each scalar +, -, *, /, min, max, floor, fract, step, sqrt, inversesqrt, dFdx, dFdy and abs = 1. Vector arithmetic counted per consumed component. Assignments, constructors, swizzles and control flow excluded. No constant folding, common-subexpression elimination or fused operations.",
+      "expansions": {
+        "dot3": 5,
+        "normalize3": 9,
+        "distance3": 9,
+        "clamp": 2,
+        "mix": 3,
+        "mod": 4,
+        "smoothstep": 9,
+        "fwidth_per_component": 5,
+        "inverseTransformDirection": 30,
+        "palaceBlockHash": 30,
+        "palaceBlockPresence": 11,
+        "palaceBand": 10,
+        "palaceRevealRatio": 9
+      },
+      "transform_detail": "Three inverseTransformDirection consumes xyz of vec4(dir,0)*viewMatrix: 3 dot4 outputs = 21, normalize3 = 9. Literal multiply-by-zero terms retained; unused w output excluded. A zero-folded transform is 24 instead.",
+      "path_condition": "vFacadeStone.x>0, vFacadeStone.z>0.5, reach>0, stoneWindow<0.5, fine>0, sunUp>0 and facing>0"
+    },
+    "groups": {
+      "palaceStoneTone": 52,
+      "palaceReliefShade": 47,
+      "derivatives_shared_grid_window_classification": 31,
+      "facadeAO_existing": 8,
+      "shade_lighting_multiplications": 14
+    },
+    "tone_detail": {
+      "fine_presence": 11,
+      "single_hash_and_center": 31,
+      "block_tone": 3,
+      "final_top_tint_and_albedo_blend": 7
+    },
+    "relief_detail": {
+      "jamb_side_selection": 4,
+      "cavity_from_baked_masks": 6,
+      "wrapped_course_coordinate": 9,
+      "dynamic_band_with_lighting_and_panel_mask": 12,
+      "direct_shadow": 2,
+      "course_cavity_and_baked_highlight": 8,
+      "reach_blend": 6
+    },
+    "shared_detail": {
+      "footprint": 12,
+      "shared_mod_grid": 8,
+      "window_normalized_coordinate": 2,
+      "window_steps_and_product": 7,
+      "window_weight": 2
+    },
+    "total_scalar_alu": 152,
+    "total_without_existing_facade_ao": 144,
+    "detail_panel_without_painted_window_classification": 141,
+    "before_total_scalar_alu": 560,
+    "scalar_alu_removed": 408,
+    "scalar_alu_reduction_percent": 72.85714285714286,
+    "texture_fetches_added": 0,
+    "dependent_texture_fetches_added": 0,
+    "pow_exp": 0,
+    "dynamic_branch_sites": 2,
+    "branch_comparisons": 2,
+    "branch_detail": {
+      "primitive_constant_palace_tag_guards": 2,
+      "pixel_dependent_helper_branches": 0
+    },
+    "inventory": {
+      "palaceBand": 1,
+      "palaceBlockHash": 1,
+      "palaceBlockPresence": 1,
+      "distance_fragment": 0,
+      "inverseTransformDirection_fragment": 0,
+      "palaceRevealRatio_fragment": 0,
+      "shared_mod_grid": 1
+    },
+    "previous_commit_patch_scalar_alu": 169,
+    "non_palace_low_paint_path_scalar_alu": 39,
+    "before_non_palace_low_paint_path_scalar_alu": 31,
+    "notes": [
+      "Same source expansion convention as before; not vendor ISA or timing.",
+      "Eight fixed relief band evaluations now baked into existing roughness R/B/A channels; its G roughness and lookup are reused unchanged.",
+      "Sun/normal transforms, reach, reveal ratios, light strength, course drop and cavity/top factors now execute in the vertex stage; those operations are excluded from fragment totals, not erased.",
+      "Two Palace guards depend on a per-primitive constant building tag; arithmetic helpers have no Low branches.",
+      "No per-window branch: painted windows also evaluate one hash, with zero albedo tone weight.",
+      "The baseline Palace tone from 333706f^ was 169 total patch source ALU; revised 152 is lower even with reveal/course shading retained.",
+      "The full unrelated Three PBR, shadow, normal-map and interior code is not counted."
+    ]
+  }
+}

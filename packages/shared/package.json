@@ -1,0 +1,17 @@
+{
+  "name": "@wd/shared",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "echo \"shared is consumed as source\""
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.21.0",
+    "valibot": "^1.5.0"
+  }
+}

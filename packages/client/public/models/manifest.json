@@ -1,0 +1,92 @@
+{
+  "atlas": {
+    "tile": 512,
+    "pad": 8,
+    "cols": 4,
+    "rows": 3,
+    "width": 2048,
+    "height": 1536
+  },
+  "models": {
+    "crate": {
+      "source": "wooden_crate_02",
+      "triangles": 364,
+      "vertices": 574,
+      "size": [0.5291, 0.4628, 1.1502]
+    },
+    "crate_small": {
+      "source": "wooden_crate_01",
+      "triangles": 492,
+      "vertices": 700,
+      "size": [0.8202, 0.3469, 0.4055]
+    },
+    "jersey": {
+      "source": "concrete_road_barrier",
+      "triangles": 600,
+      "vertices": 464,
+      "size": [1.5445, 0.8286, 0.6304]
+    },
+    "drum": {
+      "source": "barrel_03",
+      "triangles": 500,
+      "vertices": 525,
+      "size": [0.6191, 0.9276, 0.6237]
+    },
+    "bin": {
+      "source": "metal_trash_can",
+      "triangles": 699,
+      "vertices": 731,
+      "size": [0.6385, 0.9062, 0.5514]
+    },
+    "lamp": {
+      "source": "street_lamp_01",
+      "triangles": 999,
+      "vertices": 1068,
+      "size": [0.6892, 3.8552, 0.3862]
+    },
+    "trashbag": {
+      "source": "trashbag",
+      "triangles": 500,
+      "vertices": 387,
+      "size": [0.5186, 0.5684, 0.4552]
+    },
+    "tyre": {
+      "source": "old_tyre",
+      "triangles": 400,
+      "vertices": 420,
+      "size": [0.5888, 0.165, 0.566]
+    },
+    "utility_box": {
+      "source": "utility_box_01",
+      "triangles": 320,
+      "vertices": 538,
+      "size": [0.5157, 1.0925, 0.4287]
+    },
+    "cardboard_box": {
+      "source": "cardboard_box_01",
+      "triangles": 300,
+      "vertices": 219,
+      "size": [0.3839, 0.3373, 0.5148]
+    },
+    "car": {
+      "source": "covered_car",
+      "triangles": 4000,
+      "vertices": 4695,
+      "size": [1.7884, 1.4055, 4.3437]
+    }
+  },
+  "tiles": [
+    "wooden_crate_02",
+    "wooden_crate_01",
+    "concrete_road_barrier",
+    "barrel_03",
+    "metal_trash_can",
+    "fire_hydrant",
+    "street_lamp_01",
+    "trashbag",
+    "old_tyre",
+    "utility_box_01",
+    "cardboard_box_01",
+    "covered_car"
+  ]
+}

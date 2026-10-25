@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Market facade review</title>
+    <style>
+      body {
+        margin: 0;
+        background: #101820;
+        color: white;
+        font: 13px system-ui;
+      }
+      iframe {
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+        display: block;
+      }
+      header {
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 8px;
+        background: #101820e8;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      button {
+        color: white;
+        background: #243947;
+        border: 1px solid #628092;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>Market — fixed facade review</strong>
+      <button id="palace" disabled>Hall balcony → Palace</button>
+      <button id="near" disabled>Palace forecourt</button>
+      <button id="neon" disabled>Night view</button>
+      <button id="measure" disabled>Measure 15 s</button>
+      <select id="isolate" aria-label="Facade band diagnostic" disabled>
+        <option value="full">Full scene</option>
+        <option value="ao">Screen AO off</option>
+        <option value="shadow">Sun shadows off</option>
+        <option value="prepass">Depth prepass off</option>
+        <option value="baked">Facade baked AO off</option>
+        <option value="cavity">Vertex cavity AO off</option>
+        <option value="normal">Facade normal maps off</option>
+        <option value="solid">Facade solid geometry</option>
+      </select>
+      <span id="status">Loading shipped game…</span>
+    </header>
+    <iframe title="Actual Market game" src="/?autotest"></iframe>
+    <details
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 3;
+        background: #101820e8;
+        max-height: 65vh;
+        overflow: auto;
+      "
+    >
+      <summary>Runtime receipt</summary>
+      <pre id="receipt">No frame sample yet.</pre>
+    </details>
+    <script type="module">
+      import { WEATHERS } from './src/settings/settings.ts';
+      import * as THREE from 'three';
+      // Local review surface only: Vite's production entry remains index.html.
+      const frame = document.querySelector('iframe');
+      const status = document.querySelector('#status');
+      let game;
+      let wd;
+      let pose = 'hall balcony';
+      const normalBakedIntensity = new Map();
+      const normalMaps = new Map();
+      const cavityAttributes = new Map();
+      const facadeMaterials = new Map();
+      const solidMaterial = new THREE.MeshBasicMaterial({ color: '#cccccc' });
+      function isolate() {
+        const mode = document.querySelector('#isolate').value;
+        const ao = game.post.composer?.passes.find(
+          (pass) => pass.configuration?.aoRadius !== undefined,
+        );
+        if (ao) ao.enabled = mode !== 'ao';
+        game.renderer.shadowMap.enabled = mode !== 'shadow';
+        game.post.prepass.enabled = mode !== 'prepass';
+        for (const swap of game.facade.swaps) {
+          if (!normalBakedIntensity.has(swap.baked))
+            normalBakedIntensity.set(swap.baked, swap.baked.aoMapIntensity);
+          swap.baked.aoMapIntensity = mode === 'baked' ? 0 : normalBakedIntensity.get(swap.baked);
+        }
+        for (const mesh of Object.values(game.facade.meshes)) {
+          if (!mesh) continue;
+          if (mesh.material !== solidMaterial) facadeMaterials.set(mesh, mesh.material);
+          mesh.material = mode === 'solid' ? solidMaterial : facadeMaterials.get(mesh);
+          const cavity = mesh.geometry.getAttribute('aFacadeOcclusion');
+          if (cavity) {
+            if (!cavityAttributes.has(cavity)) cavityAttributes.set(cavity, cavity.array.slice());
+            if (mode === 'cavity') cavity.array.fill(255);
+            else cavity.array.set(cavityAttributes.get(cavity));
+            cavity.needsUpdate = true;
+          }
+        }
+        for (const mat of new Set([
+          ...facadeMaterials.values(),
+          ...game.facade.swaps.flatMap(({ baked, plain }) => [baked, plain]),
+        ])) {
+          if (!normalMaps.has(mat)) normalMaps.set(mat, mat.normalMap);
+          const target = mode === 'normal' ? null : normalMaps.get(mat);
+          if (mat.normalMap !== target) {
+            mat.normalMap = target;
+            mat.needsUpdate = true;
+          }
+        }
+        document.querySelector('#receipt').textContent = JSON.stringify(
+          {
+            scope: 'Facade band isolation, not a gameplay quality benchmark',
+            mode,
+            aoFound: Boolean(ao),
+            aoEnabled: ao?.enabled,
+            sunShadows: game.renderer.shadowMap.enabled,
+            depthPrepass: game.post.prepass.enabled,
+            facadeMeshes: facadeMaterials.size,
+            cavityAttributes: cavityAttributes.size,
+            bakedIntensities: game.facade.swaps.map(({ baked }) => baked.aoMapIntensity),
+            normalMaps: [...normalMaps.keys()].map((mat) => Boolean(mat.normalMap)),
+          },
+          null,
+          2,
+        );
+        status.textContent = `${pose} · High · 100% · ${game.settings.weather} · diagnostic ${mode}`;
+      }
+      document.querySelector('#isolate').onchange = isolate;
+      function setWeather(id) {
+        if (!WEATHERS.includes(id)) throw new Error(`Unsupported review weather: ${id}`);
+        game.settings.weather = id;
+      }
+      function view(near = false) {
+        game.settings.quality = 'high';
+        game.settings.renderScale = 1;
+        game.settings.dynamicResolution = false;
+        setWeather('sunny');
+        game.settings.showFps = false;
+        game.applySettings();
+        isolate();
+        wd.cam('off');
+        wd.hold(0);
+        pose = near ? 'forecourt' : 'hall balcony';
+        // The hall's upper slab is 3.6 m; yaw +pi/2 looks west toward the Palace.
+        wd.teleport(near ? 76 : 128.7, near ? 0 : 3.6, near ? 0 : 18.1, Math.PI / 2, 0.04);
+        status.textContent = `${pose} · High · 100% · sunny · DRS off`;
+      }
+      document.querySelector('#palace').onclick = () => view(false);
+      document.querySelector('#near').onclick = () => view(true);
+      document.querySelector('#neon').onclick = () => {
+        setWeather('neon');
+        game.applySettings();
+        isolate();
+        status.textContent = `${pose} · High · 100% · night · DRS off`;
+      };
+      document.querySelector('#measure').onclick = () => {
+        const button = document.querySelector('#measure');
+        button.disabled = true;
+        const startState = wd.state();
+        const canvas = frame.contentDocument.querySelector('#game');
+        const gl = canvas.getContext('webgl2');
+        const gpu = gl?.getExtension('WEBGL_debug_renderer_info');
+        const hardware = gpu ? gl.getParameter(gpu.UNMASKED_RENDERER_WEBGL) : null;
+        const samples = [];
+        let previous;
+        let started;
+        let hiddenFrames = 0;
+        function sample(now) {
+          started ??= now;
+          if (
+            document.visibilityState !== 'visible' ||
+            frame.contentDocument.visibilityState !== 'visible'
+          )
+            hiddenFrames++;
+          if (previous !== undefined) samples.push(now - previous);
+          previous = now;
+          status.textContent = `Sampling ${pose} · ${((now - started) / 1000).toFixed(1)} / 15 s`;
+          if (now - started < 15000) return requestAnimationFrame(sample);
+          samples.sort((a, b) => a - b);
+          const percentile = (p) =>
+            samples[Math.min(samples.length - 1, Math.floor(samples.length * p))];
+          document.querySelector('#receipt').textContent = JSON.stringify(
+            {
+              measuredAt: new Date().toISOString(),
+              scope: 'Static actual-game view, not a moving/combat benchmark',
+              pose,
+              hardware,
+              viewport: [canvas.width, canvas.height],
+              hiddenFrames,
+              durationMs: now - started,
+              frames: samples.length,
+              medianMs: percentile(0.5),
+              p95Ms: percentile(0.95),
+              p99Ms: percentile(0.99),
+              startState,
+              endState: wd.state(),
+            },
+            null,
+            2,
+          );
+          button.disabled = false;
+          status.textContent = `${pose} · median ${percentile(0.5).toFixed(1)} ms · p95 ${percentile(0.95).toFixed(1)} ms`;
+        }
+        requestAnimationFrame(sample);
+      };
+      const ready = setInterval(() => {
+        const host = frame.contentWindow;
+        if (!host?.__wd?.ready || !host.__wdGame) return;
+        clearInterval(ready);
+        game = host.__wdGame;
+        wd = host.__wd;
+        for (const button of document.querySelectorAll('button')) button.disabled = false;
+        document.querySelector('#isolate').disabled = false;
+        view(false);
+      }, 250);
+    </script>
+  </body>
+</html>
